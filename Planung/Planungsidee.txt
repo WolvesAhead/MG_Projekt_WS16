@@ -1,0 +1,64 @@
+	Name?
+	
+Gameplay	
+	- Items 
+		Wie viele? Welche?Effekte?
+
+	- Player-Paddle
+		Steuerung,Geschwindigkeit
+	
+	- Blöcke
+		Typen (Eigenschaften)
+	
+	-Ball
+		Bounce,Punkteverteilung,Eigenschaften
+
+	-Level
+		Wie viele? Verschiedene Effekte?
+
+	Punktesystem
+
+
+
+Design
+	Sprites:
+		-Player-Paddle Sprites (2)
+		-Ball Sprites (2)
+		-Block Sprites (?)
+		-Item SPrites  (?)
+		-Animations und Effekt Sprites
+
+	-UI
+		Menüs
+ 
+	-Scoreboard
+		Punkte? Welchen Font?
+
+	-Backgrounds
+		Wahrscheinlich nicht zu wild und eher einfarbig? Schwarz? Ideen?
+	
+	-Level Design
+		Aufteilung der Blöcke ? Ist das eher Gameplay?
+	
+	-Texturen
+
+
+Sound
+	-Welche Töne haben wir?
+			kaputte Blöcke
+			Bounce an Wand/Block/Paddle
+			Win/Lose
+			Backgroundsound
+			Menüsound
+			"Goal"-Sound
+			Item-Sound
+	
+
+kaputte Blöcke
+Bounce an Wand/Block/Paddle
+Win/Lose
+Backgroundsound
+Menüsound
+"Goal"-Sound
+Item-Sound
+	

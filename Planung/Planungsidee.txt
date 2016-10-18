@@ -4,24 +4,24 @@ Gameplay
 	- Items 
 		Wie viele? Welche?Effekte?
 			-Ball wird schneller
-			-Paddle wird länger/kürzer
-			-Richtungstasten vertauscht
-			-Ball durchschlägt alle Blöcke im Weg
-			-Irgendwas mit eingeschränkter Sicht(?)
-			-Mehr Bälle(keine Strafe solange man noch einen Ball hat)
-			-
+			-Paddle wird länger/kürzer //( 5 Größen reichen?)
+			-Richtungstasten vertauscht //( Zeit?)
+			-Ball durchschlägt alle Blöcke im Weg ( //Ich glaub dass ist OP wenn nur für 3 Sek. bzw einmal rüber spielen und evtl dann Gesachwindigkeit erhöhen)
+			-Irgendwas mit eingeschränkter Sicht //(Vlt so ne Art verdunkelungseffekt aber eher als leichte einschränkung)
+			-Mehr Bälle(keine Strafe solange man noch einen Ball hat)// WIe viele 3 o. 5? jedesmal nur einen mehr ?			-
 
 	- Player-Paddle
 		Steuerung,Geschwindigkeit
 	
 	- Blöcke
 		Typen (Eigenschaften)
+			- Farben
 			-Unzerstörbare Blöcke
 			-Blöcke die man 2 Mal treffen muss
-			-Blöcke mit Countdown(?)
-			-Explodierende Blöcke
-			-Blöcke mit bestimmten Power-Ups
-			-Block der Random Power-Up fallen lässt(Risiko)
+			-Blöcke mit Countdown(?) // Als Endgame Wand ? 
+			-Explodierende Blöcke // Vergraben in anderen?
+			-Blöcke mit bestimmten Power-Ups // Dafür müssten wir erstmal die Power-Ups bestimmen
+			-Block der Random Power-Up fallen lässt(Risiko)// safe
 			-
 	
 	-Ball

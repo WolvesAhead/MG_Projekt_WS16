@@ -3,15 +3,25 @@
 Gameplay	
 	- Items 
 		Wie viele? Welche?Effekte?
-			-Ball wird schneller
-			-Paddle wird länger/kürzer //( 5 Größen reichen?)
+			-Ball wird schneller (stacked 2 mal) <-- oder unendlich?
+			-Ball wird langsamer ( stacked 2 mal) 
+			-Paddle wird länger ( stacked 2 mal?)
+			-Paddle wird kürzer (stacked 2mal ?)
 			-Richtungstasten vertauscht //( Zeit?)
 			-Ball durchschlägt alle Blöcke im Weg ( //Ich glaub dass ist OP wenn nur für 3 Sek. bzw einmal rüber spielen und evtl dann Gesachwindigkeit erhöhen)
 			-Irgendwas mit eingeschränkter Sicht //(Vlt so ne Art verdunkelungseffekt aber eher als leichte einschränkung)
 			-Mehr Bälle(keine Strafe solange man noch einen Ball hat)// WIe viele 3 o. 5? jedesmal nur einen mehr ?			-
+			-Waffe ( zum zerschießen von Blöcken, zieht nicht so viel Block Health ab wie ein Ball)
+			-zufälliges Item
+			- Jedes Item auch noch für den Gegner ? (dh. Player sammelt Item für Player 2 auf ?)
+
+				
+				- Weitere Items oder genug?
+
 
 	- Player-Paddle
 		Steuerung,Geschwindigkeit
+				Zum testen reichen die Pfeiltasten und "W-A-D". Für die Konsole sollten die geändert werden!!
 	
 	- Blöcke
 		Typen (Eigenschaften)
@@ -22,13 +32,18 @@ Gameplay
 			-Explodierende Blöcke // Vergraben in anderen?
 			-Blöcke mit bestimmten Power-Ups // Dafür müssten wir erstmal die Power-Ups bestimmen
 			-Block der Random Power-Up fallen lässt(Risiko)// safe
-			-
+			
+
+			// Sollten genug Blöcke sein. Jetzt sollten wir nur noch testen wie gut die funktionieren. 
+
 	
 	-Ball
-		Bounce,Punkteverteilung,Eigenschaften
+		Bounce, ( Bounce funktioniert, Geschwindigkeitsverlust muss verhindert werden)
+		Punkteverteilung ( Noch nicht implementiert)
+		Eigenschaften
 
 	-Level
-		Wie viele? Verschiedene Effekte?
+		Wie viele? //3 Level sollten reichen
 
 	Punktesystem
 
@@ -68,11 +83,5 @@ Sound
 			Item-Sound
 	
 
-kaputte Blöcke
-Bounce an Wand/Block/Paddle
-Win/Lose
-Backgroundsound
-Menüsound
-"Goal"-Sound
-Item-Sound
+
 	

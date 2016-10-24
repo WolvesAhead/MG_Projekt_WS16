@@ -1,0 +1,3 @@
+-Richtige Kollision
+-Ballmanipulation in x-Richtung vom Paddle
+-Blöcke zerstören

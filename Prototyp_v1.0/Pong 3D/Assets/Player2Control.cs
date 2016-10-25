@@ -13,7 +13,16 @@ public class Player2Control : MonoBehaviour
 	
 	void Update() 
 	{
-		if(Input.GetKey(KeyCode.D))
+        if (transform.position.x < -5f)
+        {
+            transform.position = new Vector3(-5f, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.x > 5f)
+        {
+            transform.position = new Vector3(5f, transform.position.y, transform.position.z);
+        }
+        if (Input.GetKey(KeyCode.D))
 		{
 			transform.position += Vector3.right * speed * Time.deltaTime;
 		}

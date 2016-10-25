@@ -6,6 +6,9 @@ public class BallMovement : MonoBehaviour
 	public float yspeed = 5f;
 	public float xspeed = 0f;
 	public Rigidbody rb;
+    public GameObject paddle;
+    HingeJoint kleben;
+    
 
 	void Start() 
 	{
@@ -13,7 +16,9 @@ public class BallMovement : MonoBehaviour
 		//Anfangsbewegung
 		rb.velocity = new Vector3(xspeed, yspeed, 0);
 		Debug.Log("start");
-	}
+        kleben = GetComponent<HingeJoint>();
+
+    }
 	
 	void Update() 
 	{
@@ -32,11 +37,13 @@ public class BallMovement : MonoBehaviour
 
 	void Serve()
 	{
-		//Angabe aus der Mitte
-		rb.position = new Vector3(0, 0, 0);
-	}
 
-	void OnCollisionEnter(Collision col)
+       // 
+
+        rb.position = new Vector3(paddle.transform.position.x, paddle.transform.position.y + 2f, 0);
+    }
+
+    void OnCollisionEnter(Collision col)
 	{
 		//Collisiondetection
 		foreach(ContactPoint contact in col.contacts)

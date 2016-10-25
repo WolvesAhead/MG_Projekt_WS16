@@ -15,9 +15,5 @@ public class MyBallsScript : MonoBehaviour {
 
         rb.velocity = 5 * (rb.velocity.normalized);
     }
-   
-          
-
-
-    }
+}
 

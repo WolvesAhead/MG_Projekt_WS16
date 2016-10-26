@@ -1,0 +1,2 @@
+-Bug mit Richtungswechsel behoben
+-Abschusswinkel und Auftreffen an Ecken noch etwas komisch

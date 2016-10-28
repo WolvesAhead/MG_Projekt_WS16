@@ -15,6 +15,10 @@ public class BlockPhys : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        Destroy(gameObject);
+        if (col.transform.tag == "ball")
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }

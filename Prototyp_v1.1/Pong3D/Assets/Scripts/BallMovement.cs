@@ -7,7 +7,6 @@ public class BallMovement : MonoBehaviour
 	public float xspeed = 0f;
 	public Rigidbody rb;
     public GameObject paddle;
-    HingeJoint kleben;
     
 
 	void Start() 
@@ -16,7 +15,7 @@ public class BallMovement : MonoBehaviour
 		//Anfangsbewegung
 		rb.velocity = new Vector3(xspeed, yspeed, 0);
 		Debug.Log("start");
-        kleben = GetComponent<HingeJoint>();
+        
 
     }
 	

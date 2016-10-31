@@ -66,9 +66,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BallMovement.cs" />
     <Compile Include="Assets\Scripts\BlockPhys.cs" />
-    <Compile Include="Assets\Scripts\BlockPhys2.cs" />
+    <Compile Include="Assets\Scripts\ItemPrefabScript.cs" />
     <Compile Include="Assets\Scripts\MyBallsScript.cs" />
     <Compile Include="Assets\Scripts\MyBallsScript2.cs" />
     <Compile Include="Assets\Scripts\Player1Control.cs" />

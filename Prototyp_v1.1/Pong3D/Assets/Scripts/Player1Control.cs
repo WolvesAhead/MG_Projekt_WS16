@@ -32,11 +32,11 @@ public class Player1Control : MonoBehaviour
             transform.position = new Vector3(5.1f, transform.position.y, transform.position.z);
         }*/
 
-        if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < rightLimit)
+        if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < rightLimit - 0.1)
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > leftLimit)
+        if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > leftLimit + 0.1)
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
         }
@@ -52,10 +52,10 @@ public class Player1Control : MonoBehaviour
             	float winkelX = winkel / 0.75f;
 
             	// "Winkel" errechnung 
-                if (transform.position.x < rightLimit && transform.position.x > leftLimit) // damit den ball nicht das paddle folgt wenn das hackt und geht mehr als die grennzung
+                if ((collision.transform.tag == "ball" || collision.transform.tag == "ball2") && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1 ) // damit den ball nicht das paddle folgt wenn das hackt und geht mehr als die grennzung
                  {
                    rbball.velocity = new Vector3(winkelX * 7, rbball.velocity.y, 0);
-                 }
+            }else { Debug.Log("Bug"); }
             	
 
   				Debug.Log(contact.point.x);

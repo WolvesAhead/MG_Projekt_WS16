@@ -27,7 +27,7 @@ public class MyBallsScript2 : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.W) && startposition)
         {
-            GetComponent<Rigidbody>().AddForce(0, 300, 0);
+            GetComponent<Rigidbody>().AddForce(0, -300, 0);
             startposition = false;
             //GetComponent<Rigidbody>();
         }

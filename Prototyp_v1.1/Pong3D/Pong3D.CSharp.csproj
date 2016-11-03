@@ -66,6 +66,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BigPaddleItemScript.cs" />
     <Compile Include="Assets\Scripts\BlockPhys.cs" />
     <Compile Include="Assets\Scripts\ItemPrefabScript.cs" />
     <Compile Include="Assets\Scripts\MyBallsScript.cs" />

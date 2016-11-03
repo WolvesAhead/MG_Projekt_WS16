@@ -15,22 +15,23 @@ public class Player1Control : MonoBehaviour
 	{
         // left limit ist der wert von der punkt der am ende links auf dem bottomBorder liegt und zwar "-6,25 "
         // genau das gleiche geht für rightLimit 
-        leftLimit = bottomBorder.GetComponent<Renderer>().bounds.min.x + 0.75f ; // 0,75 ist die hälfte unsere paddle (-6,25 + 0,75 = -5,5) ==> genau unesere limit
-        rightLimit = bottomBorder.GetComponent<Renderer>().bounds.max.x - 0.75f ;
-        Debug.Log("RightLimit" + rightLimit + "and Left Limit: " + leftLimit);
+      
+        Debug.Log(transform.localScale.x / 2);
 	
 	}
 
     void Update()
     {
-       /* if (transform.position.x < -5.1f)
-        {
-            transform.position = new Vector3(-5.1f, transform.position.y, transform.position.z);
-        }
-        if (transform.position.x > 5.1f)
-        {
-            transform.position = new Vector3(5.1f, transform.position.y, transform.position.z);
-        }*/
+        leftLimit = bottomBorder.GetComponent<Renderer>().bounds.min.x + (transform.localScale.x / 2); // 0,75 ist die hälfte unsere paddle (-6,25 + 0,75 = -5,5) ==> genau unesere limit
+        rightLimit = bottomBorder.GetComponent<Renderer>().bounds.max.x - (transform.localScale.x / 2);
+        /* if (transform.position.x < -5.1f)
+         {
+             transform.position = new Vector3(-5.1f, transform.position.y, transform.position.z);
+         }
+         if (transform.position.x > 5.1f)
+         {
+             transform.position = new Vector3(5.1f, transform.position.y, transform.position.z);
+         }*/
 
         if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < rightLimit - 0.1)
         {
@@ -43,7 +44,8 @@ public class Player1Control : MonoBehaviour
 
     }
         void OnCollisionEnter(Collision collision) {
-            foreach (ContactPoint contact in collision.contacts)
+       
+        foreach (ContactPoint contact in collision.contacts)
             {
             	//Punkt auf dem Paddle
             	float winkel = contact.point.x - transform.position.x;
@@ -62,8 +64,18 @@ public class Player1Control : MonoBehaviour
             }
 
 
+        //////////////////BIGP PADDLE ITEM\\\\\\\\\\\\\\\\\\
+
+        if (collision.transform.tag == "bigPaddle")
+        {
+          
+            this.gameObject.transform.localScale += new Vector3(1f, 0, 0);
 
         }
+
+
+
+    }
 
         /* void OnCollisionEnter(Collision col)
          {

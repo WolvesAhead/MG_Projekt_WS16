@@ -17,14 +17,15 @@ public class BlockPhys : MonoBehaviour {
 
         void OnCollisionEnter(Collision col)
             {
-        if (col.transform.tag == "ball")
+        int random = Random.Range(0, 5);
+        if (col.transform.tag == "ball" && random == 3)
         {
             Rigidbody ItemInstance;
             ItemInstance = Instantiate(RbitemPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
             ItemInstance.AddForce(0, -150, 0);
         }
 
-        if (col.transform.tag == "ball2")
+        if (col.transform.tag == "ball2"  && random == 3)
         {
             Rigidbody ItemInstance;
             ItemInstance = Instantiate(RbitemPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;

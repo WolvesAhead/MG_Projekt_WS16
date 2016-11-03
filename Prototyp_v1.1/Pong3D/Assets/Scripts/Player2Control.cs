@@ -65,6 +65,17 @@ public class Player2Control : MonoBehaviour
 
         }
 
+        //////////////////Small PADDLE ITEM- Bug verhindert, dass die X Größe ins Negative gerät und somit wieder größer wird\\\\\\\\\\\\\\\\\\
+
+        if (collision.transform.tag == "smallPaddle")
+        {
+            if (this.gameObject.transform.localScale.x >= 1)
+            {
+                this.gameObject.transform.localScale -= new Vector3(1, 0, 0);
+            }
+        }
+
+
         //////////////////mehr bälle ITEM\\\\\\\\\\\\\\\\\\
 
         if (collision.transform.tag == "mehrbaelle")

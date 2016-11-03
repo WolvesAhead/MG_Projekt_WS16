@@ -6,6 +6,8 @@ public class MyBallsScript : MonoBehaviour {
     bool startposition = true;
     public GameObject playerPaddle;
 
+   
+
 
     // Use this for initialization
     void Start () {
@@ -18,7 +20,7 @@ public class MyBallsScript : MonoBehaviour {
     void Update() {
             if (startposition == true || transform.position.y < -5f || transform.position.y > 5f)
         {
-            transform.position = new Vector3(playerPaddle.transform.position.x, -4.3f, -0.7f);
+            transform.position = new Vector3(playerPaddle.transform.position.x, -4.4f, -0.7f);
             startposition = true;
         }
 

@@ -69,17 +69,18 @@ public class Player1Control : MonoBehaviour
         if (collision.transform.tag == "bigPaddle")
         {
           
-            this.gameObject.transform.localScale += new Vector3(1f, 0, 0);
+            this.gameObject.transform.localScale += new Vector3(1, 0, 0);
 
         }
 
-        //////////////////Small PADDLE ITEM\\\\\\\\\\\\\\\\\\
+        //////////////////Small PADDLE ITEM- Bug verhindert, dass die X Größe ins Negative gerät und somit wieder größer wird\\\\\\\\\\\\\\\\\\
 
         if (collision.transform.tag == "smallPaddle")
         {
-
-            this.gameObject.transform.localScale -= new Vector3(1f, 0, 0);
-
+            if (this.gameObject.transform.localScale.x >= 1)
+            {
+                this.gameObject.transform.localScale -= new Vector3(1, 0, 0);
+            }
         }
 
         //////////////////mehr bälle ITEM\\\\\\\\\\\\\\\\\\

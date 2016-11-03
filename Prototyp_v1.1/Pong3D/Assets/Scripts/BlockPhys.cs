@@ -6,9 +6,10 @@ public class BlockPhys : MonoBehaviour {
  
     public Rigidbody[] RbitemPrefab;
 
-	// Use this for initialization
-	void Start () {
-       
+
+    // Use this for initialization
+    void Start () {
+    
 
     }
 
@@ -16,20 +17,20 @@ public class BlockPhys : MonoBehaviour {
     void Update() { }
 
 
-        void OnCollisionEnter(Collision col)
-            {
+    void OnCollisionEnter(Collision col)
+    {
         int random = Random.Range(0, 2);
-        Debug.Log("Random range (0,2)"+random);
-        if (col.transform.tag == "ball" && random == 1 )
+        Debug.Log("Random range (0,2)" + random);
+        if (col.transform.tag == "ball" && random == 1)
         {
             Rigidbody ItemInstance;
             int i = Random.Range(0, 3);
             ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
             ItemInstance.AddForce(0, -150, 0);
-            Debug.Log("RandomItemwert:"+i);
+            Debug.Log("RandomItemwert:" + i);
         }
 
-        if (col.transform.tag == "ball2"  && random == 1)
+        if (col.transform.tag == "ball2" && random == 1)
         {
             Rigidbody ItemInstance;
             int i = Random.Range(0, 3);
@@ -39,11 +40,10 @@ public class BlockPhys : MonoBehaviour {
         }
 
         Destroy(gameObject);
-              
-                
-            
-                
-            }
+       
+
+    }
+    
 
    }
 

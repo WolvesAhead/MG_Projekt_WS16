@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{E138249A-412E-FF12-1655-944271AAEA1E}</ProjectGuid>
+    <ProjectGuid>{3363CB04-67E1-E2C3-5132-176DEED0D4BD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -38,26 +38,28 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>D:/Neuer Ordner/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>D:/Neuer Ordner/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BallMovement.cs" />
-     <Compile Include="Assets\BlockPhys.cs" />
-     <Compile Include="Assets\MyBallsScript.cs" />
-     <Compile Include="Assets\Player1Control.cs" />
-     <Compile Include="Assets\Player2Control.cs" />
+     <Compile Include="Assets\Scripts\BigPaddleItemScript.cs" />
+     <Compile Include="Assets\Scripts\BlockPhys.cs" />
+     <Compile Include="Assets\Scripts\ItemPrefabScript.cs" />
+     <Compile Include="Assets\Scripts\MyBallsScript.cs" />
+     <Compile Include="Assets\Scripts\MyBallsScript2.cs" />
+     <Compile Include="Assets\Scripts\Player1Control.cs" />
+     <Compile Include="Assets\Scripts\Player2Control.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Neuer Ordner/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>D:/Neuer Ordner/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>D:/Neuer Ordner/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

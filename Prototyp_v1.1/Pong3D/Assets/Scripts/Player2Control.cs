@@ -11,6 +11,9 @@ public class Player2Control : MonoBehaviour
     private float rightLimit;
     private float leftLimit;
 
+    private int controlChange;
+    private float controlChangeTime = 5f;
+
     void Start() 
 	{
        
@@ -28,15 +31,42 @@ public class Player2Control : MonoBehaviour
          {
              transform.position = new Vector3(5.2f, transform.position.y, transform.position.z);
          }*/
-        if (Input.GetKey(KeyCode.D) && transform.position.x < rightLimit)
+
+        // ControllChange 
+        if (controlChange == 1)
         {
-            transform.position += Vector3.right * speed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.A) && transform.position.x > leftLimit)
-        {
-            transform.position += Vector3.left * speed * Time.deltaTime;
+
+            //Timer
+            controlChangeTime -= Time.deltaTime;
+            if (controlChangeTime < 0)
+            {
+                controlChange -= 1;
+                controlChangeTime = 5f;
+            }
+
+            if (Input.GetKey(KeyCode.D)  && transform.position.x > leftLimit + 0.1)
+            {
+                transform.position += Vector3.left * speed * Time.deltaTime;
+          
+
+            }
+            if (Input.GetKey(KeyCode.A)  && transform.position.x < rightLimit - 0.1)
+            {
+                transform.position += Vector3.right * speed * Time.deltaTime;
+            }
         }
 
+        else
+        {
+            if (Input.GetKey(KeyCode.D) && transform.position.x < rightLimit)
+            {
+                transform.position += Vector3.right * speed * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.A) && transform.position.x > leftLimit)
+            {
+                transform.position += Vector3.left * speed * Time.deltaTime;
+            }
+        }
     }
         void OnCollisionEnter(Collision collision) {
             foreach (ContactPoint contact in collision.contacts)
@@ -87,5 +117,13 @@ public class Player2Control : MonoBehaviour
             ItemInstance.AddForce(0, -150, 0);
 
         }
-    }
+
+        ///////////////// Steuerung umkehren \\\\\\\\\\\\\\\\
+        if (collision.transform.tag == "ControlChange")
+        {
+            Debug.Log("Rechts is jetzt Links");
+
+            controlChange += 1;
+        }
+        }
     }

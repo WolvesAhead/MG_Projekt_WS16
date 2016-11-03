@@ -11,6 +11,9 @@ public class Player1Control : MonoBehaviour
     private float rightLimit;
     private float leftLimit;
 
+    public int controlChange;
+    float controlChangeTime = 5f; 
+
 	void Start() 
 	{
         // left limit ist der wert von der punkt der am ende links auf dem bottomBorder liegt und zwar "-6,25 "
@@ -33,13 +36,48 @@ public class Player1Control : MonoBehaviour
              transform.position = new Vector3(5.1f, transform.position.y, transform.position.z);
          }*/
 
-        if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < rightLimit - 0.1)
+
+
+        // ControllChange 
+        if (controlChange == 1)
         {
-            transform.position += Vector3.right * speed * Time.deltaTime;
+
+
+            //Timer
+            controlChangeTime -= Time.deltaTime;
+            if (controlChangeTime < 0)
+            {
+                controlChange -= 1;
+                controlChangeTime = 5f;
+            }
+             
+            if (Input.GetKey(KeyCode.RightArrow) && transform.position.x > leftLimit + 0.1)
+            {
+                transform.position += Vector3.left * speed * Time.deltaTime;
+       
+
+            }
+            if (Input.GetKey(KeyCode.LeftArrow)  && transform.position.x < rightLimit - 0.1)
+            {
+                transform.position += Vector3.right * speed * Time.deltaTime;
+            }
         }
-        if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > leftLimit + 0.1)
+
+
+        else
         {
-            transform.position += Vector3.left * speed * Time.deltaTime;
+        // Steuerung
+
+            if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < rightLimit - 0.1)
+            {
+                transform.position += Vector3.right * speed * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > leftLimit + 0.1)
+            {
+                transform.position += Vector3.left * speed * Time.deltaTime;
+            }
+
+            
         }
 
     }
@@ -95,6 +133,24 @@ public class Player1Control : MonoBehaviour
 
         }
 
+        ///////////////// Steuerung umkehren \\\\\\\\\\\\\\\\
+        if  (collision.transform.tag == "ControlChange")
+        {
+                Debug.Log("Rechts is jetzt Links");
+
+            controlChange += 1; 
+            
+            /*if (Input.GetKey(KeyCode.RightArrow) && (transform.position.x > rightLimit - 0.1))
+            {
+                transform.position += Vector3.left * speed * Time.deltaTime;
+
+            }
+            if (Input.GetKey(KeyCode.LeftArrow)  && (transform.position.x < leftLimit + 0.1))
+            {
+                transform.position += Vector3.right * speed * Time.deltaTime;
+            } 
+            */
+        }
 
 
 

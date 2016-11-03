@@ -3,12 +3,13 @@ using System.Collections;
 
 public class BlockPhys : MonoBehaviour {
 
-    public GameObject itemPrefab;
-    public Rigidbody RbitemPrefab;
+ 
+    public Rigidbody[] RbitemPrefab;
 
 	// Use this for initialization
 	void Start () {
        
+
     }
 
     // Update is called once per frame
@@ -17,19 +18,24 @@ public class BlockPhys : MonoBehaviour {
 
         void OnCollisionEnter(Collision col)
             {
-        int random = Random.Range(0, 5);
-        if (col.transform.tag == "ball" && random == 3)
+        int random = Random.Range(0, 2);
+        Debug.Log("Random range (0,2)"+random);
+        if (col.transform.tag == "ball" && random == 1 )
         {
             Rigidbody ItemInstance;
-            ItemInstance = Instantiate(RbitemPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
+            int i = Random.Range(0, 3);
+            ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
             ItemInstance.AddForce(0, -150, 0);
+            Debug.Log("RandomItemwert:"+i);
         }
 
-        if (col.transform.tag == "ball2"  && random == 3)
+        if (col.transform.tag == "ball2"  && random == 1)
         {
             Rigidbody ItemInstance;
-            ItemInstance = Instantiate(RbitemPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
+            int i = Random.Range(0, 3);
+            ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
             ItemInstance.AddForce(0, 150, 0);
+            Debug.Log("RandomItemwert:" + i);
         }
 
         Destroy(gameObject);

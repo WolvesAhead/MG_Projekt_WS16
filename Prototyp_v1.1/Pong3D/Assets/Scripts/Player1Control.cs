@@ -73,15 +73,31 @@ public class Player1Control : MonoBehaviour
 
         }
 
+        //////////////////Small PADDLE ITEM\\\\\\\\\\\\\\\\\\
+
+        if (collision.transform.tag == "smallPaddle")
+        {
+
+            this.gameObject.transform.localScale -= new Vector3(1f, 0, 0);
+
+        }
+
+        //////////////////mehr bälle ITEM\\\\\\\\\\\\\\\\\\
+
+        if (collision.transform.tag == "mehrbaelle")
+        {
+
+            Rigidbody ItemInstance;
+            Debug.Log("ball++");
+            ItemInstance = Instantiate(rbball, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
+            ItemInstance.AddForce(0, -150, 0);
+
+        }
+
+
 
 
     }
 
-        /* void OnCollisionEnter(Collision col)
-         {
-             if (col.gameObject.name == "LeftBorder")
-             {
-                 playerPaddle.transform.position = new Vector3(-5.37f, -4.7f,-0.81f);
-             }
-         }*/
-    }
+
+}

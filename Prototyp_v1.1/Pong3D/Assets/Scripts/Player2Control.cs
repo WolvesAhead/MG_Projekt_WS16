@@ -11,6 +11,7 @@ public class Player2Control : MonoBehaviour
     private float rightLimit;
     private float leftLimit;
 
+    public static int player2Score;
     private int controlChange;
     private float controlChangeTime = 5f;
 

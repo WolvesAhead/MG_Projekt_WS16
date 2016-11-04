@@ -11,8 +11,10 @@ public class Player1Control : MonoBehaviour
     private float rightLimit;
     private float leftLimit;
 
+    public static int player1Score;
     public int controlChange;
-    float controlChangeTime = 5f; 
+    float controlChangeTime = 5f;
+   
 
 	void Start() 
 	{
@@ -20,11 +22,14 @@ public class Player1Control : MonoBehaviour
         // genau das gleiche geht für rightLimit 
       
         Debug.Log(transform.localScale.x / 2);
-	
+
 	}
 
     void Update()
     {
+   
+
+
         leftLimit = bottomBorder.GetComponent<Renderer>().bounds.min.x + (transform.localScale.x / 2); // 0,75 ist die hälfte unsere paddle (-6,25 + 0,75 = -5,5) ==> genau unesere limit
         rightLimit = bottomBorder.GetComponent<Renderer>().bounds.max.x - (transform.localScale.x / 2);
         /* if (transform.position.x < -5.1f)
@@ -39,7 +44,7 @@ public class Player1Control : MonoBehaviour
 
 
         // ControllChange 
-        if (controlChange == 1)
+        if (controlChange >= 1)
         {
 
 
@@ -47,7 +52,7 @@ public class Player1Control : MonoBehaviour
             controlChangeTime -= Time.deltaTime;
             if (controlChangeTime < 0)
             {
-                controlChange -= 1;
+                controlChange = 0;
                 controlChangeTime = 5f;
             }
              

@@ -5,6 +5,7 @@ public class StrongBlockPhys : MonoBehaviour {
 
     public Rigidbody[] RbitemPrefab;
     public int blockHealth = 3;
+   
 
 
     // Use this for initialization
@@ -44,8 +45,19 @@ public class StrongBlockPhys : MonoBehaviour {
                 Debug.Log("RandomItemwert:" + i);
             }
 
-            Destroy(gameObject);
+            if (col.transform.tag == "ball")
+            {
+                Player1Control.player1Score += 300;
+                Destroy(gameObject);
+            }
 
+            if (col.transform.tag == "ball2")
+            {
+                Player2Control.player2Score += 300;
+                Destroy(gameObject);
+            }
+
+            Debug.Log("Player1: " + Player1Control.player1Score+ " Player2: " + Player2Control.player2Score);
         }
     }
 

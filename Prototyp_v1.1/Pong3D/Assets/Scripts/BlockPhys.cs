@@ -39,8 +39,19 @@ public class BlockPhys : MonoBehaviour {
             Debug.Log("RandomItemwert:" + i);
         }
 
-        Destroy(gameObject);
-       
+        if (col.transform.tag == "ball")
+        {
+            Player1Control.player1Score += 50;
+            Destroy(gameObject);
+        }
+
+        if (col.transform.tag == "ball2")
+        {
+            Player2Control.player2Score += 50;
+            Destroy(gameObject);
+        }
+
+        Debug.Log("Player1: " + Player1Control.player1Score + " Player2: " + Player2Control.player2Score);
 
     }
     

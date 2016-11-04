@@ -133,8 +133,8 @@ public class Player1Control : MonoBehaviour
 
             Rigidbody ItemInstance;
             Debug.Log("ball++");
-            ItemInstance = Instantiate(rbball, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
-            ItemInstance.AddForce(0, -150, 0);
+            ItemInstance = Instantiate(rbball, new Vector3(transform.position.x, transform.position.y+1f, transform.position.z), Quaternion.identity) as Rigidbody;
+            ItemInstance.AddForce(0, 150, 0);
 
         }
 

@@ -31,13 +31,13 @@ public class MyBallsScript2 : MonoBehaviour {
             Debug.Log("TOOOOR für Player 2 !! Player1: " + Player1Control.player1Score + " Player2: " + Player2Control.player2Score);
         }
 
-        if (startposition == true || transform.position.y < -5f || transform.position.y > 5f)
+        if ((startposition == true || transform.position.y < -5f || transform.position.y > 5f) && !(gameObject.name.Contains("(Clone)")))
         {
             transform.position = new Vector3(playerPaddle.transform.position.x, 4.4f, -0.7f);
             startposition = true;
         }
 
-        if (Input.GetKey(KeyCode.W) && startposition)
+        if (Input.GetKey(KeyCode.W) && startposition && !(gameObject.name.Contains("(Clone)")))
         {
             GetComponent<Rigidbody>().AddForce(0, -300, 0);
             startposition = false;
@@ -46,6 +46,13 @@ public class MyBallsScript2 : MonoBehaviour {
         if (startposition == false)
         {
             rb.velocity = 5 * (rb.velocity.normalized);
+        }
+
+        // das it für den clone Ball damit der auch ein geschwindichkeit hat
+        if ((gameObject.name.Contains("(Clone)")))
+        {
+            rb.velocity = 5 * (rb.velocity.normalized);
+
         }
 
     }

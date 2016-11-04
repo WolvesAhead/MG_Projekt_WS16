@@ -11,14 +11,16 @@ public class ItemPrefabScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (transform.position.y < -7f || transform.position.y > 7f)
+        {
+            Destroy(gameObject);
+        }
     }
  
     void OnCollisionEnter(Collision col)
     {
-   
-                 Destroy(gameObject);
-               
-     }
+        Destroy(gameObject);
+    }
 
    
 }

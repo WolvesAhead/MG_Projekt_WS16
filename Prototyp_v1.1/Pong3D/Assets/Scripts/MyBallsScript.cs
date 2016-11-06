@@ -1,31 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MyBallsScript : MonoBehaviour {
     public Rigidbody rb;
     bool startposition = true;
     public GameObject playerPaddle;
+    public Text scoreText;
+    public Text scoreText2;
 
-
-   
-
-
-    // Use this for initialization
-    void Start () {
-       
-       
-
+	// Use this for initialization
+    void Start() 
+    {
+      
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update() 
+    {
             
-
+    	scoreText.text = ((int)Player1Control.player1Score).ToString();
+    	scoreText2.text = ((int)Player2Control.player2Score).ToString();
             // FÜr die Score Berechnung.Tore für SPieler 1
             if (transform.position.y > 5)
         {
             Player1Control.player1Score += 500;
             Player2Control.player2Score -= 500;
+            
             if (Player2Control.player2Score <= 0)
             {
                 Player2Control.player2Score = 0;

@@ -99,7 +99,7 @@ public class Player1Control : MonoBehaviour
             	// "Winkel" errechnung 
                 if ((collision.transform.tag == "ball" || collision.transform.tag == "ball2") && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1 ) // damit den ball nicht das paddle folgt wenn das hackt und geht mehr als die grennzung
                  {
-                   rbball.velocity = new Vector3(winkelX * 7, rbball.velocity.y, 0);
+                   rbball.velocity = new Vector3(winkelX * 3, rbball.velocity.y, 0);
             }else { Debug.Log("Bug"); }
             	
 

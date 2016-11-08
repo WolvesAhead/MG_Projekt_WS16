@@ -6,6 +6,7 @@ public class Player1Control : MonoBehaviour
 	public GameObject playerPaddle;
     public GameObject bottomBorder;
     public Rigidbody rbball;
+    public Rigidbody rbball2;
 
     private float speed = 6f;
     private float rightLimit;
@@ -93,18 +94,24 @@ public class Player1Control : MonoBehaviour
             	//Punkt auf dem Paddle
             	float winkel = contact.point.x - transform.position.x;
 
-            	//Wert zur Winkelberechnung an Hand der Paddle länge
-            	float winkelX = winkel / 0.75f;
+            //Wert zur Winkelberechnung an Hand der Paddle länge
+            float winkelX = winkel / (transform.localScale.x / 2);
+            Debug.Log("paddlescale"+ (transform.localScale.x / 2));
 
-            	// "Winkel" errechnung 
-                if ((collision.transform.tag == "ball" || collision.transform.tag == "ball2") && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1 ) // damit den ball nicht das paddle folgt wenn das hackt und geht mehr als die grennzung
-                 {
-                   rbball.velocity = new Vector3(winkelX * 3, rbball.velocity.y, 0);
-            }else { Debug.Log("Bug"); }
-            	
+            // "Winkel" errechnung 
+            if (collision.transform.tag == "ball" && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1) // damit den ball nicht das paddle folgt wenn das hackt und geht mehr als die grennzung
+            {
 
-  				Debug.Log(contact.point.x);
+                rbball.velocity = new Vector3(winkelX * 5, rbball.velocity.y, 0);
             }
+            if (collision.transform.tag == "ball2" && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1)
+            {
+                rbball2.velocity = new Vector3(winkelX * 5, rbball2.velocity.y, 0);
+            }
+
+
+            //Debug.Log(contact.point.x);
+        }
 
 
         //////////////////BIGP PADDLE ITEM\\\\\\\\\\\\\\\\\\
@@ -132,7 +139,8 @@ public class Player1Control : MonoBehaviour
         {
 
             Rigidbody ItemInstance;
-            Debug.Log("ball++");
+            MyBallsScript.anzahlBälle1++;
+            Debug.Log("ball++. Du hast jetzt " + MyBallsScript.anzahlBälle1 + " Bälle");
             ItemInstance = Instantiate(rbball, new Vector3(transform.position.x, transform.position.y+1f, transform.position.z), Quaternion.identity) as Rigidbody;
             ItemInstance.AddForce(0, 150, 0);
 
@@ -141,7 +149,7 @@ public class Player1Control : MonoBehaviour
         ///////////////// Steuerung umkehren \\\\\\\\\\\\\\\\
         if  (collision.transform.tag == "ControlChange")
         {
-                Debug.Log("Rechts is jetzt Links");
+                //Debug.Log("Rechts is jetzt Links");
 
             controlChange += 1; 
             

@@ -19,8 +19,8 @@ public class BlockPhys : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        int random = Random.Range(0, 2);
-        Debug.Log("Random range (0,2)" + random);
+        int random = Random.Range(0, 8);
+        //Debug.Log("Random range (0,2)" + random);
         if (col.transform.tag == "ball" && random == 1)
         {
             Rigidbody ItemInstance;
@@ -28,7 +28,7 @@ public class BlockPhys : MonoBehaviour {
             ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
             ItemInstance.AddForce(0, -150, 0);
 
-            Debug.Log("RandomItemwert:" + i);
+            //Debug.Log("RandomItemwert:" + i);
         }
 
         if (col.transform.tag == "ball2" && random == 1)
@@ -37,7 +37,7 @@ public class BlockPhys : MonoBehaviour {
             int i = Random.Range(0, 4);
             ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
             ItemInstance.AddForce(0, 150, 0);
-            Debug.Log("RandomItemwert:" + i);
+           // Debug.Log("RandomItemwert:" + i);
         }
 
         if (col.transform.tag == "ball")
@@ -52,7 +52,7 @@ public class BlockPhys : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        Debug.Log("Player1: " + Player1Control.player1Score + " Player2: " + Player2Control.player2Score);
+        //Debug.Log("Player1: " + Player1Control.player1Score + " Player2: " + Player2Control.player2Score);
 
     }
     

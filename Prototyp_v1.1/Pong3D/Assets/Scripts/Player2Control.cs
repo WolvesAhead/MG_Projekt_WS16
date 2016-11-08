@@ -5,13 +5,14 @@ public class Player2Control : MonoBehaviour
 {
 	public GameObject playerPaddle;
     public Rigidbody rbball;
+    public Rigidbody rbball2;
     public GameObject upperBorder;
 
     private float speed = 6f;
     private float rightLimit;
     private float leftLimit;
 
-    public static int player2Score = 1000;
+    public static int player2Score = 0;
     private int controlChange;
     private float controlChangeTime = 5f;
 
@@ -70,26 +71,28 @@ public class Player2Control : MonoBehaviour
         }
     }
         void OnCollisionEnter(Collision collision) {
-            foreach (ContactPoint contact in collision.contacts)
-            {
-            	//Punkt auf dem Paddle
-            	float winkel = contact.point.x - transform.position.x;
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            //Punkt auf dem Paddle
+            float winkel = contact.point.x - transform.position.x;
 
-            	//Wert zur Winkelberechnung an Hand der Paddle länge
-            	float winkelX = winkel / 0.75f; //(transform.localScale.x / 2)
+            //Wert zur Winkelberechnung an Hand der Paddle länge
+            float winkelX = winkel / (transform.localScale.x / 2); //(transform.localScale.x / 2)
 
             // "Winkel" errechnung 
-            if (transform.position.x < rightLimit && transform.position.x > leftLimit) // damit den ball nicht das paddle folgt wenn das hackt und geht mehr als die grennzung
+            if (collision.transform.tag == "ball" && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1) // damit den ball nicht das paddle folgt wenn das hackt und geht mehr als die grennzung
             {
-                rbball.velocity = new Vector3(winkelX * 7, rbball.velocity.y, 0);
-            }
-               
-  				Debug.Log(contact.point.x);
-            }
 
-        //////////////////BIGP PADDLE ITEM\\\\\\\\\\\\\\\\\\
+                rbball.velocity = new Vector3(winkelX * 5, rbball.velocity.y, 0);
+            }
+            if (collision.transform.tag == "ball2" && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1)
+            {
+                rbball2.velocity = new Vector3(winkelX * 5, rbball2.velocity.y, 0);
+            }
+        }
+            //////////////////BIGP PADDLE ITEM\\\\\\\\\\\\\\\\\\
 
-        if (collision.transform.tag == "bigPaddle")
+            if (collision.transform.tag == "bigPaddle")
         {
 
             this.gameObject.transform.localScale += new Vector3(1f, 0, 0);

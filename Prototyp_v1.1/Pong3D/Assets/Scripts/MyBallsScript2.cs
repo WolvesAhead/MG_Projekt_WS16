@@ -23,7 +23,7 @@ public class MyBallsScript2 : MonoBehaviour {
     {
         scoreText2.text = ((int)Player2Control.player2Score).ToString();
         // FÜr die Score Berechnung.Tore für Spieler 2.
-        if (transform.position.y < -4.85)
+        /*if (transform.position.y < -4.85)
         {
             Player2Control.player2Score += 500;
             Player1Control.player1Score -= 500;
@@ -32,12 +32,17 @@ public class MyBallsScript2 : MonoBehaviour {
                 Player1Control.player1Score = 0;
             }
             Debug.Log("TOOOOR für Player 2 !! Player1: " + Player1Control.player1Score + " Player2: " + Player2Control.player2Score);
-        }
+        }*/
 
-        if ((startposition == true || transform.position.y < -4.85f || transform.position.y > 4.85f) && !(gameObject.name.Contains("(Clone)")))
+        /*if ((startposition == true || transform.position.y < -4.85f || transform.position.y > 4.85f) && !(gameObject.name.Contains("(Clone)")))
         {
             transform.position = new Vector3(playerPaddle.transform.position.x, 4.4f, -0.7f);
             startposition = true;
+        }*/
+
+        if ((startposition == true)  && !(gameObject.name.Contains("(Clone)")))
+        {
+            transform.position = new Vector3(playerPaddle.transform.position.x, 4.4f, -0.7f);
         }
 
         if (Input.GetKey(KeyCode.W) && startposition && !(gameObject.name.Contains("(Clone)")))
@@ -69,5 +74,15 @@ public class MyBallsScript2 : MonoBehaviour {
 
         }
 
+    }
+
+    public void Serve()
+    {
+        startposition = true;
+    }
+
+    public void Standby()
+    {
+        transform.position = new Vector3(playerPaddle.transform.position.x, 4.4f, 5f);
     }
 }

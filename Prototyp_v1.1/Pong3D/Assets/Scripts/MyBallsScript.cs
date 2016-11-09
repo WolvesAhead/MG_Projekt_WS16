@@ -7,9 +7,7 @@ public class MyBallsScript : MonoBehaviour {
     bool startposition = true;
     public GameObject playerPaddle;
     public Text scoreText;
-    public static int anzahlBälle1 = 1;
-  
-    
+    public static int anzahlBälle1 = 1; 
 
 	// Use this for initialization
     void Start() 
@@ -22,27 +20,31 @@ public class MyBallsScript : MonoBehaviour {
     {
             
     	scoreText.text = ((int)Player1Control.player1Score).ToString();
-    	
+    	//Debug.Log(transform.position.y);
             // FÜr die Score Berechnung.Tore für SPieler 1
-           /* if (transform.position.y > 4.85)
+            /*if (transform.position.y == 4.775777)
             {
             Player1Control.player1Score += 500;
             Player2Control.player2Score -= 500;
-            anzahlBälle1--;
             
             if (Player2Control.player2Score <= 0)
             {
                 Player2Control.player2Score = 0;
             }
             Debug.Log("TOOOOR für Player 1 !! Player1: " + Player1Control.player1Score + " Player2: " + Player2Control.player2Score);
-            }
-        */
+            }*/
+        
 
-        if ((startposition == true || transform.position.y < -4.85f || transform.position.y > 4.85f) && !(gameObject.name.Contains("(Clone)"))) //&& anzahlBälle1 == 1)
+        /*if ((startposition == true)) || transform.position.y < -4.85f || transform.position.y > 4.85f) && !(gameObject.name.Contains("(Clone)"))) && anzahlBälle1 == 1)
         {
             transform.position = new Vector3(playerPaddle.transform.position.x, -4.4f, -0.7f);
             anzahlBälle1++;
             startposition = true;
+        }*/
+
+        if ((startposition == true) && !(gameObject.name.Contains("(Clone)")))
+        {
+            transform.position = new Vector3(playerPaddle.transform.position.x, -4.4f, -0.7f);
         }
 
         if (Input.GetKey(KeyCode.UpArrow) && startposition && !(gameObject.name.Contains("(Clone)")))
@@ -80,15 +82,22 @@ public class MyBallsScript : MonoBehaviour {
           
         }
 
-        //Debug.DrawLine(Vector3.zero, transform.position, Color.blue,5 ,false);
+        if(anzahlBälle1 == 0)
+        {
+            Debug.Log("player 1 no Balls");
+        }
 
+        //Debug.DrawLine(Vector3.zero, transform.position, Color.blue,5 ,false);
     }
 
-    void Serve()
+    public void Serve()   //Bedeutet Ball wird jetzt wieder aufs Paddle gesetzt, bereit zum schießen
     {
-        transform.position = new Vector3(playerPaddle.transform.position.x, -4.4f, -0.7f);
-        anzahlBälle1++;
         startposition = true;
+    }
+
+    public void Standby()   //Ball wird unter dem Spielfeld gehalten bis die Anzahl auf 0 ist und Serve aufgerufen wird
+    {
+        transform.position = new Vector3(playerPaddle.transform.position.x, -4.4f, 5f);
     }
 }
 

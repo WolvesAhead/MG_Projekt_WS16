@@ -139,8 +139,8 @@ public class Player1Control : MonoBehaviour
         {
 
             Rigidbody ItemInstance;
-            MyBallsScript.anzahlBälle1++;
-            Debug.Log("ball++. Du hast jetzt " + MyBallsScript.anzahlBälle1 + " Bälle");
+            DestroyObjectsBottomBorder.ballCount1++;
+            Debug.Log("ball++. Du hast jetzt " + DestroyObjectsBottomBorder.ballCount1 + " Bälle");
             ItemInstance = Instantiate(rbball, new Vector3(transform.position.x, transform.position.y+1f, transform.position.z), Quaternion.identity) as Rigidbody;
             ItemInstance.AddForce(0, 150, 0);
 

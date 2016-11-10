@@ -13,8 +13,8 @@ public class Player2Control : MonoBehaviour
     private float leftLimit;
 
     public static int player2Score = 0;
-    private int controlChange;
-    private float controlChangeTime = 5f;
+    public static int controlChange;
+    private float controlChangeTime = 3f;
 
     void Start() 
 	{
@@ -128,7 +128,7 @@ public class Player2Control : MonoBehaviour
         {
             Debug.Log("Rechts is jetzt Links");
 
-            controlChange += 1;
+            Player1Control.controlChange += 1;
         }
         }
     }

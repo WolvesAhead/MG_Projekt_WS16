@@ -13,8 +13,8 @@ public class Player1Control : MonoBehaviour
     private float leftLimit;
 
     public static int player1Score;
-    public int controlChange;
-    float controlChangeTime = 5f;
+    public static int controlChange;
+    float controlChangeTime = 3f;
    
 
 	void Start() 
@@ -151,7 +151,7 @@ public class Player1Control : MonoBehaviour
         {
                 //Debug.Log("Rechts is jetzt Links");
 
-            controlChange += 1; 
+            Player2Control.controlChange += 1; 
             
             /*if (Input.GetKey(KeyCode.RightArrow) && (transform.position.x > rightLimit - 0.1))
             {

@@ -25,8 +25,16 @@ public class BlockPhys : MonoBehaviour {
         {
             Rigidbody ItemInstance;
             int i = Random.Range(0, 4);
-            ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
-            ItemInstance.AddForce(0, -150, 0);
+            if (i == 3)
+            {
+                ItemInstance = Instantiate(RbitemPrefab[3], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
+                ItemInstance.AddForce(0, 150, 0);
+            }
+            else
+            {
+                ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
+                ItemInstance.AddForce(0, -150, 0);
+            }
          
 
             //Debug.Log("RandomItemwert:" + i);
@@ -36,9 +44,17 @@ public class BlockPhys : MonoBehaviour {
         {
             Rigidbody ItemInstance;
             int i = Random.Range(0, 4);
-            ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
-            ItemInstance.AddForce(0, 150, 0);
-           // Debug.Log("RandomItemwert:" + i);
+            if (i == 3)
+            {
+                ItemInstance = Instantiate(RbitemPrefab[3], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
+                ItemInstance.AddForce(0, -150, 0);
+            }
+            else
+            {
+                ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
+                ItemInstance.AddForce(0, 150, 0);
+            }
+            // Debug.Log("RandomItemwert:" + i);
         }
 
         if (col.transform.tag == "ball")

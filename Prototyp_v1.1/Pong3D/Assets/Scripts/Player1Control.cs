@@ -99,12 +99,12 @@ public class Player1Control : MonoBehaviour
             Debug.Log("paddlescale"+ (transform.localScale.x / 2));
 
             // "Winkel" errechnung 
-            if (!(gameObject.name.Contains("(Clone)")) && collision.transform.tag == "ball" && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1) // damit den ball nicht das paddle folgt wenn das hackt und geht mehr als die grennzung
+            if (!(rbball.name.Contains("(Clone)")) && collision.transform.tag == "ball" && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1) // damit den ball nicht das paddle folgt wenn das hackt und geht mehr als die grennzung
             {
 
                 rbball.velocity = new Vector3(winkelX * 5, rbball.velocity.y, 0);
             }
-            if (!(gameObject.name.Contains("(Clone)")) && collision.transform.tag == "ball2" && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1)
+            if (!(rbball2.name.Contains("(Clone)")) && collision.transform.tag == "ball2" && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1)
             {
                 rbball2.velocity = new Vector3(winkelX * 5, rbball2.velocity.y, 0);
             }

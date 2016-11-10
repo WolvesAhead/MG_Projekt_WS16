@@ -119,7 +119,7 @@ public class DestroyObjectsBottomBorder : MonoBehaviour
                     else
                     {
                         int restPunkte;
-                        restPunkte = Player2Control.player2Score;
+                        restPunkte = Player1Control.player1Score;
                         Player2Control.player2Score += restPunkte;
                         Player1Control.player1Score -= restPunkte;
                     }

@@ -19,22 +19,16 @@ public class BlockPhys : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        int random = Random.Range(0, 8);
+        int random = Random.Range(0, 5);
         //Debug.Log("Random range (0,2)" + random);
         if (col.transform.tag == "ball" && random == 1)
         {
             Rigidbody ItemInstance;
-            int i = Random.Range(0, 4);
-            if (i == 3)
-            {
-                ItemInstance = Instantiate(RbitemPrefab[3], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
-                ItemInstance.AddForce(0, 150, 0);
-            }
-            else
-            {
+            int i = Random.Range(0, 6);
+          
                 ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
                 ItemInstance.AddForce(0, -150, 0);
-            }
+           
          
 
             //Debug.Log("RandomItemwert:" + i);
@@ -43,17 +37,11 @@ public class BlockPhys : MonoBehaviour {
         if (col.transform.tag == "ball2" && random == 1)
         {
             Rigidbody ItemInstance;
-            int i = Random.Range(0, 4);
-            if (i == 3)
-            {
-                ItemInstance = Instantiate(RbitemPrefab[3], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
-                ItemInstance.AddForce(0, -150, 0);
-            }
-            else
-            {
+            int i = Random.Range(0, 6);
+        
                 ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
                 ItemInstance.AddForce(0, 150, 0);
-            }
+            
             // Debug.Log("RandomItemwert:" + i);
         }
 

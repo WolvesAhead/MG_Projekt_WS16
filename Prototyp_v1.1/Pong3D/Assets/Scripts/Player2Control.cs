@@ -6,15 +6,21 @@ public class Player2Control : MonoBehaviour
 	public GameObject playerPaddle;
     public Rigidbody rbball;
     public Rigidbody rbball2;
+    public GameObject nebel;
+    public GameObject shield;
     public GameObject upperBorder;
 
     private float speed = 6f;
     private float rightLimit;
     private float leftLimit;
+    public bool nebelsatus = false;
+    public bool shieldstatus = false;
 
     public static int player2Score = 0;
-    private int controlChange;
+    public static int controlChange;
     private float controlChangeTime = 5f;
+    float NebelTime = 20f;
+    float shieldTime = 15f;
 
     void Start() 
 	{
@@ -34,6 +40,59 @@ public class Player2Control : MonoBehaviour
              transform.position = new Vector3(5.2f, transform.position.y, transform.position.z);
          }*/
 
+
+
+
+        #region Nebel
+        // nebel activation      
+        if (nebelsatus)
+        {
+            Debug.Log("nebel activ!");
+            NebelTime -= Time.deltaTime;
+            //nebel.GetComponent<ParticleSystem>().Play();
+            nebel.SetActive(true);
+
+
+            if (NebelTime < 0)
+            {
+                nebelsatus = false;
+                NebelTime = 20f;
+
+            }
+        }
+        else
+        {
+            //nebel.GetComponent<ParticleSystem>().Stop();
+            nebel.SetActive(false);
+        }
+
+        #endregion
+
+        #region Shield
+        // nebel activation      
+        if (shieldstatus)
+        {
+            shieldTime -= Time.deltaTime;
+            //nebel.GetComponent<ParticleSystem>().Play();
+            shield.SetActive(true);
+
+
+            if (shieldTime < 0)
+            {
+                shieldstatus = false;
+                shieldTime = 15f;
+
+            }
+        }
+        else
+        {
+            //nebel.GetComponent<ParticleSystem>().Stop();
+            shield.SetActive(false);
+        }
+
+        #endregion
+
+        #region Controlchange
         // ControllChange 
         if (controlChange == 1)
         {
@@ -69,8 +128,12 @@ public class Player2Control : MonoBehaviour
                 transform.position += Vector3.left * speed * Time.deltaTime;
             }
         }
+        #endregion
+
+
+
     }
-        void OnCollisionEnter(Collision collision) {
+    void OnCollisionEnter(Collision collision) {
         foreach (ContactPoint contact in collision.contacts)
         {
             //Punkt auf dem Paddle
@@ -90,9 +153,11 @@ public class Player2Control : MonoBehaviour
                 rbball2.velocity = new Vector3(winkelX * 5, rbball2.velocity.y, 0);
             }
         }
-            //////////////////BIGP PADDLE ITEM\\\\\\\\\\\\\\\\\\
 
-            if (collision.transform.tag == "bigPaddle")
+        #region Items
+        //////////////////BIGP PADDLE ITEM\\\\\\\\\\\\\\\\\\
+
+        if (collision.transform.tag == "bigPaddle")
         {
 
             this.gameObject.transform.localScale += new Vector3(1f, 0, 0);
@@ -128,7 +193,25 @@ public class Player2Control : MonoBehaviour
         {
             Debug.Log("Rechts is jetzt Links");
 
-            controlChange += 1;
+            Player1Control.controlChange += 1;
         }
+
+
+        ///////////////// Nebel Item \\\\\\\\\\\\\\\\
+
+        if (collision.transform.tag == "nebelItem")
+        {
+            nebelsatus = true;
+
         }
+
+        ///////////////// Shield Item \\\\\\\\\\\\\\\\
+
+        if (collision.transform.tag == "shieldItem")
+        {
+            shieldstatus = true;
+
+        }
+        #endregion
     }
+}

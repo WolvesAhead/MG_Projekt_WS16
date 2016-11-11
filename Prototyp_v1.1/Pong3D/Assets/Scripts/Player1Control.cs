@@ -5,50 +5,71 @@ public class Player1Control : MonoBehaviour
 {
 	public GameObject playerPaddle;
     public GameObject bottomBorder;
+    public GameObject nebel;
+    public GameObject shield;
     public Rigidbody rbball;
     public Rigidbody rbball2;
 
     private float speed = 6f;
     private float rightLimit;
     private float leftLimit;
+    public  bool nebelsatus = false;          
+    public bool shieldstatus = false;
 
     public static int player1Score;
-    public int controlChange;
+    public static int controlChange;
     float controlChangeTime = 5f;
-   
+    float NebelTime = 20f;
+    float shieldTime = 15f;
 
-	void Start() 
+
+    void Start() 
 	{
-        // left limit ist der wert von der punkt der am ende links auf dem bottomBorder liegt und zwar "-6,25 "
-        // genau das gleiche geht für rightLimit 
-      
+       
         Debug.Log(transform.localScale.x / 2);
 
 	}
 
     void Update()
     {
-   
 
+        // left limit ist der wert von der punkt der am ende links auf dem bottomBorder liegt und zwar "-6,25 "
+        // genau das gleiche geht für rightLimit 
 
         leftLimit = bottomBorder.GetComponent<Renderer>().bounds.min.x + (transform.localScale.x / 2); // 0,75 ist die hälfte unsere paddle (-6,25 + 0,75 = -5,5) ==> genau unesere limit
         rightLimit = bottomBorder.GetComponent<Renderer>().bounds.max.x - (transform.localScale.x / 2);
-        /* if (transform.position.x < -5.1f)
-         {
-             transform.position = new Vector3(-5.1f, transform.position.y, transform.position.z);
-         }
-         if (transform.position.x > 5.1f)
-         {
-             transform.position = new Vector3(5.1f, transform.position.y, transform.position.z);
-         }*/
+
+        #region Nebel
+        // nebel activation      
+        if (nebelsatus)
+        {
+            NebelTime -= Time.deltaTime;
+            //nebel.GetComponent<ParticleSystem>().Play();
+            Debug.Log("nebel activ!");
+            nebel.SetActive(true);
+          
+          
 
 
+            if (NebelTime < 0)
+            {
+                nebelsatus = false;
+                NebelTime = 20f;
 
+            }
+        }
+        else
+        {
+            //nebel.GetComponent<ParticleSystem>().Stop();
+            nebel.SetActive(false);
+        }
+
+        #endregion
+
+        #region Controlchange
         // ControllChange 
         if (controlChange >= 1)
         {
-
-
             //Timer
             controlChangeTime -= Time.deltaTime;
             if (controlChangeTime < 0)
@@ -86,8 +107,36 @@ public class Player1Control : MonoBehaviour
             
         }
 
+        #endregion
+
+        #region Shield
+        // nebel activation      
+        if (shieldstatus)
+        {
+            shieldTime -= Time.deltaTime;
+            //nebel.GetComponent<ParticleSystem>().Play();
+            shield.SetActive(true);
+
+
+            if (shieldTime < 0)
+            {
+                shieldstatus = false;
+                shieldTime = 15f;
+
+            }
+        }
+        else
+        {
+            //nebel.GetComponent<ParticleSystem>().Stop();
+            shield.SetActive(false);
+        }
+
+        #endregion
+
     }
-        void OnCollisionEnter(Collision collision) {
+
+
+    void OnCollisionEnter(Collision collision) {
        
         foreach (ContactPoint contact in collision.contacts)
             {
@@ -113,7 +162,7 @@ public class Player1Control : MonoBehaviour
             //Debug.Log(contact.point.x);
         }
 
-
+        #region ITEMS
         //////////////////BIGP PADDLE ITEM\\\\\\\\\\\\\\\\\\
 
         if (collision.transform.tag == "bigPaddle")
@@ -151,7 +200,7 @@ public class Player1Control : MonoBehaviour
         {
                 //Debug.Log("Rechts is jetzt Links");
 
-            controlChange += 1; 
+            Player2Control.controlChange += 1; 
             
             /*if (Input.GetKey(KeyCode.RightArrow) && (transform.position.x > rightLimit - 0.1))
             {
@@ -164,10 +213,26 @@ public class Player1Control : MonoBehaviour
             } 
             */
         }
+        ///////////////// Nebel Item \\\\\\\\\\\\\\\\
 
+        if (collision.transform.tag == "nebelItem")
+        {
+            nebelsatus = true;
+            
+        }
 
+        ///////////////// Shield Item \\\\\\\\\\\\\\\\
+
+        if (collision.transform.tag == "shieldItem")
+        {
+            shieldstatus = true;
+
+        }
+
+        #endregion
 
     }
+
 
 
 }

@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\MyBallsScript2.cs" />
     <Compile Include="Assets\Scripts\Player1Control.cs" />
     <Compile Include="Assets\Scripts\Player2Control.cs" />
+    <Compile Include="Assets\Scripts\ShieldScript.cs" />
     <Compile Include="Assets\Scripts\StrongBlockPhys.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

@@ -8,13 +8,14 @@ public class MyBallsScript2 : MonoBehaviour {
     public Rigidbody rb;
     bool startposition = true;
     public GameObject playerPaddle;
+    public GameObject playerPaddle2;
     public Text scoreText2;
 
 
     // Use this for initialization
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
 
     }
 
@@ -84,5 +85,40 @@ public class MyBallsScript2 : MonoBehaviour {
     public void Standby()
     {
         transform.position = new Vector3(playerPaddle.transform.position.x, 4.4f, 5f);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+
+
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            //Punkt auf dem Paddle
+            
+
+            //Wert zur Winkelberechnung an Hand der Paddle länge
+            
+            Debug.Log("paddlescale" + (playerPaddle.transform.localScale.x / 2));
+
+            // "Winkel" errechnung 
+            if (collision.transform.tag == "Player2Paddle" && playerPaddle.transform.position.x < Player1Control.rightLimit - 0.1 && playerPaddle.transform.position.x > Player1Control.leftLimit + 0.1) // damit den ball nicht das paddle folgt wenn das hackt und geht mehr als die grennzung
+            {
+                float winkel = contact.point.x - playerPaddle.transform.position.x;
+                float winkelX = winkel / (playerPaddle.transform.localScale.x / 2);
+                rb.velocity = new Vector3(winkelX * 5, rb.velocity.y, 0);
+
+
+            }
+            if (collision.transform.tag == "Player1Paddle" && playerPaddle2.transform.position.x < Player1Control.rightLimit - 0.1 && playerPaddle2.transform.position.x > Player1Control.leftLimit + 0.1) // wir haben Player1Control Sciprt benutzt weil player1 und player 2 haben die gleichen grenzen
+            {
+                float winkel = contact.point.x - playerPaddle2.transform.position.x;
+                float winkelX2 = winkel / (playerPaddle2.transform.localScale.x / 2);
+                rb.velocity = new Vector3(winkelX2 * 5, rb.velocity.y, 0);
+
+            }
+
+
+            //Debug.Log(contact.point.x);
+        }
     }
 }

@@ -134,7 +134,7 @@ public class Player2Control : MonoBehaviour
 
     }
     void OnCollisionEnter(Collision collision) {
-        foreach (ContactPoint contact in collision.contacts)
+      /*  foreach (ContactPoint contact in collision.contacts)
         {
             //Punkt auf dem Paddle
             float winkel = contact.point.x - transform.position.x;
@@ -153,7 +153,7 @@ public class Player2Control : MonoBehaviour
                 rbball2.velocity = new Vector3(winkelX * 5, rbball2.velocity.y, 0);
             }
         }
-
+        */
         #region Items
         //////////////////BIGP PADDLE ITEM\\\\\\\\\\\\\\\\\\
 

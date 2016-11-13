@@ -11,8 +11,10 @@ public class Player1Control : MonoBehaviour
     public Rigidbody rbball2;
 
     private float speed = 6f;
-    private float rightLimit;
-    private float leftLimit;
+    public static float rightLimit;
+    public static float leftLimit;
+    private Rigidbody ItemInstance;
+
     public  bool nebelsatus = false;          
     public bool shieldstatus = false;
 
@@ -137,8 +139,9 @@ public class Player1Control : MonoBehaviour
 
 
     void OnCollisionEnter(Collision collision) {
+        
        
-        foreach (ContactPoint contact in collision.contacts)
+        /*foreach (ContactPoint contact in collision.contacts)
             {
             	//Punkt auf dem Paddle
             	float winkel = contact.point.x - transform.position.x;
@@ -150,18 +153,21 @@ public class Player1Control : MonoBehaviour
             // "Winkel" errechnung 
             if (!(rbball.name.Contains("(Clone)")) && collision.transform.tag == "ball" && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1) // damit den ball nicht das paddle folgt wenn das hackt und geht mehr als die grennzung
             {
-
-                rbball.velocity = new Vector3(winkelX * 5, rbball.velocity.y, 0);
+                    
+                    rbball.velocity = new Vector3(winkelX * 5, rbball.velocity.y, 0);
+                              
             }
             if (!(rbball2.name.Contains("(Clone)")) && collision.transform.tag == "ball2" && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1)
             {
-                rbball2.velocity = new Vector3(winkelX * 5, rbball2.velocity.y, 0);
+                
+                    rbball2.velocity = new Vector3(winkelX * 5, rbball2.velocity.y, 0);
+               
             }
 
 
             //Debug.Log(contact.point.x);
         }
-
+        */
         #region ITEMS
         //////////////////BIGP PADDLE ITEM\\\\\\\\\\\\\\\\\\
 
@@ -187,7 +193,7 @@ public class Player1Control : MonoBehaviour
         if (collision.transform.tag == "mehrbaelle")
         {
 
-            Rigidbody ItemInstance;
+            
             DestroyObjectsBottomBorder.ballCount1++;
             Debug.Log("ball++. Du hast jetzt " + DestroyObjectsBottomBorder.ballCount1 + " Bälle");
             ItemInstance = Instantiate(rbball, new Vector3(transform.position.x, transform.position.y+1f, transform.position.z), Quaternion.identity) as Rigidbody;

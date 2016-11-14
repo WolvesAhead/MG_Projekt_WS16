@@ -2,39 +2,34 @@
 	
 Gameplay	
 	- Items 
-		Wie viele? Welche?Effekte?
-			-Ball wird schneller (stacked 2 mal) <-- oder unendlich?
-			-Ball wird langsamer ( stacked 2 mal) 
-			-Paddle wird länger ( stacked 2 mal?)
-			-Paddle wird kürzer (stacked 2mal ?)
-			-Richtungstasten vertauscht //( Zeit?)
-			-Ball durchschlägt alle Blöcke im Weg ( //Ich glaub dass ist OP wenn nur für 3 Sek. bzw einmal rüber spielen und evtl dann Gesachwindigkeit erhöhen)
-			-Irgendwas mit eingeschränkter Sicht //(Vlt so ne Art verdunkelungseffekt aber eher als leichte einschränkung)
-			-Mehr Bälle(keine Strafe solange man noch einen Ball hat)// WIe viele 3 o. 5? jedesmal nur einen mehr ?			-
-			-Waffe ( zum zerschießen von Blöcken, zieht nicht so viel Block Health ab wie ein Ball)
-			-zufälliges Item
-			- Jedes Item auch noch für den Gegner ? (dh. Player sammelt Item für Player 2 auf ?)
-
-				
-				- Weitere Items oder genug?
+		Ãœber Zeit: BÃ¤lle werden schneller
+		Man verliert alle Powerups wenn man keine BÃ¤lle mehr hat			 
+			X-Paddle wird lÃ¤nger (stacked 2 mal?)
+			X-Paddle wird kÃ¼rzer (stacked 2mal ?)
+			X-Richtungstasten vertauscht //( Zeit?)
+			-KlebeflÃ¤che /Martin
+			-Powerball(nur random item) / Waldemar
+			X-Licht an Licht aus(nur random item) / Selim
+			X-Mehr BÃ¤lle	
+			X-Schild (10 Sekunden) / Selim
+			-zufÃ¤lliges Item (Licht an aus, Powerball)
+			-Curveball / Martin
 
 
 	- Player-Paddle
 		Steuerung,Geschwindigkeit
-				Zum testen reichen die Pfeiltasten und "W-A-D". Für die Konsole sollten die geändert werden!!
+				Zum testen reichen die Pfeiltasten und "W-A-D". FÃ¼r die Konsole sollten die geÃ¤ndert werden!!
 	
-	- Blöcke
+	- BlÃ¶cke
 		Typen (Eigenschaften)
-			- Farben
-			-Unzerstörbare Blöcke
-			-Blöcke die man 2 Mal treffen muss
-			-Blöcke mit Countdown(?) // Als Endgame Wand ? 
-			-Explodierende Blöcke // Vergraben in anderen?
-			-Blöcke mit bestimmten Power-Ups // Dafür müssten wir erstmal die Power-Ups bestimmen
-			-Block der Random Power-Up fallen lässt(Risiko)// safe
+			X-Farben (jedes level andere farben)
+			-UnzerstÃ¶rbare BlÃ¶cke
+			X-BlÃ¶cke die man 3 Mal treffen muss (erster hit Risse, zweiter hit block wird weiÃŸ)
+			-BlÃ¶cke die sich bewegen
+			-Explodierende BlÃ¶cke // Vergraben in anderen?
 			
 
-			// Sollten genug Blöcke sein. Jetzt sollten wir nur noch testen wie gut die funktionieren. 
+			// Sollten genug BlÃ¶cke sein. Jetzt sollten wir nur noch testen wie gut die funktionieren. 
 
 	
 	-Ball
@@ -42,8 +37,9 @@ Gameplay
 		Punkteverteilung ( Noch nicht implementiert)
 		Eigenschaften
 
-	-Level
-		Wie viele? //3 Level sollten reichen
+	-Levelideen
+		Baselevel
+		Discolevel - Musik, blinkende BlÃ¶cke
 
 	Punktesystem
 
@@ -58,7 +54,7 @@ Design
 		-Animations und Effekt Sprites
 
 	-UI
-		Menüs
+		MenÃ¼s
  
 	-Scoreboard
 		Punkte? Welchen Font?
@@ -67,18 +63,18 @@ Design
 		Wahrscheinlich nicht zu wild und eher einfarbig? Schwarz? Ideen?
 	
 	-Level Design
-		Aufteilung der Blöcke ? Ist das eher Gameplay?
+		Aufteilung der BlÃ¶cke ? Ist das eher Gameplay?
 	
 	-Texturen
 
 
 Sound
-	-Welche Töne haben wir?
-			kaputte Blöcke
+	-Welche TÃ¶ne haben wir?
+			kaputte BlÃ¶cke
 			Bounce an Wand/Block/Paddle
 			Win/Lose
 			Backgroundsound
-			Menüsound
+			MenÃ¼sound
 			"Goal"-Sound
 			Item-Sound
 	

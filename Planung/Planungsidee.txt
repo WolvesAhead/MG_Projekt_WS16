@@ -1,6 +1,14 @@
 	Name?
 	
 Gameplay	
+	-Was bezüglich des Gameplays muss noch geändert werden bevor wir Design anfangen
+		-Ball Abschusswinkel neu berechnen je nach Bewegung des Paddles
+		-Ball fliegt nur von links nach rechts
+		-Schild kürzer
+		-Nebel weniger / andere Textur
+		-Paddle größer vielleicht auf 3 Stufen begrenzen
+		-Wahrscheinlichkeiten anpassen
+	
 	- Items 
 		Über Zeit: Bälle werden schneller
 		Man verliert alle Powerups wenn man keine Bälle mehr hat			 

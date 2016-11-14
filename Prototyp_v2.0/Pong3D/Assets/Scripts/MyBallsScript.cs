@@ -33,6 +33,7 @@ public class MyBallsScript : MonoBehaviour
 
         if ((startposition == true) && !(gameObject.name.Contains("(Clone)")))
         {
+            
             transform.position = new Vector3(playerPaddle.transform.position.x, -4.4f, -0.7f);
         }
 
@@ -98,6 +99,7 @@ public class MyBallsScript : MonoBehaviour
 
         if (anzahlBälle1 == 0)
         {
+            Player1Control.playerPaddle.transform.localScale = new Vector3(2, 0, 0);
             Debug.Log("player 1 no Balls");
         }
 

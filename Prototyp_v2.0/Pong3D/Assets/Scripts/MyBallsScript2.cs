@@ -43,28 +43,39 @@ public class MyBallsScript2 : MonoBehaviour {
 
         if ((startposition == true)  && !(gameObject.name.Contains("(Clone)")))
         {
+
             transform.position = new Vector3(playerPaddle.transform.position.x, 4.4f, -0.7f);
         }
 
-        if (Input.GetKey(KeyCode.W) && startposition && !(gameObject.name.Contains("(Clone)")))
+ 
+
+
+        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W) && (startposition || Player2Control.glued) && !(gameObject.name.Contains("(Clone)")))
         {
-            GetComponent<Rigidbody>().AddForce(0, -300, 0);
+            rb.velocity = new Vector3(0, 0, 0);
+            Debug.Log("rechts");
+            GetComponent<Rigidbody>().AddForce(600, -300, 0);
             startposition = false;
-            //GetComponent<Rigidbody>();
+        }
+
+        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W) && (startposition || Player2Control.glued) && !(gameObject.name.Contains("(Clone)")))
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+            GetComponent<Rigidbody>().AddForce(-600, -300, 0);
+            Debug.Log("Links");
+            startposition = false;
+        }
+
+        if (Input.GetKey(KeyCode.W) && (startposition || Player2Control.glued) && !(gameObject.name.Contains("(Clone)")))
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+            GetComponent<Rigidbody>().AddForce(0, -300, 0);
+            Debug.Log("Oben");
+            startposition = false;
         }
         if (startposition == false)
         {
-            /*if (rb.velocity.x > 3.5)
-            {
-                //Debug.Log("X Speed"+ rb.velocity.x);
-                rb.velocity = new Vector3(rb.velocity.x - 0.1f, rb.velocity.y, 0);
-            }
 
-            if (rb.velocity.x < -3.5)
-            {
-                rb.velocity = new Vector3(rb.velocity.x + 0.1f, rb.velocity.y, 0);
-            }
-            */
             rb.velocity = 4 * (rb.velocity.normalized);
         }
 
@@ -89,6 +100,11 @@ public class MyBallsScript2 : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
+        if (Player2Control.powerballstatus == true && collision.transform.tag == "Player2Paddle")
+        {
+            transform.GetComponent<Collider>().isTrigger = true;
+            Player2Control.powerballstatus = false;
+        }
 
 
         foreach (ContactPoint contact in collision.contacts)

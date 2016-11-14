@@ -1,27 +1,27 @@
-	Name?
+﻿	Name?
 	
 Gameplay	
 	-Was bezüglich des Gameplays muss noch geändert werden bevor wir Design anfangen
-		-Ball Abschusswinkel neu berechnen je nach Bewegung des Paddles
+				x-Evtl verbessern 				Ball Abschusswinkel neu berechnen je nach Bewegung des Paddles
 		-Ball fliegt nur von links nach rechts
-		-Schild kürzer
+				x-Schild kürzer
 		-Nebel weniger / andere Textur
-		-Paddle größer vielleicht auf 3 Stufen begrenzen
+				x-Paddle größer vielleicht auf 3 Stufen begrenzen
 		-Wahrscheinlichkeiten anpassen
-	
+		-Countdown für Items
 	- Items 
 		Über Zeit: Bälle werden schneller
 		Man verliert alle Powerups wenn man keine Bälle mehr hat			 
-			X-Paddle wird länger (stacked 2 mal?)
-			X-Paddle wird kürzer (stacked 2mal ?)
-			X-Richtungstasten vertauscht //( Zeit?)
-			-Klebefläche /Martin
-			-Powerball(nur random item) / Waldemar
-			X-Licht an Licht aus(nur random item) / Selim
-			X-Mehr Bälle	
-			X-Schild (10 Sekunden) / Selim
+				X-Paddle wird länger (stacked 2 mal?)
+				X-Paddle wird kürzer (stacked 2mal ?)
+				X-Richtungstasten vertauscht //( Zeit?)
+	BUGS-Klebefläche /Martin
+	BUGS-Powerball(nur random item) / Waldemar
+			-Licht an Licht aus(nur random item) / Selim
+				X-Mehr Bälle	
+				X-Schild (10 Sekunden) / Selim
 			-zufälliges Item (Licht an aus, Powerball)
-			-Curveball / Martin
+			-Curveball / Martin Grundgerüst implementiert
 
 
 	- Player-Paddle

@@ -13,14 +13,22 @@ public class Player2Control : MonoBehaviour
     private float speed = 6f;
     private float rightLimit;
     private float leftLimit;
-    public bool nebelsatus = false;
+    public bool nebelstatus = false;
     public bool shieldstatus = false;
+    public static bool powerballstatus = false;
+    public static bool gluestatus = false;
+    public static bool curveballstatus = false;
+    public static bool glued = false;
+
 
     public static int player2Score = 0;
     public static int controlChange;
     private float controlChangeTime = 5f;
-    float NebelTime = 20f;
-    float shieldTime = 15f;
+    float NebelTime = 15f;
+    float shieldTime = 8f;
+    float glueTime = 15f;
+    float curveballTime = 5f;
+    float contactPointGlue;
 
     void Start() 
 	{
@@ -42,10 +50,35 @@ public class Player2Control : MonoBehaviour
 
 
 
+        #region curveBall
+
+        if (curveballstatus)
+        {
+            curveballTime -= Time.deltaTime;
+
+            if (Input.GetKey(KeyCode.D) && rbball2.transform.position.x < rightLimit - 0.1)
+            {
+                rbball2.transform.position += Vector3.right * speed * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.A) && rbball2.transform.position.x > leftLimit + 0.1)
+            {
+                rbball2.transform.position += Vector3.left * speed * Time.deltaTime;
+            }
+
+
+            if (curveballTime < 0)
+            {
+                curveballstatus = false;
+                curveballTime = 5f;
+
+            }
+        }
+
+        #endregion
 
         #region Nebel
         // nebel activation      
-        if (nebelsatus)
+        if (nebelstatus)
         {
             Debug.Log("nebel activ!");
             NebelTime -= Time.deltaTime;
@@ -55,8 +88,8 @@ public class Player2Control : MonoBehaviour
 
             if (NebelTime < 0)
             {
-                nebelsatus = false;
-                NebelTime = 20f;
+                nebelstatus = false;
+                NebelTime = 15f;
 
             }
         }
@@ -80,7 +113,7 @@ public class Player2Control : MonoBehaviour
             if (shieldTime < 0)
             {
                 shieldstatus = false;
-                shieldTime = 15f;
+                shieldTime = 8f;
 
             }
         }
@@ -117,8 +150,9 @@ public class Player2Control : MonoBehaviour
             }
         }
 
-        else
-        {
+        #endregion
+        
+        
             if (Input.GetKey(KeyCode.D) && transform.position.x < rightLimit)
             {
                 transform.position += Vector3.right * speed * Time.deltaTime;
@@ -127,10 +161,55 @@ public class Player2Control : MonoBehaviour
             {
                 transform.position += Vector3.left * speed * Time.deltaTime;
             }
+        
+
+        #region Glue
+        // glue activation      
+        if (gluestatus)
+        {
+            glueTime -= Time.deltaTime;
+            if (glued == true)
+            {
+                /*Debug.Log("cp "+contactPointGlue);
+                Debug.Log("pp "+paddlepoint);
+                Debug.Log("bp "+ (transform.position.x-contactPointGlue));*/
+
+                //float ballaufpaddle = transform.position.x-contactPointGlue;
+                //rbball.transform.position = new Vector3(rbball.transform.position.x, -4.4f, -0.7f);
+                //Debug.Log("ballauufpaddle"+(paddlepoint+((ballaufpaddle)*-1)));*/
+
+                /*if (Input.GetKey(KeyCode.RightArrow) && rbball.transform.position.x < rightLimit - 0.1)
+           {
+               rbball.transform.position += Vector3.right * speed * Time.deltaTime;
+           }
+           if (Input.GetKey(KeyCode.LeftArrow) && rbball.transform.position.x > leftLimit + 0.1)
+           {
+               rbball.transform.position += Vector3.left * speed * Time.deltaTime;
+           }*/
+                rbball.transform.position = new Vector3((transform.position.x + contactPointGlue), -4.4f, -0.7f);
+
+
+
+
+
+
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    rbball.AddForce(0, 300, 0);
+                    glued = false;
+                }
+            }
+
+            if (glueTime < 0)
+            {
+                gluestatus = false;
+                glueTime = 15f;
+
+            }
         }
+     
+
         #endregion
-
-
 
     }
     void OnCollisionEnter(Collision collision) {
@@ -159,9 +238,10 @@ public class Player2Control : MonoBehaviour
 
         if (collision.transform.tag == "bigPaddle")
         {
-
-            this.gameObject.transform.localScale += new Vector3(1f, 0, 0);
-
+            if (this.gameObject.transform.localScale.x <= 3)
+            {
+                this.gameObject.transform.localScale += new Vector3(1f, 0, 0);
+            }
         }
 
         //////////////////Small PADDLE ITEM- Bug verhindert, dass die X Größe ins Negative gerät und somit wieder größer wird\\\\\\\\\\\\\\\\\\
@@ -201,7 +281,7 @@ public class Player2Control : MonoBehaviour
 
         if (collision.transform.tag == "nebelItem")
         {
-            nebelsatus = true;
+            nebelstatus = true;
 
         }
 
@@ -211,6 +291,36 @@ public class Player2Control : MonoBehaviour
         {
             shieldstatus = true;
 
+        }
+
+        ///////////////// Powerball Item \\\\\\\\\\\\\\\\
+        if (collision.transform.tag == "powerballItem")
+        {
+            powerballstatus = true;
+        }
+
+        ///////////////// Glue Item \\\\\\\\\\\\\\\\
+        if (collision.transform.tag == "glueItem")
+        {
+            gluestatus = true;
+            Debug.Log("Bam");
+        }
+
+        if (collision.transform.tag == "ball" && gluestatus == true)
+        {
+            Debug.Log("Bam2");
+            foreach (ContactPoint contact in collision.contacts)
+            {
+                contactPointGlue = contact.point.x - transform.position.x;
+
+            }
+            glued = true;
+        }
+
+        ///////////////// Curveball Item \\\\\\\\\\\\\\\\
+        if (collision.transform.tag == "curveballItem")
+        {
+            curveballstatus = true;
         }
         #endregion
     }

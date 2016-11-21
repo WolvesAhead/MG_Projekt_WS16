@@ -16,6 +16,7 @@ public class Player2Control : MonoBehaviour
     public bool nebelstatus = false;
     public bool shieldstatus = false;
     public static bool powerballstatus = false;
+    public static bool powerballCollected = false;
     public static bool gluestatus = false;
     public static bool curveballstatus = false;
     public static bool glued = false;
@@ -296,7 +297,12 @@ public class Player2Control : MonoBehaviour
         ///////////////// Powerball Item \\\\\\\\\\\\\\\\
         if (collision.transform.tag == "powerballItem")
         {
+            powerballCollected = true;
+        }
+        if(powerballCollected == true && collision.transform.tag == "ball2")    
+        {
             powerballstatus = true;
+            powerballCollected = false;
         }
 
         ///////////////// Glue Item \\\\\\\\\\\\\\\\

@@ -23,23 +23,17 @@ public class MyBallsScript2 : MonoBehaviour {
     void Update()
     {
         scoreText2.text = ((int)Player2Control.player2Score).ToString();
-        // FÜr die Score Berechnung.Tore für Spieler 2.
-        /*if (transform.position.y < -4.85)
+        
+        if(Player2Control.powerballstatus == true)    
         {
-            Player2Control.player2Score += 500;
-            Player1Control.player1Score -= 500;
-            if(Player1Control.player1Score <= 0)
+            if(transform.position.x > 5.9 || transform.position.x < -5.9)transform.GetComponent<Collider>().isTrigger = false;
+            else{transform.GetComponent<Collider>().isTrigger = true;}
+            if(transform.position.y < -4)
             {
-                Player1Control.player1Score = 0;
+                transform.GetComponent<Collider>().isTrigger = false;
+                Player2Control.powerballstatus = false;
             }
-            Debug.Log("TOOOOR für Player 2 !! Player1: " + Player1Control.player1Score + " Player2: " + Player2Control.player2Score);
-        }*/
-
-        /*if ((startposition == true || transform.position.y < -4.85f || transform.position.y > 4.85f) && !(gameObject.name.Contains("(Clone)")))
-        {
-            transform.position = new Vector3(playerPaddle.transform.position.x, 4.4f, -0.7f);
-            startposition = true;
-        }*/
+        }
 
         if ((startposition == true)  && !(gameObject.name.Contains("(Clone)")))
         {
@@ -100,11 +94,11 @@ public class MyBallsScript2 : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if (Player2Control.powerballstatus == true && collision.transform.tag == "Player2Paddle")
+        /*if (Player2Control.powerballstatus == true && collision.transform.tag == "Player2Paddle")
         {
             transform.GetComponent<Collider>().isTrigger = true;
             Player2Control.powerballstatus = false;
-        }
+        }*/
 
 
         foreach (ContactPoint contact in collision.contacts)

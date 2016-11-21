@@ -27,8 +27,13 @@ public class MyBallsScript : MonoBehaviour
 
         if(Player1Control.powerballstatus == true)    
         {
-            transform.GetComponent<Collider>().isTrigger = true;
-            if(transform.position.y > 4)transform.GetComponent<Collider>().isTrigger = false;
+            if(transform.position.x > 5.9 || transform.position.x < -5.9)transform.GetComponent<Collider>().isTrigger = false;
+            else{transform.GetComponent<Collider>().isTrigger = true;}
+            if(transform.position.y > 4)
+            {
+                transform.GetComponent<Collider>().isTrigger = false;
+                Player1Control.powerballstatus = false;
+            }
         }
 
         if ((startposition == true) && !(gameObject.name.Contains("(Clone)")))
@@ -120,11 +125,11 @@ public class MyBallsScript : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
 
-        if(Player1Control.powerballstatus == true && collision.transform.tag == "Player1Paddle")    
+        /*if(Player1Control.powerballstatus == true && collision.transform.tag == "Player1Paddle")    
         {
             transform.GetComponent<Collider>().isTrigger = true;
             Player1Control.powerballstatus = false;
-        }
+        }*/
         
 
         foreach (ContactPoint contact in collision.contacts)

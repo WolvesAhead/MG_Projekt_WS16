@@ -15,10 +15,12 @@ public class Player1Control : MonoBehaviour
     private float speed = 6f;
     public static float rightLimit;
     public static float leftLimit;
-    private Rigidbody ItemInstance;
+    public static Rigidbody ItemInstance;
+    
 
     public bool shieldstatus = false;
-    private bool ballisHere = false;
+    public static bool firstballisHere = false;
+    public static bool isClone = false;
     public static bool powerballstatus = false;
     public static bool powerballCollected = false;
     public static bool gluestatus = false;
@@ -95,7 +97,7 @@ public class Player1Control : MonoBehaviour
         #endregion
 
         #region Shield
-        // nebel activation      
+        // shield activation      
         if (shieldstatus)
         {
             shieldTime -= Time.deltaTime;
@@ -122,17 +124,13 @@ public class Player1Control : MonoBehaviour
         {
 
             glueTime -= Time.deltaTime;
-            if (glued == true)
+            if (glued == true )
             {
-
+                if (isClone == false)
                 rbball.transform.position = new Vector3((transform.position.x + contactPointGlue), -4.4f, -0.7f);
 
-
-                if (Input.GetKey(KeyCode.UpArrow))
-                {
-                    rbball.AddForce(0, 300, 0);
-                    glued = false;
-                }
+                if (isClone)
+                    ItemInstance.transform.position = new Vector3((transform.position.x + contactPointGlue), -4.4f, -0.7f);
 
             }
 
@@ -141,7 +139,7 @@ public class Player1Control : MonoBehaviour
                 gluestatus = false;
                 glueTime = 15f;
                 glued = false;
-                ballisHere = false;
+                firstballisHere = false;
 
             }
         }
@@ -216,6 +214,7 @@ public class Player1Control : MonoBehaviour
             Debug.Log("ball++. Du hast jetzt " + DestroyObjectsBottomBorder.ballCount1 + " Bälle");
             ItemInstance = Instantiate(rbball, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity) as Rigidbody;
             ItemInstance.AddForce(0, 150, 0);
+           
 
 
         }
@@ -262,15 +261,29 @@ public class Player1Control : MonoBehaviour
         if (collision.transform.tag == "glueItem")
         {
             gluestatus = true;
+            firstballisHere = true;
 
             Debug.Log("Bam");
         }
 
-        if (!ball.name.Contains("(Clone)") && gluestatus == true)
+        if (collision.transform.tag == "ball"  && gluestatus == true)
         {
             Debug.Log("Bam2");
 
-            ballisHere = true;
+           
+            if ((collision.gameObject.name.Contains("(Clone)")))
+            {
+                isClone = true;
+                Debug.Log("isClone");
+
+            }
+            else
+            {
+                isClone = false;
+                Debug.Log("isNotClone");
+
+            }
+
             foreach (ContactPoint contact in collision.contacts)
             {
                 contactPointGlue = contact.point.x - transform.position.x;
@@ -281,22 +294,6 @@ public class Player1Control : MonoBehaviour
 
 
        
-
-        if (ball.name.Contains("(Clone)") && gluestatus == true )
-        {
-            Debug.Log("Bam2Clone");
-
-            ballisHere = true;
-            foreach (ContactPoint contact in collision.contacts)
-            {
-                contactPointGlue = contact.point.x - transform.position.x;
-
-            }
-
-
-            glued = true;
-        }
-
 
 
         #endregion

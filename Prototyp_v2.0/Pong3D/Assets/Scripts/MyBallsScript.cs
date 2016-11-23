@@ -49,7 +49,7 @@ public class MyBallsScript : MonoBehaviour
         //{
            
 
-            if(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow)&& (startposition || Player1Control.glued )&& !(gameObject.name.Contains("(Clone)")))
+            if(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow)&& (startposition || Player1Control.glued && Player1Control.isClone == false) )
             {
                 rb.velocity = new Vector3(0,0,0);
                 Debug.Log("rechts");
@@ -57,7 +57,7 @@ public class MyBallsScript : MonoBehaviour
                 startposition = false;
             }
 
-            if(Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow) && (startposition || Player1Control.glued )&& !(gameObject.name.Contains("(Clone)")))
+            if(Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow) && (startposition || Player1Control.glued && Player1Control.isClone == false) )
             {
                 rb.velocity = new Vector3(0,0,0);
                 GetComponent<Rigidbody>().AddForce(-600, 300, 0);
@@ -65,16 +65,27 @@ public class MyBallsScript : MonoBehaviour
                 startposition = false;
             }
 
-            if(Input.GetKey(KeyCode.UpArrow)&& (startposition || Player1Control.glued )&& !(gameObject.name.Contains("(Clone)")))
+            if(Input.GetKey(KeyCode.UpArrow)&& (startposition || Player1Control.glued && Player1Control.isClone== false))
             {
                 rb.velocity = new Vector3(0,0,0);
                 GetComponent<Rigidbody>().AddForce(0, 300, 0);
                 Debug.Log("Oben");
                 startposition = false;
+                Player1Control.glued = false;
             }
 
-            
-            //GetComponent<Rigidbody>();
+        if (Input.GetKey(KeyCode.UpArrow) && (Player1Control.glued && Player1Control.isClone))
+        {
+            Player1Control.ItemInstance.velocity = new Vector3(0, 0, 0);
+            Player1Control.ItemInstance.AddForce(0, 300, 0);
+            Debug.Log("Oben");
+            startposition = false;
+            Player1Control.glued = false;
+        }
+
+
+
+        //GetComponent<Rigidbody>();
         //}
 
 

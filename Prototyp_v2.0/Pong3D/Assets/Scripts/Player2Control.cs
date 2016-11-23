@@ -47,7 +47,7 @@ public class Player2Control : MonoBehaviour
       
 
         #region Shield
-        // nebel activation      
+        // shield activation      
         if (shieldstatus)
         {
             shieldTime -= Time.deltaTime;

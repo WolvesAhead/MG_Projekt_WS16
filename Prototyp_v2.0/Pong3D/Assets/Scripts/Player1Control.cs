@@ -1,44 +1,46 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player1Control : MonoBehaviour 
+public class Player1Control : MonoBehaviour
 {
-	public static GameObject playerPaddle;
+    public static GameObject playerPaddle;
     public GameObject bottomBorder;
-    public GameObject nebel;
+
     public GameObject shield;
     public Rigidbody rbball;
     public Rigidbody rbball2;
+    public GameObject ball;
+
 
     private float speed = 6f;
     public static float rightLimit;
     public static float leftLimit;
     private Rigidbody ItemInstance;
 
-    public bool nebelstatus = false;          
     public bool shieldstatus = false;
+    private bool ballisHere = false;
     public static bool powerballstatus = false;
     public static bool powerballCollected = false;
     public static bool gluestatus = false;
-    public static bool curveballstatus = false;
     public static bool glued = false;
+
 
     public static int player1Score;
     public static int controlChange;
-    float controlChangeTime = 5f;
-    float NebelTime = 15f;
-    float shieldTime = 8f;
-    float glueTime = 15f;
-    float curveballTime = 5f;
+    public float controlChangeTime = 5f;
+    public float shieldTime = 8f;
+    public float glueTime = 15f;
     float contactPointGlue;
 
 
-    void Start() 
-	{
-       
+    void Start()
+    {
+
         Debug.Log(transform.localScale.x / 2);
 
-	}
+
+
+    }
 
     void Update()
     {
@@ -52,60 +54,6 @@ public class Player1Control : MonoBehaviour
         float paddlepoint = transform.position.x;
 
 
-        #region curveBall
-
-        if (curveballstatus)
-        {
-            curveballTime  -= Time.deltaTime;
-
-            if (Input.GetKey(KeyCode.RightArrow) && rbball.transform.position.x < rightLimit - 0.1)
-            {
-                rbball.transform.position += Vector3.right * speed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.LeftArrow) && rbball.transform.position.x > leftLimit + 0.1)
-            {
-                rbball.transform.position += Vector3.left * speed * Time.deltaTime;
-            }
-
-
-            if (curveballTime  < 0)
-            {
-                curveballstatus  = false;
-                curveballTime  = 5f;
-
-            }
-        }
-
-        #endregion
-
-
-        #region Nebel
-        // nebel activation      
-        if (nebelstatus)
-        {
-            NebelTime -= Time.deltaTime;
-            //nebel.GetComponent<ParticleSystem>().Play();
-            Debug.Log("nebel activ!");
-            nebel.SetActive(true);
-          
-          
-
-
-            if (NebelTime < 0)
-            {
-                nebelstatus = false;
-                NebelTime = 15f;
-
-            }
-        }
-        else
-        {
-            //nebel.GetComponent<ParticleSystem>().Stop();
-            nebel.SetActive(false);
-        }
-
-        #endregion
-
         #region Controlchange
         // ControllChange 
         if (controlChange >= 1)
@@ -117,23 +65,21 @@ public class Player1Control : MonoBehaviour
                 controlChange = 0;
                 controlChangeTime = 5f;
             }
-             
+
             if (Input.GetKey(KeyCode.RightArrow) && transform.position.x > leftLimit + 0.1)
             {
                 transform.position += Vector3.left * speed * Time.deltaTime;
-       
+
 
             }
-            if (Input.GetKey(KeyCode.LeftArrow)  && transform.position.x < rightLimit - 0.1)
+            if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x < rightLimit - 0.1)
             {
                 transform.position += Vector3.right * speed * Time.deltaTime;
             }
         }
-
-        #endregion
-
-
-        // Steuerung
+        else
+        {
+            // Steuerung
 
             if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < rightLimit - 0.1)
             {
@@ -144,9 +90,9 @@ public class Player1Control : MonoBehaviour
                 transform.position += Vector3.left * speed * Time.deltaTime;
             }
 
-            
-        
+        }
 
+        #endregion
 
         #region Shield
         // nebel activation      
@@ -174,17 +120,19 @@ public class Player1Control : MonoBehaviour
         // glue activation      
         if (gluestatus)
         {
+
             glueTime -= Time.deltaTime;
-            if(glued == true)
+            if (glued == true)
             {
-       
-                rbball.transform.position = new Vector3((transform.position.x+contactPointGlue),-4.4f,-0.7f);
-            
-                    if (Input.GetKey(KeyCode.UpArrow))
-                    {
-                        rbball.AddForce(0, 300, 0);
-                        glued = false;
-                    }
+
+                rbball.transform.position = new Vector3((transform.position.x + contactPointGlue), -4.4f, -0.7f);
+
+
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    rbball.AddForce(0, 300, 0);
+                    glued = false;
+                }
 
             }
 
@@ -192,12 +140,14 @@ public class Player1Control : MonoBehaviour
             {
                 gluestatus = false;
                 glueTime = 15f;
+                glued = false;
+                ballisHere = false;
 
             }
         }
         else
         {
-            
+
         }
 
         #endregion
@@ -205,9 +155,10 @@ public class Player1Control : MonoBehaviour
     }
 
 
-    void OnCollisionEnter(Collision collision) {
-        
-       
+    void OnCollisionEnter(Collision collision)
+    {
+
+
         /*foreach (ContactPoint contact in collision.contacts)
             {
             	//Punkt auf dem Paddle
@@ -240,8 +191,8 @@ public class Player1Control : MonoBehaviour
 
         if (collision.transform.tag == "bigPaddle")
         {
-          if(this.gameObject.transform.localScale.x <= 3)
-            this.gameObject.transform.localScale += new Vector3(1, 0, 0);
+            if (this.gameObject.transform.localScale.x <= 3)
+                this.gameObject.transform.localScale += new Vector3(1, 0, 0);
 
         }
 
@@ -260,21 +211,22 @@ public class Player1Control : MonoBehaviour
         if (collision.transform.tag == "mehrbaelle")
         {
 
-            
+
             DestroyObjectsBottomBorder.ballCount1++;
             Debug.Log("ball++. Du hast jetzt " + DestroyObjectsBottomBorder.ballCount1 + " Bälle");
-            ItemInstance = Instantiate(rbball, new Vector3(transform.position.x, transform.position.y+1f, transform.position.z), Quaternion.identity) as Rigidbody;
+            ItemInstance = Instantiate(rbball, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity) as Rigidbody;
             ItemInstance.AddForce(0, 150, 0);
+
 
         }
 
         ///////////////// Steuerung umkehren \\\\\\\\\\\\\\\\
-        if  (collision.transform.tag == "ControlChange")
+        if (collision.transform.tag == "ControlChange")
         {
-                //Debug.Log("Rechts is jetzt Links");
+            //Debug.Log("Rechts is jetzt Links");
 
-            Player2Control.controlChange += 1; 
-            
+            Player2Control.controlChange += 1;
+
             /*if (Input.GetKey(KeyCode.RightArrow) && (transform.position.x > rightLimit - 0.1))
             {
                 transform.position += Vector3.left * speed * Time.deltaTime;
@@ -286,12 +238,7 @@ public class Player1Control : MonoBehaviour
             } 
             */
         }
-        ///////////////// Nebel Item \\\\\\\\\\\\\\\\
 
-        if (collision.transform.tag == "nebelItem")
-        {
-            nebelstatus = true;
-        }
 
         ///////////////// Shield Item \\\\\\\\\\\\\\\\
 
@@ -305,7 +252,7 @@ public class Player1Control : MonoBehaviour
         {
             powerballCollected = true;
         }
-        if(powerballCollected == true && collision.transform.tag == "ball")    
+        if (powerballCollected == true && collision.transform.tag == "ball")
         {
             powerballstatus = true;
             powerballCollected = false;
@@ -315,30 +262,48 @@ public class Player1Control : MonoBehaviour
         if (collision.transform.tag == "glueItem")
         {
             gluestatus = true;
+
             Debug.Log("Bam");
         }
 
-        if(collision.transform.tag == "ball" && gluestatus == true)
-            {
-                Debug.Log("Bam2");
-                foreach (ContactPoint contact in collision.contacts)
-                {
-                    contactPointGlue = contact.point.x - transform.position.x;
+        if (!ball.name.Contains("(Clone)") && gluestatus == true)
+        {
+            Debug.Log("Bam2");
 
-                }
-                glued = true;
+            ballisHere = true;
+            foreach (ContactPoint contact in collision.contacts)
+            {
+                contactPointGlue = contact.point.x - transform.position.x;
+
+            }
+            glued = true;
+        }
+
+
+       
+
+        if (ball.name.Contains("(Clone)") && gluestatus == true )
+        {
+            Debug.Log("Bam2Clone");
+
+            ballisHere = true;
+            foreach (ContactPoint contact in collision.contacts)
+            {
+                contactPointGlue = contact.point.x - transform.position.x;
+
             }
 
-        ///////////////// Curveball Item \\\\\\\\\\\\\\\\
-        if (collision.transform.tag == "curveballItem")
-        {
-            curveballstatus = true;
+
+            glued = true;
         }
+
+
 
         #endregion
 
+
+
+
+
     }
-
-
-
 }

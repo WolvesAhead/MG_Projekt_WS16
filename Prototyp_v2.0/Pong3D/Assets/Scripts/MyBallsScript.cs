@@ -27,8 +27,11 @@ public class MyBallsScript : MonoBehaviour
 
         if(Player1Control.powerballstatus == true)    
         {
-            if(transform.position.x > 5.9 || transform.position.x < -5.9)transform.GetComponent<Collider>().isTrigger = false;
-            else{transform.GetComponent<Collider>().isTrigger = true;}
+            if(transform.position.x > 5.9 || transform.position.x < -5.9)
+                transform.GetComponent<Collider>().isTrigger = false;
+            else
+            {
+            transform.GetComponent<Collider>().isTrigger = true;}
             if(transform.position.y > 4)
             {
                 transform.GetComponent<Collider>().isTrigger = false;

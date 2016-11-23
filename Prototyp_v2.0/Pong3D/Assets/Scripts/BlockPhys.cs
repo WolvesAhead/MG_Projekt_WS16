@@ -29,7 +29,7 @@ public class BlockPhys : MonoBehaviour {
         if (col.transform.tag == "ball" && random == 1)
         {
             Rigidbody ItemInstance;
-            int i = Random.Range(0, 9);
+            int i = Random.Range(0, 7);
           
                 ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
                 ItemInstance.AddForce(0, -150, 0);
@@ -42,7 +42,7 @@ public class BlockPhys : MonoBehaviour {
         if (col.transform.tag == "ball2" && random == 1)
         {
             Rigidbody ItemInstance;
-            int i = Random.Range(0, 9);
+            int i = Random.Range(0, 7);
         
                 ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
                 ItemInstance.AddForce(0, 150, 0);

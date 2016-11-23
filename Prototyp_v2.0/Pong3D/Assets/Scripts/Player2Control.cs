@@ -6,29 +6,25 @@ public class Player2Control : MonoBehaviour
 	public GameObject playerPaddle;
     public Rigidbody rbball;
     public Rigidbody rbball2;
-    public GameObject nebel;
     public GameObject shield;
     public GameObject upperBorder;
 
     private float speed = 6f;
     private float rightLimit;
     private float leftLimit;
-    public bool nebelstatus = false;
     public bool shieldstatus = false;
     public static bool powerballstatus = false;
     public static bool powerballCollected = false;
     public static bool gluestatus = false;
-    public static bool curveballstatus = false;
     public static bool glued = false;
 
 
     public static int player2Score = 0;
     public static int controlChange;
     private float controlChangeTime = 5f;
-    float NebelTime = 15f;
+
     float shieldTime = 8f;
     float glueTime = 15f;
-    float curveballTime = 5f;
     float contactPointGlue;
 
     void Start() 
@@ -48,59 +44,7 @@ public class Player2Control : MonoBehaviour
          {
              transform.position = new Vector3(5.2f, transform.position.y, transform.position.z);
          }*/
-
-
-
-        #region curveBall
-
-        if (curveballstatus)
-        {
-            curveballTime -= Time.deltaTime;
-
-            if (Input.GetKey(KeyCode.D) && rbball2.transform.position.x < rightLimit - 0.1)
-            {
-                rbball2.transform.position += Vector3.right * speed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.A) && rbball2.transform.position.x > leftLimit + 0.1)
-            {
-                rbball2.transform.position += Vector3.left * speed * Time.deltaTime;
-            }
-
-
-            if (curveballTime < 0)
-            {
-                curveballstatus = false;
-                curveballTime = 5f;
-
-            }
-        }
-
-        #endregion
-
-        #region Nebel
-        // nebel activation      
-        if (nebelstatus)
-        {
-            Debug.Log("nebel activ!");
-            NebelTime -= Time.deltaTime;
-            //nebel.GetComponent<ParticleSystem>().Play();
-            nebel.SetActive(true);
-
-
-            if (NebelTime < 0)
-            {
-                nebelstatus = false;
-                NebelTime = 15f;
-
-            }
-        }
-        else
-        {
-            //nebel.GetComponent<ParticleSystem>().Stop();
-            nebel.SetActive(false);
-        }
-
-        #endregion
+      
 
         #region Shield
         // nebel activation      
@@ -150,10 +94,8 @@ public class Player2Control : MonoBehaviour
                 transform.position += Vector3.right * speed * Time.deltaTime;
             }
         }
-
-        #endregion
-        
-        
+        else
+        {
             if (Input.GetKey(KeyCode.D) && transform.position.x < rightLimit)
             {
                 transform.position += Vector3.right * speed * Time.deltaTime;
@@ -162,7 +104,14 @@ public class Player2Control : MonoBehaviour
             {
                 transform.position += Vector3.left * speed * Time.deltaTime;
             }
-        
+
+
+        }
+
+        #endregion
+
+
+
 
         #region Glue
         // glue activation      
@@ -277,15 +226,7 @@ public class Player2Control : MonoBehaviour
             Player1Control.controlChange += 1;
         }
 
-
-        ///////////////// Nebel Item \\\\\\\\\\\\\\\\
-
-        if (collision.transform.tag == "nebelItem")
-        {
-            nebelstatus = true;
-
-        }
-
+     
         ///////////////// Shield Item \\\\\\\\\\\\\\\\
 
         if (collision.transform.tag == "shieldItem")
@@ -323,11 +264,7 @@ public class Player2Control : MonoBehaviour
             glued = true;
         }
 
-        ///////////////// Curveball Item \\\\\\\\\\\\\\\\
-        if (collision.transform.tag == "curveballItem")
-        {
-            curveballstatus = true;
-        }
+      
         #endregion
     }
 }

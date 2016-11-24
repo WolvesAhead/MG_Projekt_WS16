@@ -135,6 +135,14 @@ public class MyBallsScript : MonoBehaviour
         transform.position = new Vector3(playerPaddle.transform.position.x, -4.4f, 5f);
     }
 
+    public void ResetPowerups()  //Alle Powerups auf normal wenn du ein Tor kassierst
+    {
+        playerPaddle.transform.localScale = new Vector3(1.5f, 0.2f, 0.6f);
+        Player1Control.powerballstatus = false;
+        Player1Control.powerballCollected = false;
+        Player1Control.gluestatus = false;
+        Player1Control.glued = false;
+    }
 
     void OnCollisionEnter(Collision collision)
     {

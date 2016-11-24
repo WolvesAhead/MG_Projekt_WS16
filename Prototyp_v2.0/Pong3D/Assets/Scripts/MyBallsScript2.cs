@@ -92,6 +92,15 @@ public class MyBallsScript2 : MonoBehaviour {
         transform.position = new Vector3(playerPaddle.transform.position.x, 4.4f, 5f);
     }
 
+    public void ResetPowerups()
+    {
+        playerPaddle2.transform.localScale = new Vector3(1.5f, 0.2f, 0.6f);
+        Player2Control.powerballstatus = false;
+        Player2Control.powerballCollected = false;
+        Player2Control.gluestatus = false;
+        Player2Control.glued = false;
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         /*if (Player2Control.powerballstatus == true && collision.transform.tag == "Player2Paddle")

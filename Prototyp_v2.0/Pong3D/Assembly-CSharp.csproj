@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\ItemPrefabScript.cs" />
      <Compile Include="Assets\Scripts\Level1Start.cs" />
      <Compile Include="Assets\Scripts\Level2Start.cs" />
+     <Compile Include="Assets\Scripts\LevelSelectionStart.cs" />
      <Compile Include="Assets\Scripts\MyBallsScript.cs" />
      <Compile Include="Assets\Scripts\MyBallsScript2.cs" />
      <Compile Include="Assets\Scripts\Player1Control.cs" />

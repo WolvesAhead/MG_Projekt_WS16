@@ -26,8 +26,13 @@ public class MyBallsScript2 : MonoBehaviour {
         
         if(Player2Control.powerballstatus == true)    
         {
-            if(transform.position.x > 5.9 || transform.position.x < -5.9)transform.GetComponent<Collider>().isTrigger = false;
-            else{transform.GetComponent<Collider>().isTrigger = true;}
+            if(transform.position.x > 5.9 || transform.position.x < -5.9)
+                transform.GetComponent<Collider>().isTrigger = false;
+            else
+            {
+             transform.GetComponent<Collider>().isTrigger = true;
+            }
+
             if(transform.position.y < -4)
             {
                 transform.GetComponent<Collider>().isTrigger = false;
@@ -44,7 +49,7 @@ public class MyBallsScript2 : MonoBehaviour {
  
 
 
-        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W) && (startposition || Player2Control.glued) && !(gameObject.name.Contains("(Clone)")))
+        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W) && (startposition || Player2Control.glued && Player2Control.isClone == false))
         {
             rb.velocity = new Vector3(0, 0, 0);
             Debug.Log("rechts");
@@ -52,7 +57,7 @@ public class MyBallsScript2 : MonoBehaviour {
             startposition = false;
         }
 
-        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W) && (startposition || Player2Control.glued) && !(gameObject.name.Contains("(Clone)")))
+        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W) && (startposition || Player2Control.glued && Player2Control.isClone == false))
         {
             rb.velocity = new Vector3(0, 0, 0);
             GetComponent<Rigidbody>().AddForce(-600, -300, 0);
@@ -60,13 +65,25 @@ public class MyBallsScript2 : MonoBehaviour {
             startposition = false;
         }
 
-        if (Input.GetKey(KeyCode.W) && (startposition || Player2Control.glued) && !(gameObject.name.Contains("(Clone)")))
+        if (Input.GetKey(KeyCode.W) && (startposition || Player2Control.glued && Player2Control.isClone == false))
         {
             rb.velocity = new Vector3(0, 0, 0);
             GetComponent<Rigidbody>().AddForce(0, -300, 0);
+
+            startposition = false;
+            Player2Control.glued = false;
+        }
+
+        else if (Input.GetKey(KeyCode.W) && (Player2Control.glued && Player2Control.isClone))
+        {
+            Player2Control.ItemInstance.velocity = new Vector3(0, 0, 0);
+            Player2Control.ItemInstance.AddForce(0, -300, 0);
             Debug.Log("Oben");
             startposition = false;
+            Player2Control.glued = false;
         }
+
+
         if (startposition == false)
         {
 

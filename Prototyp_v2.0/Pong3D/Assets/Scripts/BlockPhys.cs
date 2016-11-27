@@ -24,7 +24,7 @@ public class BlockPhys : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        int random = Random.Range(0, 2);
+        int random = Random.Range(0, 6);
         //Debug.Log("Random range (0,2)" + random);
         if (col.transform.tag == "ball" && random == 1)
         {

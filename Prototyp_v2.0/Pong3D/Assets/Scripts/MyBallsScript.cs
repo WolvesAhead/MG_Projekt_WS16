@@ -31,7 +31,9 @@ public class MyBallsScript : MonoBehaviour
                 transform.GetComponent<Collider>().isTrigger = false;
             else
             {
-            transform.GetComponent<Collider>().isTrigger = true;}
+            transform.GetComponent<Collider>().isTrigger = true;
+            }
+
             if(transform.position.y > 4)
             {
                 transform.GetComponent<Collider>().isTrigger = false;
@@ -65,21 +67,29 @@ public class MyBallsScript : MonoBehaviour
                 startposition = false;
             }
 
-            if(Input.GetKey(KeyCode.UpArrow)&& (startposition || Player1Control.glued && Player1Control.isClone== false))
+           if(Input.GetKey(KeyCode.UpArrow) && (startposition) && transform.position.y == -4.4f)
             {
-                rb.velocity = new Vector3(0,0,0);
-                GetComponent<Rigidbody>().AddForce(0, 300, 0);
-                Debug.Log("Oben");
+                //rb.velocity = new Vector3(0,0,0);
+                rb.AddForce(0, 300, 0);
+                Debug.Log("Oben1(ball)");
                 startposition = false;
-                Player1Control.glued = false;
+               
             }
+           else if(Input.GetKey(KeyCode.UpArrow) && (Player1Control.glued && Player1Control.isClone == false))
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+            GetComponent<Rigidbody>().AddForce(0, 300, 0);
+            Debug.Log("Oben2 (ball)");
+            Player1Control.glued = false;
 
-        if (Input.GetKey(KeyCode.UpArrow) && (Player1Control.glued && Player1Control.isClone))
+        }
+
+        else if (Input.GetKey(KeyCode.UpArrow) && (Player1Control.glued && Player1Control.isClone))
         {
             Player1Control.ItemInstance.velocity = new Vector3(0, 0, 0);
             Player1Control.ItemInstance.AddForce(0, 300, 0);
-            Debug.Log("Oben");
-            startposition = false;
+            Debug.Log("Oben2(clone)");
+            
             Player1Control.glued = false;
         }
 
@@ -161,7 +171,7 @@ public class MyBallsScript : MonoBehaviour
 
             //Wert zur Winkelberechnung an Hand der Paddle länge
             
-            Debug.Log("paddlescale" + (playerPaddle.transform.localScale.x / 2));
+            //Debug.Log("paddlescale" + (playerPaddle.transform.localScale.x / 2));
 
             // "Winkel" errechnung 
             if (collision.transform.tag == "Player1Paddle" && playerPaddle.transform.position.x < Player1Control.rightLimit - 0.1 && playerPaddle.transform.position.x > Player1Control.leftLimit + 0.1) // damit den ball nicht das paddle folgt wenn das hackt und geht mehr als die grennzung

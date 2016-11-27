@@ -53,7 +53,7 @@ public class Player1Control : MonoBehaviour
         leftLimit = bottomBorder.GetComponent<Renderer>().bounds.min.x + (transform.localScale.x / 2); // 0,75 ist die hälfte unsere paddle (-6,25 + 0,75 = -5,5) ==> genau unesere limit
         rightLimit = bottomBorder.GetComponent<Renderer>().bounds.max.x - (transform.localScale.x / 2);
 
-        float paddlepoint = transform.position.x;
+      //   float paddlepoint = transform.position.x;
 
 
         #region Controlchange
@@ -145,7 +145,7 @@ public class Player1Control : MonoBehaviour
         }
         else
         {
-
+                 // für dich Martin 
         }
 
         #endregion
@@ -222,7 +222,7 @@ public class Player1Control : MonoBehaviour
         ///////////////// Steuerung umkehren \\\\\\\\\\\\\\\\
         if (collision.transform.tag == "ControlChange")
         {
-            //Debug.Log("Rechts is jetzt Links");
+            Debug.Log("Rechts is jetzt Links");
 
             Player2Control.controlChange += 1;
 

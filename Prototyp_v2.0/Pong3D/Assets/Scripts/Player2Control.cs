@@ -13,6 +13,9 @@ public class Player2Control : MonoBehaviour
     private float rightLimit;
     private float leftLimit;
     public bool shieldstatus = false;
+
+    public static Rigidbody ItemInstance;
+    public static bool isClone = false;
     public static bool powerballstatus = false;
     public static bool powerballCollected = false;
     public static bool gluestatus = false;
@@ -22,9 +25,8 @@ public class Player2Control : MonoBehaviour
     public static int player2Score = 0;
     public static int controlChange;
     private float controlChangeTime = 5f;
-
-    float shieldTime = 8f;
-    float glueTime = 15f;
+    public float shieldTime = 8f;
+    public float glueTime = 15f;
     float contactPointGlue;
 
     void Start() 
@@ -120,34 +122,13 @@ public class Player2Control : MonoBehaviour
             glueTime -= Time.deltaTime;
             if (glued == true)
             {
-                /*Debug.Log("cp "+contactPointGlue);
-                Debug.Log("pp "+paddlepoint);
-                Debug.Log("bp "+ (transform.position.x-contactPointGlue));*/
+                if (isClone == false)
+                    rbball2.transform.position = new Vector3((transform.position.x + contactPointGlue), 4.4f, -0.7f);
 
-                //float ballaufpaddle = transform.position.x-contactPointGlue;
-                //rbball.transform.position = new Vector3(rbball.transform.position.x, -4.4f, -0.7f);
-                //Debug.Log("ballauufpaddle"+(paddlepoint+((ballaufpaddle)*-1)));*/
+                if (isClone)
+                    ItemInstance.transform.position = new Vector3((transform.position.x + contactPointGlue), 4.4f, -0.7f);
 
-                /*if (Input.GetKey(KeyCode.RightArrow) && rbball.transform.position.x < rightLimit - 0.1)
-           {
-               rbball.transform.position += Vector3.right * speed * Time.deltaTime;
-           }
-           if (Input.GetKey(KeyCode.LeftArrow) && rbball.transform.position.x > leftLimit + 0.1)
-           {
-               rbball.transform.position += Vector3.left * speed * Time.deltaTime;
-           }*/
-                rbball.transform.position = new Vector3((transform.position.x + contactPointGlue), -4.4f, -0.7f);
-
-
-
-
-
-
-                if (Input.GetKey(KeyCode.UpArrow))
-                {
-                    rbball.AddForce(0, 300, 0);
-                    glued = false;
-                }
+               
             }
 
             if (glueTime < 0)
@@ -210,7 +191,7 @@ public class Player2Control : MonoBehaviour
         if (collision.transform.tag == "mehrbaelle")
         {
 
-            Rigidbody ItemInstance;
+         
             DestroyObjectsBottomBorder.ballCount2++;
             Debug.Log("ball++");
             ItemInstance = Instantiate(rbball2, new Vector3(transform.position.x, transform.position.y-1f, transform.position.z), Quaternion.identity) as Rigidbody;
@@ -253,9 +234,22 @@ public class Player2Control : MonoBehaviour
             Debug.Log("Bam");
         }
 
-        if (collision.transform.tag == "ball" && gluestatus == true)
+        if (collision.transform.tag == "ball2" && gluestatus == true)
         {
             Debug.Log("Bam2");
+
+            if ((collision.gameObject.name.Contains("(Clone)")))
+            {
+                isClone = true;
+                Debug.Log("isClone");
+
+            }
+            else
+            {
+                isClone = false;
+                Debug.Log("isNotClone");
+
+            }
             foreach (ContactPoint contact in collision.contacts)
             {
                 contactPointGlue = contact.point.x - transform.position.x;

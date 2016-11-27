@@ -37,11 +37,7 @@ public class Player1Control : MonoBehaviour
 
     void Start()
     {
-
         Debug.Log(transform.localScale.x / 2);
-
-
-
     }
 
     void Update()

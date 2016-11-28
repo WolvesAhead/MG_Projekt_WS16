@@ -69,7 +69,7 @@ public class MyBallsScript : MonoBehaviour
 
            if(Input.GetKey(KeyCode.UpArrow) && (startposition) && transform.position.y == -4.4f)
             {
-                //rb.velocity = new Vector3(0,0,0);
+                rb.velocity = new Vector3(0,0,0);
                 rb.AddForce(0, 300, 0);
                 Debug.Log("Oben1(ball)");
                 startposition = false;

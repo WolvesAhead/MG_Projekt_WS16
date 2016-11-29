@@ -20,10 +20,11 @@ public class Player2Control : MonoBehaviour
     public static bool powerballCollected = false;
     public static bool gluestatus = false;
     public static bool glued = false;
+    public int itemsZaehler = 0;
 
 
     public static int player2Score = 0;
-    public static int controlChange;
+    public static bool controlChange = false;
     private float controlChangeTime = 5f;
     public float shieldTime = 8f;
     public float glueTime = 15f;
@@ -74,14 +75,14 @@ public class Player2Control : MonoBehaviour
 
         #region Controlchange
         // ControllChange 
-        if (controlChange == 1)
+        if (controlChange)
         {
 
             //Timer
             controlChangeTime -= Time.deltaTime;
             if (controlChangeTime < 0)
             {
-                controlChange -= 1;
+                controlChange = false;
                 controlChangeTime = 5f;
             }
 
@@ -123,10 +124,10 @@ public class Player2Control : MonoBehaviour
             if (glued == true)
             {
                 if (isClone == false)
-                    rbball2.transform.position = new Vector3((transform.position.x + contactPointGlue), 4.4f, -0.7f);
+                    rbball2.transform.position = new Vector3((transform.position.x + contactPointGlue), 4.44f, -0.7f);
 
                 if (isClone)
-                    ItemInstance.transform.position = new Vector3((transform.position.x + contactPointGlue), 4.4f, -0.7f);
+                    ItemInstance.transform.position = new Vector3((transform.position.x + contactPointGlue), 4.44f, -0.7f);
 
                
             }
@@ -173,6 +174,7 @@ public class Player2Control : MonoBehaviour
             {
                 this.gameObject.transform.localScale += new Vector3(1f, 0, 0);
             }
+            itemsZaehler++;
         }
 
         //////////////////Small PADDLE ITEM- Bug verhindert, dass die X Größe ins Negative gerät und somit wieder größer wird\\\\\\\\\\\\\\\\\\
@@ -183,6 +185,7 @@ public class Player2Control : MonoBehaviour
             {
                 this.gameObject.transform.localScale -= new Vector3(1, 0, 0);
             }
+            itemsZaehler++;
         }
 
 
@@ -204,7 +207,8 @@ public class Player2Control : MonoBehaviour
         {
             Debug.Log("Rechts is jetzt Links");
 
-            Player1Control.controlChange += 1;
+            Player1Control.controlChange  = true;
+            itemsZaehler++;
         }
 
      
@@ -213,6 +217,7 @@ public class Player2Control : MonoBehaviour
         if (collision.transform.tag == "shieldItem")
         {
             shieldstatus = true;
+            itemsZaehler++;
 
         }
 
@@ -220,11 +225,13 @@ public class Player2Control : MonoBehaviour
         if (collision.transform.tag == "powerballItem")
         {
             powerballCollected = true;
+            itemsZaehler++;
         }
         if(powerballCollected == true && collision.transform.tag == "ball2")    
         {
             powerballstatus = true;
             powerballCollected = false;
+           
         }
 
         ///////////////// Glue Item \\\\\\\\\\\\\\\\
@@ -232,6 +239,7 @@ public class Player2Control : MonoBehaviour
         {
             gluestatus = true;
             Debug.Log("Bam");
+            itemsZaehler++;
         }
 
         if (collision.transform.tag == "ball2" && gluestatus == true)

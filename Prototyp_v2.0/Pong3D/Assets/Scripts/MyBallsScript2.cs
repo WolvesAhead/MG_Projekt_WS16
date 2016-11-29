@@ -43,7 +43,7 @@ public class MyBallsScript2 : MonoBehaviour {
         if ((startposition == true)  && !(gameObject.name.Contains("(Clone)")))
         {
 
-            transform.position = new Vector3(playerPaddle.transform.position.x, 4.4f, -0.7f);
+            transform.position = new Vector3(playerPaddle.transform.position.x, 4.44f, -0.7f);
         }
 
  
@@ -106,7 +106,7 @@ public class MyBallsScript2 : MonoBehaviour {
 
     public void Standby()
     {
-        transform.position = new Vector3(playerPaddle.transform.position.x, 4.4f, 5f);
+        transform.position = new Vector3(playerPaddle.transform.position.x, 4.44f, 5f);
     }
 
     public void ResetPowerups()

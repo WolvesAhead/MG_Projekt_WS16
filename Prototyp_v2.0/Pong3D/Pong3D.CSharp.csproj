@@ -66,6 +66,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DiscoLight1Script.cs" />
+    <Compile Include="Assets\ItemPositionScript.cs" />
+    <Compile Include="Assets\Itempostions.cs" />
     <Compile Include="Assets\Scripts\BigPaddleItemScript.cs" />
     <Compile Include="Assets\Scripts\BlockPhys.cs" />
     <Compile Include="Assets\Scripts\DestroyObjectsBottomBorder.cs" />
@@ -77,6 +80,9 @@
     <Compile Include="Assets\Scripts\MyBallsScript2.cs" />
     <Compile Include="Assets\Scripts\Player1Control.cs" />
     <Compile Include="Assets\Scripts\Player2Control.cs" />
+    <Compile Include="Assets\Scripts\PreviewBall.cs" />
+    <Compile Include="Assets\Scripts\PreviewPlayer.cs" />
+    <Compile Include="Assets\Scripts\PreviewPlayer2.cs" />
     <Compile Include="Assets\Scripts\ShieldScript.cs" />
     <Compile Include="Assets\Scripts\StrongBlockPhys.cs" />
   </ItemGroup>

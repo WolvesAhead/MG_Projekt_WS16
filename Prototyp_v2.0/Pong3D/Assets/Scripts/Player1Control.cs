@@ -18,7 +18,7 @@ public class Player1Control : MonoBehaviour
     public static Rigidbody ItemInstance;
     
 
-    public bool shieldstatus = false;
+    public static bool shieldstatus = false;
     public static bool firstballisHere = false;
     public static bool isClone = false;
     public static bool powerballstatus = false;
@@ -28,10 +28,11 @@ public class Player1Control : MonoBehaviour
 
 
     public static int player1Score;
-    public static int controlChange;
+    public static bool controlChange = false;
     public float controlChangeTime = 5f;
     public float shieldTime = 8f;
     public float glueTime = 15f;
+    public int itemsZaehler = 0;
     float contactPointGlue;
 
 
@@ -54,13 +55,14 @@ public class Player1Control : MonoBehaviour
 
         #region Controlchange
         // ControllChange 
-        if (controlChange >= 1)
+        if (controlChange)
         {
             //Timer
             controlChangeTime -= Time.deltaTime;
             if (controlChangeTime < 0)
             {
-                controlChange = 0;
+                controlChange = false;
+                itemsZaehler--;
                 controlChangeTime = 5f;
             }
 
@@ -103,6 +105,7 @@ public class Player1Control : MonoBehaviour
             if (shieldTime < 0)
             {
                 shieldstatus = false;
+                itemsZaehler--;
                 shieldTime = 8f;
 
             }
@@ -123,16 +126,17 @@ public class Player1Control : MonoBehaviour
             if (glued == true )
             {
                 if (isClone == false)
-                rbball.transform.position = new Vector3((transform.position.x + contactPointGlue), -4.4f, -0.7f);
+                rbball.transform.position = new Vector3((transform.position.x + contactPointGlue), -4.5f, -0.7f);
 
                 if (isClone)
-                    ItemInstance.transform.position = new Vector3((transform.position.x + contactPointGlue), -4.4f, -0.7f);
+                    ItemInstance.transform.position = new Vector3((transform.position.x + contactPointGlue), -4.5f, -0.7f);
 
             }
 
             if (glueTime < 0)
             {
                 gluestatus = false;
+                itemsZaehler--;
                 glueTime = 15f;
                 glued = false;
                 firstballisHere = false;
@@ -188,6 +192,8 @@ public class Player1Control : MonoBehaviour
             if (this.gameObject.transform.localScale.x <= 3)
                 this.gameObject.transform.localScale += new Vector3(1, 0, 0);
 
+            
+
         }
 
         //////////////////Small PADDLE ITEM- Bug verhindert, dass die X Größe ins Negative gerät und somit wieder größer wird\\\\\\\\\\\\\\\\\\
@@ -220,19 +226,20 @@ public class Player1Control : MonoBehaviour
         {
             Debug.Log("Rechts is jetzt Links");
 
-            Player2Control.controlChange += 1;
+            Player2Control.controlChange = true;
+            itemsZaehler++;
 
-            /*if (Input.GetKey(KeyCode.RightArrow) && (transform.position.x > rightLimit - 0.1))
-            {
-                transform.position += Vector3.left * speed * Time.deltaTime;
+    /*if (Input.GetKey(KeyCode.RightArrow) && (transform.position.x > rightLimit - 0.1))
+    {
+        transform.position += Vector3.left * speed * Time.deltaTime;
 
-            }
-            if (Input.GetKey(KeyCode.LeftArrow)  && (transform.position.x < leftLimit + 0.1))
-            {
-                transform.position += Vector3.right * speed * Time.deltaTime;
-            } 
-            */
-        }
+    }
+    if (Input.GetKey(KeyCode.LeftArrow)  && (transform.position.x < leftLimit + 0.1))
+    {
+        transform.position += Vector3.right * speed * Time.deltaTime;
+    } 
+    */
+}
 
 
         ///////////////// Shield Item \\\\\\\\\\\\\\\\
@@ -240,17 +247,21 @@ public class Player1Control : MonoBehaviour
         if (collision.transform.tag == "shieldItem")
         {
             shieldstatus = true;
+            itemsZaehler++;
         }
 
         ///////////////// Powerball Item \\\\\\\\\\\\\\\\
         if (collision.transform.tag == "powerballItem")
         {
             powerballCollected = true;
+            itemsZaehler++;
         }
         if (powerballCollected == true && collision.transform.tag == "ball")
         {
             powerballstatus = true;
             powerballCollected = false;
+            itemsZaehler--;
+
         }
 
         ///////////////// Glue Item \\\\\\\\\\\\\\\\
@@ -258,6 +269,7 @@ public class Player1Control : MonoBehaviour
         {
             gluestatus = true;
             firstballisHere = true;
+            itemsZaehler++;
 
             Debug.Log("Bam");
         }

@@ -44,7 +44,7 @@ public class MyBallsScript : MonoBehaviour
         if ((startposition == true) && !(gameObject.name.Contains("(Clone)")))
         {
             
-            transform.position = new Vector3(playerPaddle.transform.position.x, -4.4f, -0.7f);
+            transform.position = new Vector3(playerPaddle.transform.position.x, -4.5f, -0.7f);
         }
 
        // if (startposition && !(gameObject.name.Contains("(Clone)")))
@@ -67,7 +67,7 @@ public class MyBallsScript : MonoBehaviour
                 startposition = false;
             }
 
-           if(Input.GetKey(KeyCode.UpArrow) && (startposition) && transform.position.y == -4.4f)
+           if(Input.GetKey(KeyCode.UpArrow) && (startposition) && transform.position.y == -4.5f)
             {
                 rb.velocity = new Vector3(0,0,0);
                 rb.AddForce(0, 300, 0);
@@ -142,7 +142,7 @@ public class MyBallsScript : MonoBehaviour
 
     public void Standby()   //Ball wird unter dem Spielfeld gehalten bis die Anzahl auf 0 ist und Serve aufgerufen wird
     {
-        transform.position = new Vector3(playerPaddle.transform.position.x, -4.4f, 5f);
+        transform.position = new Vector3(playerPaddle.transform.position.x, -4.5f, 5f);
     }
 
     public void ResetPowerups()  //Alle Powerups auf normal wenn du ein Tor kassierst

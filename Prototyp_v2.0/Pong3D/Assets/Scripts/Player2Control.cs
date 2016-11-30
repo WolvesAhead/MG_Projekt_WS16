@@ -25,6 +25,7 @@ public class Player2Control : MonoBehaviour
 
     public static int player2Score = 0;
     public static bool controlChange = false;
+    public static GameObject controlchangelight;
     private float controlChangeTime = 5f;
     public float shieldTime = 8f;
     public float glueTime = 15f;
@@ -32,7 +33,7 @@ public class Player2Control : MonoBehaviour
 
     void Start() 
 	{
-       
+        controlchangelight = GameObject.Find("lightControlChange");
     }
 
     void Update()
@@ -82,6 +83,7 @@ public class Player2Control : MonoBehaviour
             controlChangeTime -= Time.deltaTime;
             if (controlChangeTime < 0)
             {
+                controlchangelight.SetActive(false);
                 controlChange = false;
                 controlChangeTime = 5f;
             }
@@ -208,6 +210,7 @@ public class Player2Control : MonoBehaviour
             Debug.Log("Rechts is jetzt Links");
 
             Player1Control.controlChange  = true;
+            
             itemsZaehler++;
         }
 

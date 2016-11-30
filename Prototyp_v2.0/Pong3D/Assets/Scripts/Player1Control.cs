@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Player1Control : MonoBehaviour
 {
@@ -29,16 +30,21 @@ public class Player1Control : MonoBehaviour
 
     public static int player1Score;
     public static bool controlChange = false;
-    public float controlChangeTime = 5f;
-    public float shieldTime = 8f;
-    public float glueTime = 15f;
+    public  float controlChangeTime = 5f;
+    public  float shieldTime = 8f;
+    public  float glueTime = 15f;
     public int itemsZaehler = 0;
+    
     float contactPointGlue;
 
+    public Image circle;
+    float speedItemTimer = 0f;
 
     void Start()
     {
         Debug.Log(transform.localScale.x / 2);
+        
+       
     }
 
     void Update()
@@ -59,11 +65,16 @@ public class Player1Control : MonoBehaviour
         {
             //Timer
             controlChangeTime -= Time.deltaTime;
+           
+
+
+
             if (controlChangeTime < 0)
             {
                 controlChange = false;
                 itemsZaehler--;
                 controlChangeTime = 5f;
+                
             }
 
             if (Input.GetKey(KeyCode.RightArrow) && transform.position.x > leftLimit + 0.1)
@@ -99,11 +110,16 @@ public class Player1Control : MonoBehaviour
         if (shieldstatus)
         {
             shieldTime -= Time.deltaTime;
+            Debug.Log("time" + shieldTime);
+            circle.fillAmount = speedItemTimer / 8;
+            speedItemTimer += Time.deltaTime;
             shield.SetActive(true);
 
 
             if (shieldTime < 0)
             {
+                speedItemTimer = 0;
+                circle.fillAmount = 0; 
                 shieldstatus = false;
                 itemsZaehler--;
                 shieldTime = 8f;
@@ -225,6 +241,7 @@ public class Player1Control : MonoBehaviour
         if (collision.transform.tag == "ControlChange")
         {
             Debug.Log("Rechts is jetzt Links");
+            Player2Control.controlchangelight.SetActive(true);
 
             Player2Control.controlChange = true;
             itemsZaehler++;

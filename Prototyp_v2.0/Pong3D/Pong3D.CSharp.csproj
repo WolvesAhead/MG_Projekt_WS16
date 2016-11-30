@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\BlockPhys.cs" />
     <Compile Include="Assets\Scripts\DestroyObjectsBottomBorder.cs" />
     <Compile Include="Assets\Scripts\ItemPrefabScript.cs" />
+    <Compile Include="Assets\Scripts\ItemTimerScript.cs" />
     <Compile Include="Assets\Scripts\Level1Start.cs" />
     <Compile Include="Assets\Scripts\Level2Start.cs" />
     <Compile Include="Assets\Scripts\LevelSelectionStart.cs" />

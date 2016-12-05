@@ -46,10 +46,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\DiscoLight1Script.cs" />
+     <Compile Include="Assets\ItemPositionScript.cs" />
+     <Compile Include="Assets\Itempostions.cs" />
      <Compile Include="Assets\Scripts\BigPaddleItemScript.cs" />
      <Compile Include="Assets\Scripts\BlockPhys.cs" />
      <Compile Include="Assets\Scripts\DestroyObjectsBottomBorder.cs" />
      <Compile Include="Assets\Scripts\ItemPrefabScript.cs" />
+     <Compile Include="Assets\Scripts\ItemTimerScript.cs" />
      <Compile Include="Assets\Scripts\Level1Start.cs" />
      <Compile Include="Assets\Scripts\Level2Start.cs" />
      <Compile Include="Assets\Scripts\LevelSelectionStart.cs" />

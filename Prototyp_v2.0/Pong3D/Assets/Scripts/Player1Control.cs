@@ -38,7 +38,7 @@ public class Player1Control : MonoBehaviour
     float contactPointGlue;
 
     public Image circle;
-    float speedItemTimer = 0f;
+    float speedItemTimer = 8f;
 
     void Start()
     {
@@ -109,16 +109,17 @@ public class Player1Control : MonoBehaviour
         // shield activation      
         if (shieldstatus)
         {
+            
             shieldTime -= Time.deltaTime;
-            Debug.Log("time" + shieldTime);
+           // Debug.Log("time" + shieldTime);
             circle.fillAmount = speedItemTimer / 8;
-            speedItemTimer += Time.deltaTime;
+            speedItemTimer -= Time.deltaTime;
             shield.SetActive(true);
 
 
             if (shieldTime < 0)
             {
-                speedItemTimer = 0;
+                speedItemTimer = 8;
                 circle.fillAmount = 0; 
                 shieldstatus = false;
                 itemsZaehler--;

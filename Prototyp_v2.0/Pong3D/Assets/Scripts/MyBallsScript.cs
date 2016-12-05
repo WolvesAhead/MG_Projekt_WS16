@@ -5,12 +5,14 @@ using UnityEngine.UI;
 public class MyBallsScript : MonoBehaviour
 {
     public Rigidbody rb;
-
+    public int ballSpeed = 4;
     bool startposition = true;
     public GameObject playerPaddle;
     public GameObject playerPaddle2;
     public Text scoreText;
-    public static int anzahlBälle1 = 1;
+    //public static int anzahlBälle1 = 1;
+    public float gameTimer = 0;
+     
 
     // Use this for initialization
     void Start()
@@ -22,6 +24,20 @@ public class MyBallsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+
+        gameTimer += Time.deltaTime;
+        if (gameTimer > 30)
+        {
+            if (ballSpeed < 6)
+            {
+                ballSpeed += 1;
+            }
+            gameTimer = 0;
+            Debug.Log("Run bitch run");
+        }
+
 
         scoreText.text = ((int)Player1Control.player1Score).ToString();
 
@@ -94,44 +110,25 @@ public class MyBallsScript : MonoBehaviour
         }
 
 
-
-        //GetComponent<Rigidbody>();
-        //}
-
-
-        /*if(rb.velocity.x > 3.7)
-        {
-            //Debug.Log("X Speed"+ rb.velocity.x);
-            rb.velocity = new Vector3(rb.velocity.x - 0.001f, rb.velocity.y, 0);
-        }
-
-        if (rb.velocity.x < -3.7)
-        {
-            rb.velocity = new Vector3(rb.velocity.x + 0.001f, rb.velocity.y, 0);
-        }
-
-
-        //Debug.Log(rb.velocity.y);
-        */
         if (startposition == false)
         {
-            rb.velocity = 4 * (rb.velocity.normalized);
+            rb.velocity = ballSpeed * (rb.velocity.normalized);
         }
 
 
         // das it für den clone Ball damit der auch ein geschwindichkeit hat
         if ((gameObject.name.Contains("(Clone)")))
         {
-            rb.velocity = 4 * (rb.velocity.normalized);
+            rb.velocity = ballSpeed * (rb.velocity.normalized);
 
         }
 
-        if (anzahlBälle1 == 0)
+       /* if (DestroyObjectsBottomBorder.ballCount1  == 0)
         {
             Player1Control.playerPaddle.transform.localScale = new Vector3(2, 0, 0);
             Debug.Log("player 1 no Balls");
         }
-
+*/
         //Debug.DrawLine(Vector3.zero, transform.position, Color.blue,5 ,false);
     }
 
@@ -147,7 +144,10 @@ public class MyBallsScript : MonoBehaviour
 
     public void ResetPowerups()  //Alle Powerups auf normal wenn du ein Tor kassierst
     {
-        playerPaddle.transform.localScale = new Vector3(1.5f, 0.2f, 0.6f);
+        if (playerPaddle.transform.localScale.x >= 1.5f)
+        {
+            playerPaddle.transform.localScale = new Vector3(1.5f, 0.2f, 0.6f);
+        }
         Player1Control.powerballstatus = false;
         Player1Control.powerballCollected = false;
         Player1Control.gluestatus = false;
@@ -157,12 +157,6 @@ public class MyBallsScript : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
 
-        /*if(Player1Control.powerballstatus == true && collision.transform.tag == "Player1Paddle")    
-        {
-            transform.GetComponent<Collider>().isTrigger = true;
-            Player1Control.powerballstatus = false;
-        }*/
-        
 
         foreach (ContactPoint contact in collision.contacts)
         {

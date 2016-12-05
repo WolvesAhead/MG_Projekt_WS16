@@ -10,6 +10,8 @@ public class MyBallsScript2 : MonoBehaviour {
     public GameObject playerPaddle;
     public GameObject playerPaddle2;
     public Text scoreText2;
+    public float gameTimer;
+    public int ballSpeed = 4;
 
 
     // Use this for initialization
@@ -22,6 +24,18 @@ public class MyBallsScript2 : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
+        gameTimer += Time.deltaTime;
+        if (gameTimer > 30)
+        {
+            if (ballSpeed < 6)
+            {
+                ballSpeed += 1;
+            }
+            gameTimer = 0;
+            Debug.Log("Run bitch run");
+        }
+
         scoreText2.text = ((int)Player2Control.player2Score).ToString();
         
         if(Player2Control.powerballstatus == true)    
@@ -87,13 +101,13 @@ public class MyBallsScript2 : MonoBehaviour {
         if (startposition == false)
         {
 
-            rb.velocity = 4 * (rb.velocity.normalized);
+            rb.velocity = ballSpeed * (rb.velocity.normalized);
         }
 
         // das it für den clone Ball damit der auch ein geschwindichkeit hat
         if ((gameObject.name.Contains("(Clone)")))
         {
-            rb.velocity = 4 * (rb.velocity.normalized);
+            rb.velocity = ballSpeed * (rb.velocity.normalized);
 
         }
 
@@ -111,7 +125,10 @@ public class MyBallsScript2 : MonoBehaviour {
 
     public void ResetPowerups()
     {
-        playerPaddle2.transform.localScale = new Vector3(1.5f, 0.2f, 0.6f);
+        if (playerPaddle2.transform.localScale.x >= 1.5f)
+        {
+            playerPaddle2.transform.localScale = new Vector3(1.5f, 0.2f, 0.6f);
+        }
         Player2Control.powerballstatus = false;
         Player2Control.powerballCollected = false;
         Player2Control.gluestatus = false;

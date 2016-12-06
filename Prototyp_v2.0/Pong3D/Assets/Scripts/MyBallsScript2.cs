@@ -13,6 +13,10 @@ public class MyBallsScript2 : MonoBehaviour {
     public float gameTimer;
     public int ballSpeed = 4;
 
+    public Image circleShield;
+    public Image circleGlue;
+    public Image circleControlChange;
+
 
     // Use this for initialization
     void Start()
@@ -123,16 +127,20 @@ public class MyBallsScript2 : MonoBehaviour {
         transform.position = new Vector3(playerPaddle.transform.position.x, 4.44f, 5f);
     }
 
-    public void ResetPowerups()
+    public void ResetPowerups2()
     {
-        if (playerPaddle2.transform.localScale.x >= 1.5f)
+        if (playerPaddle.transform.localScale.x >= 1.5f)
         {
-            playerPaddle2.transform.localScale = new Vector3(1.5f, 0.2f, 0.6f);
+            playerPaddle.transform.localScale = new Vector3(1.5f, 0.2f, 0.6f);
+            Debug.Log("transform");
         }
         Player2Control.powerballstatus = false;
         Player2Control.powerballCollected = false;
         Player2Control.gluestatus = false;
         Player2Control.glued = false;
+       circleControlChange.fillAmount = 0;
+       circleGlue.fillAmount = 0;
+       circleShield.fillAmount = 0;
     }
 
     void OnCollisionEnter(Collision collision)

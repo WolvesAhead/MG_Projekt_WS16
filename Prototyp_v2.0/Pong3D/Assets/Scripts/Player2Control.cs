@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Player2Control : MonoBehaviour 
 {
@@ -12,55 +13,60 @@ public class Player2Control : MonoBehaviour
     private float speed = 6f;
     private float rightLimit;
     private float leftLimit;
-    public bool shieldstatus = false;
+    public static bool shieldstatus = false;
+    public static bool firstballisHere = false;
+    public static bool controlChange = false;
+    public static bool gluestatus = false;
 
     public static Rigidbody ItemInstance;
     public static bool isClone = false;
     public static bool powerballstatus = false;
     public static bool powerballCollected = false;
-    public static bool gluestatus = false;
     public static bool glued = false;
-    public int itemsZaehler = 0;
+
 
 
     public static int player2Score = 0;
-    public static bool controlChange = false;
-    public static GameObject controlchangelight;
+    //public static GameObject controlchangelight;
     private float controlChangeTime = 5f;
     public float shieldTime = 8f;
     public float glueTime = 15f;
+
     float contactPointGlue;
+
+    public Image circleShield;
+    public Image circleGlue;
+    public Image circleControlChange;
+
+    float speedItemTimerShield = 8f;
+    float speedItemTimerGlue = 15f;
+    float speedItemTimerControlChange = 5f;
+
 
     void Start() 
 	{
-        controlchangelight = GameObject.Find("lightControlChange");
+       // controlchangelight = GameObject.Find("lightControlChange");
     }
 
     void Update()
     {
         leftLimit = upperBorder.GetComponent<Renderer>().bounds.min.x + (transform.localScale.x / 2);  // 0,75 ist die hälfte unsere paddle (-6,25 + 0,75 = -5,5) ==> genau unesere limit
         rightLimit = upperBorder.GetComponent<Renderer>().bounds.max.x - (transform.localScale.x / 2);
-        /* if (transform.position.x < -5.2f)
-         {
-             transform.position = new Vector3(-5.2f, transform.position.y, transform.position.z);
-         }
-         if (transform.position.x > 5.2f)
-         {
-             transform.position = new Vector3(5.2f, transform.position.y, transform.position.z);
-         }*/
       
-
         #region Shield
         // shield activation      
         if (shieldstatus)
         {
             shieldTime -= Time.deltaTime;
-            //nebel.GetComponent<ParticleSystem>().Play();
+            circleShield.fillAmount = speedItemTimerShield / 8;
+            speedItemTimerShield -= Time.deltaTime;          
             shield.SetActive(true);
 
 
             if (shieldTime < 0)
             {
+                speedItemTimerShield = 8;
+                circleShield.fillAmount = 0;
                 shieldstatus = false;
                 shieldTime = 8f;
 
@@ -81,9 +87,14 @@ public class Player2Control : MonoBehaviour
 
             //Timer
             controlChangeTime -= Time.deltaTime;
+            circleControlChange.fillAmount = speedItemTimerControlChange / 5;
+            speedItemTimerControlChange -= Time.deltaTime;
+
             if (controlChangeTime < 0)
             {
-                controlchangelight.SetActive(false);
+                //controlchangelight.SetActive(false);
+                speedItemTimerControlChange = 5;
+                circleControlChange.fillAmount = 0;
                 controlChange = false;
                 controlChangeTime = 5f;
             }
@@ -115,14 +126,13 @@ public class Player2Control : MonoBehaviour
 
         #endregion
 
-
-
-
         #region Glue
         // glue activation      
         if (gluestatus)
         {
             glueTime -= Time.deltaTime;
+            circleGlue.fillAmount = speedItemTimerGlue / 15;
+            speedItemTimerGlue -= Time.deltaTime;
             if (glued == true)
             {
                 if (isClone == false)
@@ -136,8 +146,13 @@ public class Player2Control : MonoBehaviour
 
             if (glueTime < 0)
             {
+                speedItemTimerGlue = 15f;
+                gluestatus = false;
+                circleGlue.fillAmount = 0;
+
                 gluestatus = false;
                 glueTime = 15f;
+                firstballisHere = false;
 
             }
         }
@@ -147,26 +162,6 @@ public class Player2Control : MonoBehaviour
 
     }
     void OnCollisionEnter(Collision collision) {
-      /*  foreach (ContactPoint contact in collision.contacts)
-        {
-            //Punkt auf dem Paddle
-            float winkel = contact.point.x - transform.position.x;
-
-            //Wert zur Winkelberechnung an Hand der Paddle länge
-            float winkelX = winkel / (transform.localScale.x / 2); //(transform.localScale.x / 2)
-
-            // "Winkel" errechnung 
-            if (!(rbball.name.Contains("(Clone)")) && collision.transform.tag == "ball" && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1) // damit den ball nicht das paddle folgt wenn das hackt und geht mehr als die grennzung
-            {
-
-                rbball.velocity = new Vector3(winkelX * 5, rbball.velocity.y, 0);
-            }
-            if (!(rbball2.name.Contains("(Clone)")) && collision.transform.tag == "ball2" && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1)
-            {
-                rbball2.velocity = new Vector3(winkelX * 5, rbball2.velocity.y, 0);
-            }
-        }
-        */
         #region Items
         //////////////////BIGP PADDLE ITEM\\\\\\\\\\\\\\\\\\
 
@@ -176,7 +171,7 @@ public class Player2Control : MonoBehaviour
             {
                 this.gameObject.transform.localScale += new Vector3(1f, 0, 0);
             }
-            itemsZaehler++;
+        
         }
 
         //////////////////Small PADDLE ITEM- Bug verhindert, dass die X Größe ins Negative gerät und somit wieder größer wird\\\\\\\\\\\\\\\\\\
@@ -187,7 +182,7 @@ public class Player2Control : MonoBehaviour
             {
                 this.gameObject.transform.localScale -= new Vector3(1, 0, 0);
             }
-            itemsZaehler++;
+          
         }
 
 
@@ -211,7 +206,7 @@ public class Player2Control : MonoBehaviour
 
             Player1Control.controlChange  = true;
             
-            itemsZaehler++;
+          
         }
 
      
@@ -220,7 +215,7 @@ public class Player2Control : MonoBehaviour
         if (collision.transform.tag == "shieldItem")
         {
             shieldstatus = true;
-            itemsZaehler++;
+           
 
         }
 
@@ -228,7 +223,7 @@ public class Player2Control : MonoBehaviour
         if (collision.transform.tag == "powerballItem")
         {
             powerballCollected = true;
-            itemsZaehler++;
+          
         }
         if(powerballCollected == true && collision.transform.tag == "ball2")    
         {
@@ -242,7 +237,7 @@ public class Player2Control : MonoBehaviour
         {
             gluestatus = true;
             Debug.Log("Bam");
-            itemsZaehler++;
+         
         }
 
         if (collision.transform.tag == "ball2" && gluestatus == true)

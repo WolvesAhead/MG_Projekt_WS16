@@ -10,6 +10,10 @@ public class MyBallsScript : MonoBehaviour
     public GameObject playerPaddle;
     public GameObject playerPaddle2;
     public Text scoreText;
+    public Image circleShield;
+    public Image circleGlue;
+    public Image circleControlChange;
+
     //public static int anzahlBälle1 = 1;
     public float gameTimer = 0;
      
@@ -35,7 +39,6 @@ public class MyBallsScript : MonoBehaviour
                 ballSpeed += 1;
             }
             gameTimer = 0;
-            Debug.Log("Run bitch run");
         }
 
 
@@ -63,9 +66,6 @@ public class MyBallsScript : MonoBehaviour
             transform.position = new Vector3(playerPaddle.transform.position.x, -4.5f, -0.7f);
         }
 
-       // if (startposition && !(gameObject.name.Contains("(Clone)")))
-        //{
-           
 
             if(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow)&& (startposition || Player1Control.glued && Player1Control.isClone == false) )
             {
@@ -152,6 +152,9 @@ public class MyBallsScript : MonoBehaviour
         Player1Control.powerballCollected = false;
         Player1Control.gluestatus = false;
         Player1Control.glued = false;
+        circleControlChange.fillAmount = 0;
+        circleGlue.fillAmount = 0;
+        circleShield.fillAmount = 0;
     }
 
     void OnCollisionEnter(Collision collision)

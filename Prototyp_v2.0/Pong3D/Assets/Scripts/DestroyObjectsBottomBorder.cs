@@ -148,7 +148,8 @@ public class DestroyObjectsBottomBorder : MonoBehaviour
                 if (ballCount2 == 0)
                 {
                     ballCount2++;
-                    mbs2.ResetPowerups();
+                    mbs2.ResetPowerups2();
+                    Debug.Log("Lost");
                     mbs2.Serve();
                 }
             }

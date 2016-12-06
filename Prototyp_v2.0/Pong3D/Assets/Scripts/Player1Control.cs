@@ -26,19 +26,24 @@ public class Player1Control : MonoBehaviour
     public static bool powerballCollected = false;
     public static bool gluestatus = false;
     public static bool glued = false;
+    public static bool controlChange = false;
 
 
     public static int player1Score;
-    public static bool controlChange = false;
     public  float controlChangeTime = 5f;
     public  float shieldTime = 8f;
     public  float glueTime = 15f;
-    public int itemsZaehler = 0;
+    
     
     float contactPointGlue;
 
-    public Image circle;
-    float speedItemTimer = 8f;
+     public Image circleShield;
+     public Image circleGlue;
+     public Image circleControlChange;
+
+    float speedItemTimerShield = 8f;
+    float speedItemTimerGlue = 15f;
+    float speedItemTimerControlChange = 5f;
 
     void Start()
     {
@@ -65,14 +70,16 @@ public class Player1Control : MonoBehaviour
         {
             //Timer
             controlChangeTime -= Time.deltaTime;
-           
+            circleControlChange.fillAmount = speedItemTimerControlChange / 5;
+            speedItemTimerControlChange -= Time.deltaTime;
 
 
 
             if (controlChangeTime < 0)
             {
+                speedItemTimerControlChange = 5;
+                circleControlChange.fillAmount = 0;
                 controlChange = false;
-                itemsZaehler--;
                 controlChangeTime = 5f;
                 
             }
@@ -111,18 +118,17 @@ public class Player1Control : MonoBehaviour
         {
             
             shieldTime -= Time.deltaTime;
-           // Debug.Log("time" + shieldTime);
-            circle.fillAmount = speedItemTimer / 8;
-            speedItemTimer -= Time.deltaTime;
+            circleShield.fillAmount = speedItemTimerShield / 8;
+            speedItemTimerShield -= Time.deltaTime;
             shield.SetActive(true);
 
 
             if (shieldTime < 0)
             {
-                speedItemTimer = 8;
-                circle.fillAmount = 0; 
+                speedItemTimerShield = 8;
+                circleShield.fillAmount = 0; 
                 shieldstatus = false;
-                itemsZaehler--;
+         
                 shieldTime = 8f;
 
             }
@@ -140,6 +146,8 @@ public class Player1Control : MonoBehaviour
         {
 
             glueTime -= Time.deltaTime;
+            circleGlue.fillAmount = speedItemTimerGlue / 15;
+            speedItemTimerGlue -= Time.deltaTime;
             if (glued == true )
             {
                 if (isClone == false)
@@ -152,8 +160,10 @@ public class Player1Control : MonoBehaviour
 
             if (glueTime < 0)
             {
+                speedItemTimerGlue = 15f;
                 gluestatus = false;
-                itemsZaehler--;
+                circleGlue.fillAmount = 0;
+             
                 glueTime = 15f;
                 glued = false;
                 firstballisHere = false;
@@ -174,33 +184,6 @@ public class Player1Control : MonoBehaviour
     {
 
 
-        /*foreach (ContactPoint contact in collision.contacts)
-            {
-            	//Punkt auf dem Paddle
-            	float winkel = contact.point.x - transform.position.x;
-
-            //Wert zur Winkelberechnung an Hand der Paddle länge
-            float winkelX = winkel / (transform.localScale.x / 2);
-            Debug.Log("paddlescale"+ (transform.localScale.x / 2));
-
-            // "Winkel" errechnung 
-            if (!(rbball.name.Contains("(Clone)")) && collision.transform.tag == "ball" && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1) // damit den ball nicht das paddle folgt wenn das hackt und geht mehr als die grennzung
-            {
-                    
-                    rbball.velocity = new Vector3(winkelX * 5, rbball.velocity.y, 0);
-                              
-            }
-            if (!(rbball2.name.Contains("(Clone)")) && collision.transform.tag == "ball2" && transform.position.x < rightLimit - 0.1 && transform.position.x > leftLimit + 0.1)
-            {
-                
-                    rbball2.velocity = new Vector3(winkelX * 5, rbball2.velocity.y, 0);
-               
-            }
-
-
-            //Debug.Log(contact.point.x);
-        }
-        */
         #region ITEMS
         //////////////////BIGP PADDLE ITEM\\\\\\\\\\\\\\\\\\
 
@@ -242,10 +225,10 @@ public class Player1Control : MonoBehaviour
         if (collision.transform.tag == "ControlChange")
         {
             Debug.Log("Rechts is jetzt Links");
-            Player2Control.controlchangelight.SetActive(true);
+           // Player2Control.controlchangelight.SetActive(true);
 
             Player2Control.controlChange = true;
-            itemsZaehler++;
+        
 
     /*if (Input.GetKey(KeyCode.RightArrow) && (transform.position.x > rightLimit - 0.1))
     {
@@ -265,20 +248,20 @@ public class Player1Control : MonoBehaviour
         if (collision.transform.tag == "shieldItem")
         {
             shieldstatus = true;
-            itemsZaehler++;
+           
         }
 
         ///////////////// Powerball Item \\\\\\\\\\\\\\\\
         if (collision.transform.tag == "powerballItem")
         {
             powerballCollected = true;
-            itemsZaehler++;
+           
         }
         if (powerballCollected == true && collision.transform.tag == "ball")
         {
             powerballstatus = true;
             powerballCollected = false;
-            itemsZaehler--;
+          
 
         }
 
@@ -287,7 +270,7 @@ public class Player1Control : MonoBehaviour
         {
             gluestatus = true;
             firstballisHere = true;
-            itemsZaehler++;
+          
 
             Debug.Log("Bam");
         }

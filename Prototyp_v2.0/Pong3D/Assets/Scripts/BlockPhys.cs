@@ -81,14 +81,17 @@ public class BlockPhys : MonoBehaviour {
         {
             Rigidbody ItemInstance;
             itemChance();
-            Debug.Log(i);
+         
             if (DestroyObjectsBottomBorder.ballCount1 > 1 &&  (i == 4 || i == 6))
             {
                 itemChance();
             }
+            if (Player1Control.powerballCollected == true || Player1Control.gluestatus == true && (i == 0 || i == 1 || i == 2))
+            {
+                itemChance();
+            }
 
-
-                ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
+            ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
                 ItemInstance.AddForce(0, -150, 0);
 
         }
@@ -97,7 +100,12 @@ public class BlockPhys : MonoBehaviour {
         {
             Rigidbody ItemInstance;
             itemChance();
+
             if (DestroyObjectsBottomBorder.ballCount2 > 1 && (i == 4 || i == 6))
+            {
+                itemChance();
+            }
+            if(Player2Control.powerballCollected == true || Player2Control.gluestatus == true && (i == 0 || i == 1|| i == 2))
             {
                 itemChance();
             }
@@ -105,10 +113,9 @@ public class BlockPhys : MonoBehaviour {
                 ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
                 ItemInstance.AddForce(0, 150, 0);
             
-            // Debug.Log("RandomItemwert:" + i);
+      
         }
 
-       
 
 
         if (col.transform.tag == "ball")

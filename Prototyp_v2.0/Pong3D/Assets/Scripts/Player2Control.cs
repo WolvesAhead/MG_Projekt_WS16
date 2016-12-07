@@ -9,6 +9,8 @@ public class Player2Control : MonoBehaviour
     public Rigidbody rbball2;
     public GameObject shield;
     public GameObject upperBorder;
+    public GameObject CCCloak2;
+    public GameObject GGCloak2;
 
     private float speed = 6f;
     private float rightLimit;
@@ -74,18 +76,20 @@ public class Player2Control : MonoBehaviour
         }
         else
         {
-            //nebel.GetComponent<ParticleSystem>().Stop();
+        
+
             shield.SetActive(false);
         }
 
         #endregion
 
         #region Controlchange
-        // ControllChange 
+    
         if (controlChange)
         {
 
             //Timer
+            CCCloak2.SetActive(true);
             controlChangeTime -= Time.deltaTime;
             circleControlChange.fillAmount = speedItemTimerControlChange / 5;
             speedItemTimerControlChange -= Time.deltaTime;
@@ -105,23 +109,36 @@ public class Player2Control : MonoBehaviour
           
 
             }
-            if (Input.GetKey(KeyCode.A)  && transform.position.x < rightLimit - 0.1)
+            if (Input.GetKey(KeyCode.A) && transform.position.x < rightLimit - 0.1)
             {
                 transform.position += Vector3.right * speed * Time.deltaTime;
             }
+
+           /* if (Input.GetKey(KeyCode.I) && transform.position.x > leftLimit + 0.1)
+            {
+                transform.position += Vector3.left * speed * Time.deltaTime;
+
+
+            }
+            if (Input.GetAxis("Jump") > 0 && transform.position.x < rightLimit - 0.1)
+            {
+                transform.position += Vector3.right * speed * Time.deltaTime;
+            }*/
         }
         else
         {
-            if (Input.GetKey(KeyCode.D) && transform.position.x < rightLimit)
+            if (Input.GetKey(KeyCode.A) && transform.position.x < rightLimit)
             {
                 transform.position += Vector3.right * speed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.A) && transform.position.x > leftLimit)
+            if (Input.GetKey(KeyCode.D) && transform.position.x > leftLimit + 0.1)
             {
                 transform.position += Vector3.left * speed * Time.deltaTime;
+
+
             }
 
-
+            CCCloak2.SetActive(false);
         }
 
         #endregion
@@ -130,6 +147,7 @@ public class Player2Control : MonoBehaviour
         // glue activation      
         if (gluestatus)
         {
+            GGCloak2.SetActive(true);
             glueTime -= Time.deltaTime;
             circleGlue.fillAmount = speedItemTimerGlue / 15;
             speedItemTimerGlue -= Time.deltaTime;
@@ -155,6 +173,10 @@ public class Player2Control : MonoBehaviour
                 firstballisHere = false;
 
             }
+        }
+        else
+        {
+           GGCloak2.SetActive(false); // für mich martin
         }
      
 

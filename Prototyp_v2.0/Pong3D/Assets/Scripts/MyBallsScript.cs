@@ -108,7 +108,47 @@ public class MyBallsScript : MonoBehaviour
             
             Player1Control.glued = false;
         }
+        /* if(Input.GetKey(KeyCode.C) && Input.GetKey(KeyCode.DownArrow)&& (startposition || Player1Control.glued && Player1Control.isClone == false) )
+         {
+             rb.velocity = new Vector3(0,0,0);
+             Debug.Log("rechts");
+             GetComponent<Rigidbody>().AddForce(600, 300, 0);
+             startposition = false;
+         }
 
+         if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.DownArrow) && (startposition || Player1Control.glued && Player1Control.isClone == false) )
+         {
+             rb.velocity = new Vector3(0,0,0);
+             GetComponent<Rigidbody>().AddForce(-600, 300, 0);
+             Debug.Log("Links");
+             startposition = false;
+         }
+
+        if(Input.GetKey(KeyCode.DownArrow) && (startposition) && transform.position.y == -4.5f)
+         {
+             rb.velocity = new Vector3(0,0,0);
+             rb.AddForce(0, 300, 0);
+             Debug.Log("Oben1(ball)");
+             startposition = false;
+
+         }
+        else if(Input.GetKey(KeyCode.DownArrow) && (Player1Control.glued && Player1Control.isClone == false))
+     {
+         rb.velocity = new Vector3(0, 0, 0);
+         GetComponent<Rigidbody>().AddForce(0, 300, 0);
+         Debug.Log("Oben2 (ball)");
+         Player1Control.glued = false;
+
+     }
+
+     else if (Input.GetKey(KeyCode.DownArrow) && (Player1Control.glued && Player1Control.isClone))
+     {
+         Player1Control.ItemInstance.velocity = new Vector3(0, 0, 0);
+         Player1Control.ItemInstance.AddForce(0, 300, 0);
+         Debug.Log("Oben2(clone)");
+
+         Player1Control.glued = false;
+     }*/
 
         if (startposition == false)
         {

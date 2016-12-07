@@ -18,7 +18,7 @@ public class BlockPhys : MonoBehaviour {
     void Update() { }
 
     #region itemChance
-    void itemChance()
+    void itemChance(int playernumber)
     {
         chanceItem = Random.Range(0, 100);
 
@@ -42,7 +42,22 @@ public class BlockPhys : MonoBehaviour {
             // Add Ball 15%
             else if (chanceItem > 60 && chanceItem <= 75)
             {
-                i = 2;
+                if (playernumber == 1 && Player1Control.powerballstatus == false && Player1Control.powerballCollected == false && Player1Control.gluestatus == false)
+                {
+                    i = 2;
+                }
+                else if(playernumber == 2 && Player2Control.powerballstatus == false && Player2Control.powerballCollected == false && Player2Control.gluestatus == false)
+                {
+                    i = 2;
+                }
+                else
+                {
+                    itemChance(playernumber);
+                }
+
+
+
+            
             }
             //Control Change 10%
             else if (chanceItem > 75 && chanceItem <= 85)
@@ -76,20 +91,22 @@ public class BlockPhys : MonoBehaviour {
 
 
         int random = Random.Range(0, 4);
-        //Debug.Log("Random range (0,2)" + random);
+      
+
         if (col.transform.tag == "ball" && random == 1)
         {
             Rigidbody ItemInstance;
-            itemChance();
+            itemChance(1);
          
             if (DestroyObjectsBottomBorder.ballCount1 > 1 &&  (i == 4 || i == 6))
             {
-                itemChance();
-            }
+                Debug.Log("zu viele balls");
+                itemChance(1);
+            }/*
             if (Player1Control.powerballCollected == true || Player1Control.gluestatus == true && (i == 0 || i == 1 || i == 2))
             {
                 itemChance();
-            }
+            }*/
 
             ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
                 ItemInstance.AddForce(0, -150, 0);
@@ -99,16 +116,16 @@ public class BlockPhys : MonoBehaviour {
         if (col.transform.tag == "ball2" && random == 1)
         {
             Rigidbody ItemInstance;
-            itemChance();
+            itemChance(2);
 
             if (DestroyObjectsBottomBorder.ballCount2 > 1 && (i == 4 || i == 6))
             {
-                itemChance();
+                itemChance(2);
             }
-            if(Player2Control.powerballCollected == true || Player2Control.gluestatus == true && (i == 0 || i == 1|| i == 2))
+            /*if(Player2Control.powerballCollected == true || Player2Control.gluestatus == true && (i == 0 || i == 1|| i == 2))
             {
                 itemChance();
-            }
+            }*/
 
                 ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
                 ItemInstance.AddForce(0, 150, 0);

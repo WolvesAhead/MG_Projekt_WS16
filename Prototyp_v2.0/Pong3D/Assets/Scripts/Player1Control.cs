@@ -11,6 +11,8 @@ public class Player1Control : MonoBehaviour
     public Rigidbody rbball;
     public Rigidbody rbball2;
     public GameObject ball;
+    public GameObject CCCloak;
+    public GameObject GGCloak;
 
 
     private float speed = 6f;
@@ -64,10 +66,12 @@ public class Player1Control : MonoBehaviour
       //   float paddlepoint = transform.position.x;
 
 
+
         #region Controlchange
         // ControllChange 
         if (controlChange)
         {
+            CCCloak.SetActive(true);
             //Timer
             controlChangeTime -= Time.deltaTime;
             circleControlChange.fillAmount = speedItemTimerControlChange / 5;
@@ -108,6 +112,31 @@ public class Player1Control : MonoBehaviour
                 transform.position += Vector3.left * speed * Time.deltaTime;
             }
 
+            /*if (Input.GetKey(KeyCode.C ) && transform.position.x > leftLimit + 0.1)
+            {
+                transform.position += Vector3.left * speed * Time.deltaTime;
+
+
+            }
+            if (Input.GetKey(KeyCode.A) && transform.position.x < rightLimit - 0.1)
+            {
+                transform.position += Vector3.right * speed * Time.deltaTime;
+            }
+        }
+        else
+        {
+            // Steuerung
+
+            if (Input.GetKey(KeyCode.C) && transform.position.x < rightLimit - 0.1)
+            {
+                transform.position += Vector3.right * speed * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.A) && transform.position.x > leftLimit + 0.1)
+            {
+                transform.position += Vector3.left * speed * Time.deltaTime;
+            }*/
+
+            CCCloak.SetActive(false);
         }
 
         #endregion
@@ -144,7 +173,7 @@ public class Player1Control : MonoBehaviour
         // glue activation      
         if (gluestatus)
         {
-
+            GGCloak.SetActive(true);
             glueTime -= Time.deltaTime;
             circleGlue.fillAmount = speedItemTimerGlue / 15;
             speedItemTimerGlue -= Time.deltaTime;
@@ -172,9 +201,9 @@ public class Player1Control : MonoBehaviour
         }
         else
         {
-                 // für dich Martin 
+            GGCloak.SetActive(false);     // für dich Martin 
         }
-
+       
         #endregion
 
     }

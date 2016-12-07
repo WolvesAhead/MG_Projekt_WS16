@@ -1,14 +1,44 @@
-﻿	Name?
-	
+﻿
+	WMS -Warscheinlichkeiten anpassen
+	M-Items droppen nicht wenn klebe/powerball aktiv ist
+	WMS -Licht hinter items
+	M -andere Level 
+	W -Musik und Soundeffekte
+	 -PixelFont
+	 -Menü 1 mit Name des Spiels (vielleicht) level Selection von beiden Seiten lesbar und auswählbar
+	 -Items heller/besser sichtbar
+
+	________________________________________________________
+	Sound:
+	 W-Menümusik, Musik für jedes Level
+	 W-Victory Sound
+	 W-Block geht kaputt
+	 W-Item aufgesammelt
+	________________________________________________________	
+	Level:
+	________________________________________________________	
+	Photoshop:
+	 S-visualisierung(Licht und grüne Klebeschicht)
+	 -Trail + powerballanimation
+	 -Icons für Items
+	 S-Strong Blocks
+	 -GameOver, Victory/Lose Banner und Battlemodephase Banner
+	________________________________________________________
+	Items:
+	________________________________________________________
+	Wenn noch zeit ist:
+	-dash bei doubletap
+
+
 Gameplay	
 	-Was bezüglich des Gameplays muss noch geändert werden bevor wir Design anfangen
-				x-Evtl verbessern 				Ball Abschusswinkel neu berechnen je nach Bewegung des Paddles
+				x-Evtl verbessern 				X-Ball Abschusswinkel neu berechnen je nach Bewegung des Paddles
 		-Ball fliegt nur von links nach rechts
 				x-Schild kürzer
-		-Nebel weniger / andere Textur
+		X-Nebel weniger / andere Textur
 				x-Paddle größer vielleicht auf 3 Stufen begrenzen
 		-Wahrscheinlichkeiten anpassen
-		-Countdown für Items
+		X-Countdown für Items
 	- Items 
 		Über Zeit: Bälle werden schneller
 		Man verliert alle Powerups wenn man keine Bälle mehr hat			 

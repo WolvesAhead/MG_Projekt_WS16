@@ -9,6 +9,7 @@ public class MyBallsScript : MonoBehaviour
     bool startposition = true;
     public GameObject playerPaddle;
     public GameObject playerPaddle2;
+    public GameObject Fireball;
     public Text scoreText;
     public Image circleShield;
     public Image circleGlue;
@@ -28,9 +29,7 @@ public class MyBallsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
+        
         gameTimer += Time.deltaTime;
         if (gameTimer > 30)
         {
@@ -42,23 +41,31 @@ public class MyBallsScript : MonoBehaviour
         }
 
 
-        scoreText.text = ((int)Player1Control.player1Score).ToString();
+        scoreText.text = ((int)Player1Control.player1Score).ToString();       
 
-        if(Player1Control.powerballstatus == true)    
+        if (Player1Control.powerballstatus == true)    
         {
-            if(transform.position.x > 5.9 || transform.position.x < -5.9)
+                Fireball.SetActive(true);
+                if (transform.position.x > 5.9 || transform.position.x < -5.9)
+            {
                 transform.GetComponent<Collider>().isTrigger = false;
+               
+
+            }
             else
             {
-            transform.GetComponent<Collider>().isTrigger = true;
+                transform.GetComponent<Collider>().isTrigger = true;
             }
 
-            if(transform.position.y > 4)
+            if(transform.position.y > 4.5 )
             {
                 transform.GetComponent<Collider>().isTrigger = false;
+                Fireball.SetActive(false);
                 Player1Control.powerballstatus = false;
+                
             }
         }
+
 
         if ((startposition == true) && !(gameObject.name.Contains("(Clone)")))
         {
@@ -108,6 +115,7 @@ public class MyBallsScript : MonoBehaviour
             
             Player1Control.glued = false;
         }
+        #region Kuti steuerung
         /* if(Input.GetKey(KeyCode.C) && Input.GetKey(KeyCode.DownArrow)&& (startposition || Player1Control.glued && Player1Control.isClone == false) )
          {
              rb.velocity = new Vector3(0,0,0);
@@ -149,6 +157,7 @@ public class MyBallsScript : MonoBehaviour
 
          Player1Control.glued = false;
      }*/
+        #endregion
 
         if (startposition == false)
         {
@@ -195,6 +204,7 @@ public class MyBallsScript : MonoBehaviour
         circleControlChange.fillAmount = 0;
         circleGlue.fillAmount = 0;
         circleShield.fillAmount = 0;
+        Fireball.SetActive(false);
     }
 
     void OnCollisionEnter(Collision collision)

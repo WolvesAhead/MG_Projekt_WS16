@@ -127,11 +127,11 @@ public class Player2Control : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.A) && transform.position.x < rightLimit)
+            if (Input.GetKey(KeyCode.D) && transform.position.x < rightLimit)
             {
                 transform.position += Vector3.right * speed * Time.deltaTime;
             }
-            if (Input.GetKey(KeyCode.D) && transform.position.x > leftLimit + 0.1)
+            if (Input.GetKey(KeyCode.A) && transform.position.x > leftLimit + 0.1)
             {
                 transform.position += Vector3.left * speed * Time.deltaTime;
 

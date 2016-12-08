@@ -17,6 +17,6 @@ public class Level1Start : MonoBehaviour
 
 	public void onClick()
 	{
-		Application.LoadLevel("Pong3D");
+		Application.LoadLevel("Brong");
 	}
 }

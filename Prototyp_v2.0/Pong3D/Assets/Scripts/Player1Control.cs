@@ -15,6 +15,7 @@ public class Player1Control : MonoBehaviour
     public GameObject GGCloak;
 
 
+
     private float speed = 6f;
     public static float rightLimit;
     public static float leftLimit;
@@ -284,10 +285,12 @@ public class Player1Control : MonoBehaviour
         if (collision.transform.tag == "powerballItem")
         {
             powerballCollected = true;
+            
            
         }
         if (powerballCollected == true && collision.transform.tag == "ball")
         {
+            
             powerballstatus = true;
             powerballCollected = false;
           

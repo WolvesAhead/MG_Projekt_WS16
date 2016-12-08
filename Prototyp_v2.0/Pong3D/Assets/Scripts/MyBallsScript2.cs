@@ -9,6 +9,7 @@ public class MyBallsScript2 : MonoBehaviour {
     bool startposition = true;
     public GameObject playerPaddle;
     public GameObject playerPaddle2;
+    public GameObject fireball2;
     public Text scoreText2;
     public float gameTimer;
     public int ballSpeed = 4;
@@ -44,7 +45,8 @@ public class MyBallsScript2 : MonoBehaviour {
         
         if(Player2Control.powerballstatus == true)    
         {
-            if(transform.position.x > 5.9 || transform.position.x < -5.9)
+                fireball2.SetActive(true);
+                if (transform.position.x > 5.9 || transform.position.x < -5.9)
                 transform.GetComponent<Collider>().isTrigger = false;
             else
             {
@@ -54,6 +56,7 @@ public class MyBallsScript2 : MonoBehaviour {
             if(transform.position.y < -4)
             {
                 transform.GetComponent<Collider>().isTrigger = false;
+                fireball2.SetActive(false);
                 Player2Control.powerballstatus = false;
             }
         }
@@ -100,41 +103,42 @@ public class MyBallsScript2 : MonoBehaviour {
             startposition = false;
             Player2Control.glued = false;
         }
+        #region Kuti Steuerung
+        /*
+                if (Input.GetKey(KeyCode.I) && Input.GetKey(KeyCode.K) && (startposition || Player2Control.glued && Player2Control.isClone == false))
+                {
+                    rb.velocity = new Vector3(0, 0, 0);
+                    Debug.Log("rechts");
+                    GetComponent<Rigidbody>().AddForce(600, -300, 0);
+                    startposition = false;
+                }
 
-/*
-        if (Input.GetKey(KeyCode.I) && Input.GetKey(KeyCode.K) && (startposition || Player2Control.glued && Player2Control.isClone == false))
-        {
-            rb.velocity = new Vector3(0, 0, 0);
-            Debug.Log("rechts");
-            GetComponent<Rigidbody>().AddForce(600, -300, 0);
-            startposition = false;
-        }
+                if (Input.GetKey(KeyCode.Hash) && Input.GetKey(KeyCode.K) && (startposition || Player2Control.glued && Player2Control.isClone == false))
+                {
+                    rb.velocity = new Vector3(0, 0, 0);
+                    GetComponent<Rigidbody>().AddForce(-600, -300, 0);
+                    Debug.Log("Links");
+                    startposition = false;
+                }
 
-        if (Input.GetKey(KeyCode.Hash) && Input.GetKey(KeyCode.K) && (startposition || Player2Control.glued && Player2Control.isClone == false))
-        {
-            rb.velocity = new Vector3(0, 0, 0);
-            GetComponent<Rigidbody>().AddForce(-600, -300, 0);
-            Debug.Log("Links");
-            startposition = false;
-        }
+                if (Input.GetKey(KeyCode.K) && (startposition || Player2Control.glued && Player2Control.isClone == false))
+                {
+                    rb.velocity = new Vector3(0, 0, 0);
+                    GetComponent<Rigidbody>().AddForce(0, -300, 0);
 
-        if (Input.GetKey(KeyCode.K) && (startposition || Player2Control.glued && Player2Control.isClone == false))
-        {
-            rb.velocity = new Vector3(0, 0, 0);
-            GetComponent<Rigidbody>().AddForce(0, -300, 0);
+                    startposition = false;
+                    Player2Control.glued = false;
+                }
 
-            startposition = false;
-            Player2Control.glued = false;
-        }
-
-        else if (Input.GetKey(KeyCode.K) && (Player2Control.glued && Player2Control.isClone))
-        {
-            Player2Control.ItemInstance.velocity = new Vector3(0, 0, 0);
-            Player2Control.ItemInstance.AddForce(0, -300, 0);
-            Debug.Log("Oben");
-            startposition = false;
-            Player2Control.glued = false;
-        }*/
+                else if (Input.GetKey(KeyCode.K) && (Player2Control.glued && Player2Control.isClone))
+                {
+                    Player2Control.ItemInstance.velocity = new Vector3(0, 0, 0);
+                    Player2Control.ItemInstance.AddForce(0, -300, 0);
+                    Debug.Log("Oben");
+                    startposition = false;
+                    Player2Control.glued = false;
+                }*/
+        #endregion
 
         if (startposition == false)
         {
@@ -172,6 +176,7 @@ public class MyBallsScript2 : MonoBehaviour {
         Player2Control.powerballCollected = false;
         Player2Control.gluestatus = false;
         Player2Control.glued = false;
+        fireball2.SetActive(false);
        circleControlChange.fillAmount = 0;
        circleGlue.fillAmount = 0;
        circleShield.fillAmount = 0;

@@ -247,7 +247,7 @@ public class Player2Control : MonoBehaviour
             powerballCollected = true;
           
         }
-        if(powerballCollected == true && collision.transform.tag == "ball2")    
+        if(powerballCollected == true && collision.transform.tag == "ball2" || powerballCollected == true && MyBallsScript2.startposition == true)    
         {
             powerballstatus = true;
             powerballCollected = false;

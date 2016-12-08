@@ -6,10 +6,11 @@ public class MyBallsScript : MonoBehaviour
 {
     public Rigidbody rb;
     public int ballSpeed = 4;
-    bool startposition = true;
+   static public bool startposition = true;
     public GameObject playerPaddle;
     public GameObject playerPaddle2;
     public GameObject Fireball;
+    public GameObject Firepaddle;
     public Text scoreText;
     public Image circleShield;
     public Image circleGlue;
@@ -41,11 +42,16 @@ public class MyBallsScript : MonoBehaviour
         }
 
 
-        scoreText.text = ((int)Player1Control.player1Score).ToString();       
+        scoreText.text = ((int)Player1Control.player1Score).ToString();
 
+        if (Player1Control.powerballCollected == true)
+        {
+            Firepaddle.SetActive(true);
+        }
         if (Player1Control.powerballstatus == true)    
         {
-                Fireball.SetActive(true);
+            Firepaddle.SetActive(false);
+            Fireball.SetActive(true);
                 if (transform.position.x > 5.9 || transform.position.x < -5.9)
             {
                 transform.GetComponent<Collider>().isTrigger = false;

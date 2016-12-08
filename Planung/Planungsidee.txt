@@ -7,7 +7,7 @@
 	 -PixelFont
 	 -Menü 1 mit Name des Spiels (vielleicht) level Selection von beiden Seiten lesbar und auswählbar
 	 -Items heller/besser sichtbar
-
+	- p2 timer umdrehen 
 	________________________________________________________
 	Sound:
 	 W-Menümusik, Musik für jedes Level
@@ -28,6 +28,14 @@
 	________________________________________________________
 	Wenn noch zeit ist:
 	-dash bei doubletap
+	
+
+	Endgame: für jede 1000er Score ein Lebensbalken wenn ein spieler unter 1000 punkten hat der andere verloren
+
+		Ball Speed auf 8-10
+		Der mit dem niedrigeren Leben bekommt den Ball 
+		Ball Grün Lila Flamme
+		
 
 
 Gameplay	

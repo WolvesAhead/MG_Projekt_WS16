@@ -288,7 +288,7 @@ public class Player1Control : MonoBehaviour
             
            
         }
-        if (powerballCollected == true && collision.transform.tag == "ball")
+        if (powerballCollected == true && collision.transform.tag == "ball" || powerballCollected == true && MyBallsScript.startposition == true)
         {
             
             powerballstatus = true;

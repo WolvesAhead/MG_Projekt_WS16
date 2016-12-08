@@ -184,6 +184,7 @@ public class MyBallsScript2 : MonoBehaviour {
         Player2Control.powerballCollected = false;
         Player2Control.gluestatus = false;
         Player2Control.glued = false;
+        Firepaddle2.SetActive(false);
         fireball2.SetActive(false);
        circleControlChange.fillAmount = 0;
        circleGlue.fillAmount = 0;

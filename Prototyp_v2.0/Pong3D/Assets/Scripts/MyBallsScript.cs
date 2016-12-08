@@ -30,6 +30,8 @@ public class MyBallsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
+        Debug.Log(BlockPhys.brickZähler);
         
         gameTimer += Time.deltaTime;
         if (gameTimer > 30)
@@ -205,6 +207,7 @@ public class MyBallsScript : MonoBehaviour
         }
         Player1Control.powerballstatus = false;
         Player1Control.powerballCollected = false;
+        Firepaddle.SetActive(false);
         Player1Control.gluestatus = false;
         Player1Control.glued = false;
         circleControlChange.fillAmount = 0;

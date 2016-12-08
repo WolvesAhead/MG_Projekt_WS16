@@ -1,11 +1,12 @@
 ﻿
 	WMS -Warscheinlichkeiten anpassen
-	M-Items droppen nicht wenn klebe/powerball aktiv ist
-	WMS -Licht hinter items
-	M -andere Level 
+	
+	M -andere Level (MoveBlocks)
 	W -Musik und Soundeffekte
+	MWS-Menü 1 mit Name des Spiels (vielleicht) level Selection von beiden Seiten lesbar und auswählbar	
+
 	 -PixelFont
-	 -Menü 1 mit Name des Spiels (vielleicht) level Selection von beiden Seiten lesbar und auswählbar
+	 
 	 -Items heller/besser sichtbar
 	- p2 timer umdrehen 
 	________________________________________________________
@@ -19,7 +20,6 @@
 	________________________________________________________	
 	Photoshop:
 	 S-visualisierung(Licht und grüne Klebeschicht)
-	 -Trail + powerballanimation
 	 -Icons für Items
 	 S-Strong Blocks
 	 -GameOver, Victory/Lose Banner und Battlemodephase Banner
@@ -34,8 +34,15 @@
 
 		Ball Speed auf 8-10
 		Der mit dem niedrigeren Leben bekommt den Ball 
-		Ball Grün Lila Flamme
-		
+	
+
+
+
+
+
+
+
+
 
 
 Gameplay	

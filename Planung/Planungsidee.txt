@@ -1,28 +1,28 @@
 ﻿
 	WMS -Warscheinlichkeiten anpassen
 	
-	M -andere Level (MoveBlocks)
+M -andere Level (MoveBlocks)
 	W -Musik und Soundeffekte
 	MWS-Menü 1 mit Name des Spiels (vielleicht) level Selection von beiden Seiten lesbar und auswählbar	
 
-	 -PixelFont
+-PixelFont
 	 
-	 -Items heller/besser sichtbar
-	- p2 timer umdrehen 
+ -Items heller/besser sichtbar
+- p2 timer umdrehen 
 	________________________________________________________
 	Sound:
-	 W-Menümusik, Musik für jedes Level
-	 W-Victory Sound
-	 W-Block geht kaputt
-	 W-Item aufgesammelt
+W-Menümusik, Musik für jedes Level
+W-Victory Sound
+W-Block geht kaputt
+W-Item aufgesammelt
 	________________________________________________________	
 	Level:
 	________________________________________________________	
 	Photoshop:
-	 S-visualisierung(Licht und grüne Klebeschicht)
-	 -Icons für Items
-	 S-Strong Blocks
-	 -GameOver, Victory/Lose Banner und Battlemodephase Banner
+S-visualisierung(Licht und grüne Klebeschicht)
+-Icons für Items
+S-Strong Blocks
+???-GameOver, Victory/Lose Banner und Battlemodephase Banner
 	________________________________________________________
 	Items:
 	________________________________________________________

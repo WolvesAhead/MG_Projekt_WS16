@@ -10,8 +10,8 @@ public class EndGame : MonoBehaviour {
     public Image Healthbar1;
     public Image Healthbar2;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -23,6 +23,7 @@ public class EndGame : MonoBehaviour {
         //Pause und Battlemodus
         if (BlockPhys.brickZähler == 0)
         {
+          //  startEndgame();
             if (LifesCount == false)
             {
                 countLifes();
@@ -71,4 +72,10 @@ public class EndGame : MonoBehaviour {
         Debug.Log("Leben Spieler 1:" + player1Life);
         LifesCount = true;
     }
+
+    
+  // public static  void startEndgame()
+  //  {
+  //     
+  //  }
 }

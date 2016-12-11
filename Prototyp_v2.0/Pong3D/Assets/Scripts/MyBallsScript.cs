@@ -8,7 +8,7 @@ public class MyBallsScript : MonoBehaviour
     public int ballSpeed = 4;
    static public bool startposition = true;
     public GameObject playerPaddle;
-    public GameObject playerPaddle2;
+    public  GameObject playerPaddle2;
     public GameObject Fireball;
     public GameObject Firepaddle;
     public Text scoreText;
@@ -199,7 +199,7 @@ public class MyBallsScript : MonoBehaviour
         transform.position = new Vector3(playerPaddle.transform.position.x, -4.5f, 5f);
     }
 
-    public void ResetPowerups()  //Alle Powerups auf normal wenn du ein Tor kassierst
+    public  void ResetPowerups()  //Alle Powerups auf normal wenn du ein Tor kassierst
     {
         if (playerPaddle.transform.localScale.x >= 1.5f)
         {

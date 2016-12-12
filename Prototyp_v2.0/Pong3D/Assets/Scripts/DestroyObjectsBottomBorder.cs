@@ -74,6 +74,7 @@ public class DestroyObjectsBottomBorder : MonoBehaviour
                 }
                 if (ballCount1 == 0)     //Wenn durch eins davon Anzahl Bälle = 0 wird, Zähler wieder auf 1 und Serve Funktion aufrufen
                 {
+                    GetComponent<AudioSource>().Play();
                     ballCount1++;
                     mbs.Serve();
                 }
@@ -93,6 +94,7 @@ public class DestroyObjectsBottomBorder : MonoBehaviour
                 }
                 if (ballCount1 == 0)
                 {
+                    GetComponent<AudioSource>().Play();
                     ballCount1++;
                     mbs.ResetPowerups();
                     mbs.Serve();
@@ -140,6 +142,7 @@ public class DestroyObjectsBottomBorder : MonoBehaviour
                 }
                 if (ballCount2 == 0)
                 {
+                    GetComponent<AudioSource>().Play();
                     ballCount2++;
                     mbs2.Serve();
                 }
@@ -158,6 +161,7 @@ public class DestroyObjectsBottomBorder : MonoBehaviour
                 }
                 if (ballCount2 == 0)
                 {
+                    GetComponent<AudioSource>().Play();
                     ballCount2++;
                     mbs2.ResetPowerups2();
                     Debug.Log("Lost");

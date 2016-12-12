@@ -193,6 +193,7 @@ public class Player2Control : MonoBehaviour
         {
             if (this.gameObject.transform.localScale.x <= 3)
             {
+                GetComponent<AudioSource>().Play();
                 this.gameObject.transform.localScale += new Vector3(1f, 0, 0);
             }
         
@@ -204,6 +205,7 @@ public class Player2Control : MonoBehaviour
         {
             if (this.gameObject.transform.localScale.x >= 1)
             {
+                GetComponent<AudioSource>().Play();
                 this.gameObject.transform.localScale -= new Vector3(1, 0, 0);
             }
           
@@ -214,7 +216,7 @@ public class Player2Control : MonoBehaviour
 
         if (collision.transform.tag == "mehrbaelle")
         {
-
+            GetComponent<AudioSource>().Play();
          
             DestroyObjectsBottomBorder.ballCount2++;
             Debug.Log("ball++");
@@ -227,7 +229,7 @@ public class Player2Control : MonoBehaviour
         if (collision.transform.tag == "ControlChange")
         {
             Debug.Log("Rechts is jetzt Links");
-
+            GetComponent<AudioSource>().Play();
             Player1Control.controlChange  = true;
             
           
@@ -238,7 +240,7 @@ public class Player2Control : MonoBehaviour
 
         if (collision.transform.tag == "shieldItem" && shieldstatus == true)
         {
-
+            GetComponent<AudioSource>().Play();
             shieldstatus = false;
             speedItemTimerShield = 8f;
             circleShield.fillAmount = 0;
@@ -249,6 +251,7 @@ public class Player2Control : MonoBehaviour
         }
         if (collision.transform.tag == "shieldItem")
         {
+            GetComponent<AudioSource>().Play();
             shieldstatus = true;
            
 
@@ -257,6 +260,7 @@ public class Player2Control : MonoBehaviour
         ///////////////// Powerball Item \\\\\\\\\\\\\\\\
         if (collision.transform.tag == "powerballItem")
         {
+            GetComponent<AudioSource>().Play();
             powerballCollected = true;
           
         }
@@ -270,9 +274,9 @@ public class Player2Control : MonoBehaviour
 
 
         ///////////////// Glue Item \\\\\\\\\\\\\\\\
-        if (collision.transform.tag == "glueItem")
+        if (collision.transform.tag == "glueItem" && gluestatus == true)
         {
-           
+            GetComponent<AudioSource>().Play();
             speedItemTimerGlue = 10f;
             glueTime = 10f;
             gluestatus = true;
@@ -281,6 +285,7 @@ public class Player2Control : MonoBehaviour
         }
         if (collision.transform.tag == "glueItem")
         {
+            GetComponent<AudioSource>().Play();
             gluestatus = true;
         
          

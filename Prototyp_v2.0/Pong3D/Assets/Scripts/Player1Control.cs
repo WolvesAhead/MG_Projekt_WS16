@@ -203,7 +203,10 @@ public class Player1Control : MonoBehaviour
         if (collision.transform.tag == "bigPaddle")
         {
             if (this.gameObject.transform.localScale.x <= 3)
+            {
+                GetComponent<AudioSource>().Play();
                 this.gameObject.transform.localScale += new Vector3(1, 0, 0);
+            }
 
             
 
@@ -215,6 +218,7 @@ public class Player1Control : MonoBehaviour
         {
             if (this.gameObject.transform.localScale.x >= 1)
             {
+                GetComponent<AudioSource>().Play();
                 this.gameObject.transform.localScale -= new Vector3(1, 0, 0);
             }
         }
@@ -223,7 +227,7 @@ public class Player1Control : MonoBehaviour
 
         if (collision.transform.tag == "mehrbaelle")
         {
-
+            GetComponent<AudioSource>().Play();
 
             DestroyObjectsBottomBorder.ballCount1++;
             Debug.Log("ball++. Du hast jetzt " + DestroyObjectsBottomBorder.ballCount1 + " Bälle");
@@ -237,6 +241,7 @@ public class Player1Control : MonoBehaviour
         ///////////////// Steuerung umkehren \\\\\\\\\\\\\\\\
         if (collision.transform.tag == "ControlChange")
         {
+            GetComponent<AudioSource>().Play();
             Debug.Log("Rechts is jetzt Links");
            // Player2Control.controlchangelight.SetActive(true);
 
@@ -261,7 +266,7 @@ public class Player1Control : MonoBehaviour
         if (collision.transform.tag == "shieldItem" && shieldstatus == true)
         {
 
-            
+            GetComponent<AudioSource>().Play();
             speedItemTimerShield = 8f;
            
             shieldTime = 8f;
@@ -271,7 +276,7 @@ public class Player1Control : MonoBehaviour
         }
         if (collision.transform.tag == "shieldItem")
         {
-            
+            GetComponent<AudioSource>().Play();
             shieldstatus = true;
 
 
@@ -280,6 +285,7 @@ public class Player1Control : MonoBehaviour
         ///////////////// Powerball Item \\\\\\\\\\\\\\\\
         if (collision.transform.tag == "powerballItem")
         {
+            GetComponent<AudioSource>().Play();
             powerballCollected = true;
             
            
@@ -294,9 +300,9 @@ public class Player1Control : MonoBehaviour
         }
 
         ///////////////// Glue Item \\\\\\\\\\\\\\\\
-        if (collision.transform.tag == "glueItem")
+        if (collision.transform.tag == "glueItem" && gluestatus == true)
         {
-
+            GetComponent<AudioSource>().Play();
             speedItemTimerGlue = 10f;
             glueTime = 10f;
             gluestatus = true;
@@ -305,6 +311,7 @@ public class Player1Control : MonoBehaviour
         }
         if (collision.transform.tag == "glueItem")
         {
+            GetComponent<AudioSource>().Play();
             gluestatus = true;
             
           

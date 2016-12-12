@@ -222,7 +222,10 @@ public class MyBallsScript : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-
+        if(collision.gameObject.name.Contains("Brick"))
+        {
+            GetComponent<AudioSource>().Play();
+        }
 
         foreach (ContactPoint contact in collision.contacts)
         {

@@ -200,6 +200,10 @@ public class MyBallsScript2 : MonoBehaviour {
             Player2Control.powerballstatus = false;
         }*/
 
+        if(collision.gameObject.name.Contains("Brick"))
+        {
+            GetComponent<AudioSource>().Play();
+        }
 
         foreach (ContactPoint contact in collision.contacts)
         {

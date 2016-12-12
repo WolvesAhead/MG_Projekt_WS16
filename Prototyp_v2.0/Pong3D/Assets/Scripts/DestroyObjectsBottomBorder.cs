@@ -23,6 +23,17 @@ public class DestroyObjectsBottomBorder : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        if(col.gameObject.transform.tag == "Matchball" && col.gameObject.transform.position.y > 4)
+        {
+            EndGame.player2Life -= 1;
+        }
+
+        if (col.gameObject.transform.tag == "Matchball" && col.gameObject.transform.position.y < 4)
+        {
+            EndGame.player1Life -= 1;
+        }
+
+
         if (col.gameObject.transform.tag == "ball")
         {
             if (col.gameObject.transform.position.y > 4)  //Ball 1 trifft Border oben

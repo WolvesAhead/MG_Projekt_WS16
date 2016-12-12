@@ -16,7 +16,7 @@ public class Player1Control : MonoBehaviour
 
 
 
-    private float speed = 6f;
+    static public float speed = 6f;
     public static float rightLimit;
     public static float leftLimit;
     public static Rigidbody ItemInstance;
@@ -32,10 +32,10 @@ public class Player1Control : MonoBehaviour
     public static bool controlChange = false;
 
 
-    public static int player1Score;
+    public static int player1Score = 000;
     public  float controlChangeTime = 5f;
     public  float shieldTime = 8f;
-    public  float glueTime = 15f;
+    public  float glueTime = 10f;
     
     
     float contactPointGlue;
@@ -45,7 +45,7 @@ public class Player1Control : MonoBehaviour
      public Image circleControlChange;
 
     float speedItemTimerShield = 8f;
-    float speedItemTimerGlue = 15f;
+    float speedItemTimerGlue = 10f;
     float speedItemTimerControlChange = 5f;
 
     void Start()
@@ -113,29 +113,7 @@ public class Player1Control : MonoBehaviour
                 transform.position += Vector3.left * speed * Time.deltaTime;
             }
 
-            /*if (Input.GetKey(KeyCode.C ) && transform.position.x > leftLimit + 0.1)
-            {
-                transform.position += Vector3.left * speed * Time.deltaTime;
-
-
-            }
-            if (Input.GetKey(KeyCode.A) && transform.position.x < rightLimit - 0.1)
-            {
-                transform.position += Vector3.right * speed * Time.deltaTime;
-            }
-        }
-        else
-        {
-            // Steuerung
-
-            if (Input.GetKey(KeyCode.C) && transform.position.x < rightLimit - 0.1)
-            {
-                transform.position += Vector3.right * speed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.A) && transform.position.x > leftLimit + 0.1)
-            {
-                transform.position += Vector3.left * speed * Time.deltaTime;
-            }*/
+            
 
             CCCloak.SetActive(false);
         }
@@ -146,7 +124,12 @@ public class Player1Control : MonoBehaviour
         // shield activation      
         if (shieldstatus)
         {
-            
+            /*if (shieldstatus && shieldTime < 8)
+            {
+                shieldTime = 8f;
+                speedItemTimerShield = 8f;
+            }
+            */
             shieldTime -= Time.deltaTime;
             circleShield.fillAmount = speedItemTimerShield / 8;
             speedItemTimerShield -= Time.deltaTime;
@@ -158,8 +141,8 @@ public class Player1Control : MonoBehaviour
                 speedItemTimerShield = 8;
                 circleShield.fillAmount = 0; 
                 shieldstatus = false;
-         
-                shieldTime = 8f;
+                
+               
 
             }
         }
@@ -176,7 +159,7 @@ public class Player1Control : MonoBehaviour
         {
             GGCloak.SetActive(true);
             glueTime -= Time.deltaTime;
-            circleGlue.fillAmount = speedItemTimerGlue / 15;
+            circleGlue.fillAmount = speedItemTimerGlue / 10;
             speedItemTimerGlue -= Time.deltaTime;
             if (glued == true )
             {
@@ -190,11 +173,11 @@ public class Player1Control : MonoBehaviour
 
             if (glueTime < 0)
             {
-                speedItemTimerGlue = 15f;
+                speedItemTimerGlue = 10f;
                 gluestatus = false;
                 circleGlue.fillAmount = 0;
              
-                glueTime = 15f;
+                glueTime = 10f;
                 glued = false;
                 firstballisHere = false;
 
@@ -275,10 +258,23 @@ public class Player1Control : MonoBehaviour
 
         ///////////////// Shield Item \\\\\\\\\\\\\\\\
 
+        if (collision.transform.tag == "shieldItem" && shieldstatus == true)
+        {
+
+            
+            speedItemTimerShield = 8f;
+           
+            shieldTime = 8f;
+            shieldstatus = true;
+
+
+        }
         if (collision.transform.tag == "shieldItem")
         {
+            
             shieldstatus = true;
-           
+
+
         }
 
         ///////////////// Powerball Item \\\\\\\\\\\\\\\\
@@ -300,28 +296,36 @@ public class Player1Control : MonoBehaviour
         ///////////////// Glue Item \\\\\\\\\\\\\\\\
         if (collision.transform.tag == "glueItem")
         {
+
+            speedItemTimerGlue = 10f;
+            glueTime = 10f;
             gluestatus = true;
-            firstballisHere = true;
+
+
+        }
+        if (collision.transform.tag == "glueItem")
+        {
+            gluestatus = true;
+            
           
 
-            Debug.Log("Bam");
+
         }
 
         if (collision.transform.tag == "ball"  && gluestatus == true)
         {
-            Debug.Log("Bam2");
+       
 
            
             if ((collision.gameObject.name.Contains("(Clone)")))
             {
                 isClone = true;
-                Debug.Log("isClone");
-
+              
             }
             else
             {
                 isClone = false;
-                Debug.Log("isNotClone");
+          
 
             }
 

@@ -81,6 +81,9 @@ public class MyBallsScript : MonoBehaviour
             transform.position = new Vector3(playerPaddle.transform.position.x, -4.5f, -0.7f);
         }
 
+            
+            
+
 
             if(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow)&& (startposition || Player1Control.glued && Player1Control.isClone == false) )
             {
@@ -207,6 +210,7 @@ public class MyBallsScript : MonoBehaviour
         }
         Player1Control.powerballstatus = false;
         Player1Control.powerballCollected = false;
+        Player1Control.shieldstatus = false;
         Firepaddle.SetActive(false);
         Player1Control.gluestatus = false;
         Player1Control.glued = false;
@@ -238,7 +242,7 @@ public class MyBallsScript : MonoBehaviour
 
 
             }
-            if (collision.transform.tag == "Player2Paddle" && playerPaddle2.transform.position.x < Player1Control.rightLimit - 0.1 && playerPaddle2.transform.position.x > Player1Control.leftLimit + 0.1)
+            if (collision.transform.tag == "Player2Paddle" && playerPaddle2.transform.position.x < Player2Control.rightLimit - 0.1 && playerPaddle2.transform.position.x > Player2Control.leftLimit + 0.1)
             {
                 float winkel = contact.point.x - playerPaddle2.transform.position.x;
                 float winkelX2 = winkel / (playerPaddle2.transform.localScale.x / 2);

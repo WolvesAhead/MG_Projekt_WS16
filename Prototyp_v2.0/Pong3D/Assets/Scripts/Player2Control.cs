@@ -12,9 +12,9 @@ public class Player2Control : MonoBehaviour
     public GameObject CCCloak2;
     public GameObject GGCloak2;
 
-    private float speed = 6f;
-    private float rightLimit;
-    private float leftLimit;
+    public static float speed=6f;
+    static public float rightLimit;
+    static public float  leftLimit;
     public static bool shieldstatus = false;
     public static bool firstballisHere = false;
     public static bool controlChange = false;
@@ -26,13 +26,15 @@ public class Player2Control : MonoBehaviour
     public static bool powerballCollected = false;
     public static bool glued = false;
 
+   
 
 
-    public static int player2Score = 0;
+
+    public static int player2Score = 000;
     //public static GameObject controlchangelight;
     private float controlChangeTime = 5f;
     public float shieldTime = 8f;
-    public float glueTime = 15f;
+    public float glueTime = 10f;
 
     float contactPointGlue;
 
@@ -41,7 +43,7 @@ public class Player2Control : MonoBehaviour
     public Image circleControlChange;
 
     float speedItemTimerShield = 8f;
-    float speedItemTimerGlue = 15f;
+    float speedItemTimerGlue = 10f;
     float speedItemTimerControlChange = 5f;
 
 
@@ -114,16 +116,16 @@ public class Player2Control : MonoBehaviour
                 transform.position += Vector3.right * speed * Time.deltaTime;
             }
 
-           /* if (Input.GetKey(KeyCode.I) && transform.position.x > leftLimit + 0.1)
-            {
-                transform.position += Vector3.left * speed * Time.deltaTime;
+            /* if (Input.GetKey(KeyCode.I) && transform.position.x > leftLimit + 0.1)
+             {
+                 transform.position += Vector3.left * speed* Time.deltaTime;
 
 
-            }
-            if (Input.GetAxis("Jump") > 0 && transform.position.x < rightLimit - 0.1)
-            {
-                transform.position += Vector3.right * speed * Time.deltaTime;
-            }*/
+             }
+             if (Input.GetAxis("Jump") > 0 && transform.position.x < rightLimit - 0.1)
+             {
+                 transform.position += Vector3.right * speed * Time.deltaTime;
+             }*/
         }
         else
         {
@@ -149,7 +151,7 @@ public class Player2Control : MonoBehaviour
         {
             GGCloak2.SetActive(true);
             glueTime -= Time.deltaTime;
-            circleGlue.fillAmount = speedItemTimerGlue / 15;
+            circleGlue.fillAmount = speedItemTimerGlue / 10;
             speedItemTimerGlue -= Time.deltaTime;
             if (glued == true)
             {
@@ -164,12 +166,12 @@ public class Player2Control : MonoBehaviour
 
             if (glueTime < 0)
             {
-                speedItemTimerGlue = 15f;
+                speedItemTimerGlue = 10f;
                 gluestatus = false;
                 circleGlue.fillAmount = 0;
 
                 gluestatus = false;
-                glueTime = 15f;
+                glueTime = 10f;
                 firstballisHere = false;
 
             }
@@ -231,9 +233,20 @@ public class Player2Control : MonoBehaviour
           
         }
 
-     
+
         ///////////////// Shield Item \\\\\\\\\\\\\\\\
 
+        if (collision.transform.tag == "shieldItem" && shieldstatus == true)
+        {
+
+            shieldstatus = false;
+            speedItemTimerShield = 8f;
+            circleShield.fillAmount = 0;
+            shieldTime = 8f;
+            shieldstatus = true;
+
+
+        }
         if (collision.transform.tag == "shieldItem")
         {
             shieldstatus = true;
@@ -254,28 +267,39 @@ public class Player2Control : MonoBehaviour
            
         }
 
+
+
         ///////////////// Glue Item \\\\\\\\\\\\\\\\
         if (collision.transform.tag == "glueItem")
         {
+           
+            speedItemTimerGlue = 10f;
+            glueTime = 10f;
             gluestatus = true;
-            Debug.Log("Bam");
+
+
+        }
+        if (collision.transform.tag == "glueItem")
+        {
+            gluestatus = true;
+        
          
         }
 
         if (collision.transform.tag == "ball2" && gluestatus == true)
         {
-            Debug.Log("Bam2");
+    
 
             if ((collision.gameObject.name.Contains("(Clone)")))
             {
                 isClone = true;
-                Debug.Log("isClone");
+       
 
             }
             else
             {
                 isClone = false;
-                Debug.Log("isNotClone");
+          
 
             }
             foreach (ContactPoint contact in collision.contacts)

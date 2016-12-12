@@ -184,6 +184,7 @@ public class MyBallsScript2 : MonoBehaviour {
         Player2Control.powerballCollected = false;
         Player2Control.gluestatus = false;
         Player2Control.glued = false;
+        Player2Control.shieldstatus = false;
         Firepaddle2.SetActive(false);
         fireball2.SetActive(false);
        circleControlChange.fillAmount = 0;
@@ -218,7 +219,7 @@ public class MyBallsScript2 : MonoBehaviour {
 
 
             }
-            if (collision.transform.tag == "Player1Paddle" && playerPaddle2.transform.position.x < Player1Control.rightLimit - 0.1 && playerPaddle2.transform.position.x > Player1Control.leftLimit + 0.1) // wir haben Player1Control Sciprt benutzt weil player1 und player 2 haben die gleichen grenzen
+            if (collision.transform.tag == "Player1Paddle" && playerPaddle2.transform.position.x < Player2Control.rightLimit - 0.1 && playerPaddle2.transform.position.x > Player2Control.leftLimit + 0.1) // wir haben Player1Control Sciprt benutzt weil player1 und player 2 haben die gleichen grenzen
             {
                 float winkel = contact.point.x - playerPaddle2.transform.position.x;
                 float winkelX2 = winkel / (playerPaddle2.transform.localScale.x / 2);

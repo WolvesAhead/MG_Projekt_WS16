@@ -7,7 +7,7 @@ public class BlockPhys : MonoBehaviour {
     public Rigidbody[] RbitemPrefab;
     private int chanceItem;
     private int i;
-    public static int brickZähler=86; // 104 = Level 1    86 = Level 2
+    public static int brickZähler=104; // 104 = Level 1    86 = Level 2
 
     // Use this for initialization
     void Start () {
@@ -106,9 +106,9 @@ public class BlockPhys : MonoBehaviour {
 
 
 
-        int random = Random.Range(0, 4);
+        int random = Random.Range(0, 5);
       
-
+        
         if (col.transform.tag == "ball" && random == 1)
         {
             Rigidbody ItemInstance;
@@ -123,10 +123,11 @@ public class BlockPhys : MonoBehaviour {
             {
                 itemChance();
             }*/
-
-            ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
+            if (brickZähler > 5)
+            {
+                ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
                 ItemInstance.AddForce(0, -150, 0);
-
+            }
         }
 
         if (col.transform.tag == "ball2" && random == 1)
@@ -142,10 +143,11 @@ public class BlockPhys : MonoBehaviour {
             {
                 itemChance();
             }*/
-
+            if (brickZähler > 5)
+            {
                 ItemInstance = Instantiate(RbitemPrefab[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity) as Rigidbody;
                 ItemInstance.AddForce(0, 150, 0);
-            
+            }
       
         }
 

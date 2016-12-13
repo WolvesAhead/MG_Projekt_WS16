@@ -7,7 +7,7 @@ public class BlockPhys : MonoBehaviour {
     public Rigidbody[] RbitemPrefab;
     private int chanceItem;
     private int i;
-    public static int brickZähler=104; // 104 = Level 1    86 = Level 2
+    public static int brickZähler=24; // 104 = Level 1    86 = Level 2
 
     // Use this for initialization
     void Start () {

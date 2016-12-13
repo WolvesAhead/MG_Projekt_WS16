@@ -27,6 +27,7 @@ public class EndGame : MonoBehaviour
     float lifeBorder2;
     public GameObject WinLose1;
     public GameObject WinLose2;
+    public GameObject RestartButton;
 
 
     // Use this for initialization
@@ -55,7 +56,7 @@ public class EndGame : MonoBehaviour
             if(player1Life < 1)
             {   
                 WinLose2.SetActive(true);
-             
+                RestartButton.SetActive(true);
                 MatchBall.SetActive(false);
                 Debug.Log("Player 1 lost"); 
             }
@@ -71,7 +72,7 @@ public class EndGame : MonoBehaviour
             if(player2Life < 1)
             {
                 WinLose1.SetActive(true);
-             
+                RestartButton.SetActive(true);
                 MatchBall.SetActive(false);
                 Debug.Log("player 2 lost");
             }

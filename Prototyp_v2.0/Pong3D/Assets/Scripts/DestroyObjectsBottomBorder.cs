@@ -8,6 +8,11 @@ public class DestroyObjectsBottomBorder : MonoBehaviour
     public MyBallsScript2 mbs2;
     public static int ballCount1 = 1;       //Anzahl Bälle
     public static int ballCount2 = 1;
+    public bool servstatus1 = false;
+    public bool servstatus2 = false;
+    float servetimer1 = 2f;
+    float servetimer2 = 2f;
+
 
     // Use this for initialization
     void Start()
@@ -18,6 +23,33 @@ public class DestroyObjectsBottomBorder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (servstatus1)
+        {
+            servetimer1 -= Time.deltaTime;
+            if (servetimer1 < 0)
+            {
+                mbs.Serve();
+                servetimer1 = 2f;
+                servstatus1 = false;
+            }
+
+           }
+       
+
+        if (servstatus2)
+        {
+            if (servstatus2)
+            {
+                servetimer2 -= Time.deltaTime;
+                if (servetimer2 < 0)
+                {
+                    mbs2.Serve();
+                    servetimer2 = 2f;
+                    servstatus2 = false;
+                }
+
+            }
+        }
 
     }
 
@@ -77,6 +109,7 @@ public class DestroyObjectsBottomBorder : MonoBehaviour
                     GetComponent<AudioSource>().Play();
                     ballCount1++;
                     mbs.Serve();
+                    //servstatus1 = true;
                 }
             }
 
@@ -97,7 +130,8 @@ public class DestroyObjectsBottomBorder : MonoBehaviour
                     GetComponent<AudioSource>().Play();
                     ballCount1++;
                     mbs.ResetPowerups();
-                    mbs.Serve();
+                    // mbs.Serve();
+                    servstatus1 = true;
                 }
             }
         }
@@ -145,6 +179,7 @@ public class DestroyObjectsBottomBorder : MonoBehaviour
                     GetComponent<AudioSource>().Play();
                     ballCount2++;
                     mbs2.Serve();
+                    //servstatus2 = true;
                 }
             }
             else if (col.gameObject.transform.position.y > 4)
@@ -165,7 +200,8 @@ public class DestroyObjectsBottomBorder : MonoBehaviour
                     ballCount2++;
                     mbs2.ResetPowerups2();
                     Debug.Log("Lost");
-                    mbs2.Serve();
+                    // mbs2.Serve();
+                    servstatus2 = true;
                 }
             }
         }

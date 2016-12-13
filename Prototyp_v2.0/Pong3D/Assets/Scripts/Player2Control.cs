@@ -34,7 +34,7 @@ public class Player2Control : MonoBehaviour
     //public static GameObject controlchangelight;
     private float controlChangeTime = 5f;
     public float shieldTime = 8f;
-    public float glueTime = 10f;
+    public float glueTime = 12f;
 
     float contactPointGlue;
 
@@ -43,7 +43,7 @@ public class Player2Control : MonoBehaviour
     public Image circleControlChange;
 
     float speedItemTimerShield = 8f;
-    float speedItemTimerGlue = 10f;
+    float speedItemTimerGlue = 12f;
     float speedItemTimerControlChange = 5f;
 
 
@@ -151,7 +151,7 @@ public class Player2Control : MonoBehaviour
         {
             GGCloak2.SetActive(true);
             glueTime -= Time.deltaTime;
-            circleGlue.fillAmount = speedItemTimerGlue / 10;
+            circleGlue.fillAmount = speedItemTimerGlue / 12;
             speedItemTimerGlue -= Time.deltaTime;
             if (glued == true)
             {
@@ -166,12 +166,12 @@ public class Player2Control : MonoBehaviour
 
             if (glueTime < 0)
             {
-                speedItemTimerGlue = 10f;
+                speedItemTimerGlue = 12f;
                 gluestatus = false;
                 circleGlue.fillAmount = 0;
 
                 gluestatus = false;
-                glueTime = 10f;
+                glueTime = 12f;
                 firstballisHere = false;
 
             }
@@ -241,11 +241,13 @@ public class Player2Control : MonoBehaviour
         if (collision.transform.tag == "shieldItem" && shieldstatus == true)
         {
             GetComponent<AudioSource>().Play();
-            shieldstatus = false;
             speedItemTimerShield = 8f;
-            circleShield.fillAmount = 0;
+
             shieldTime = 8f;
             shieldstatus = true;
+          
+            circleShield.fillAmount = 0;
+
 
 
         }
@@ -274,13 +276,14 @@ public class Player2Control : MonoBehaviour
 
 
         ///////////////// Glue Item \\\\\\\\\\\\\\\\
-        if (collision.transform.tag == "glueItem" && gluestatus == true)
+        if (collision.transform.tag == "glueItem")
         {
             GetComponent<AudioSource>().Play();
-            speedItemTimerGlue = 10f;
-            glueTime = 10f;
-            gluestatus = true;
+            speedItemTimerGlue = 12f;
 
+            glueTime = 12f;
+            gluestatus = true;
+            circleShield.fillAmount = 0;
 
         }
         if (collision.transform.tag == "glueItem")

@@ -29,7 +29,7 @@ public class MoveBlock : MonoBehaviour {
           
         }
 
-        if (MoveBlock2.transform.position.y >= -1.2 && MoveBlock1.transform.position.x >= 1.2)
+        if (MoveBlock1.transform.position.y >= -1.2 && MoveBlock1.transform.position.x >= 1.2)
         {
             MoveBlock1.transform.Translate(0, -Time.deltaTime, 0);
       

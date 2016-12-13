@@ -114,6 +114,7 @@ public class MyBallsScript : MonoBehaviour
             rb.velocity = new Vector3(0, 0, 0);
             GetComponent<Rigidbody>().AddForce(0, 300, 0);
             Debug.Log("Oben2 (ball)");
+            startposition = false;
             Player1Control.glued = false;
 
         }
@@ -123,7 +124,7 @@ public class MyBallsScript : MonoBehaviour
             Player1Control.ItemInstance.velocity = new Vector3(0, 0, 0);
             Player1Control.ItemInstance.AddForce(0, 300, 0);
             Debug.Log("Oben2(clone)");
-            
+            startposition = false;
             Player1Control.glued = false;
         }
         #region Kuti steuerung
@@ -194,6 +195,7 @@ public class MyBallsScript : MonoBehaviour
 
     public void Serve()   //Bedeutet Ball wird jetzt wieder aufs Paddle gesetzt, bereit zum schießen
     {
+
         startposition = true;
     }
 

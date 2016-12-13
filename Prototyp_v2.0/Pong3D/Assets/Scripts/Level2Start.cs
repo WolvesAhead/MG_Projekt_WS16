@@ -17,6 +17,6 @@ public class Level2Start : MonoBehaviour {
 
 	public void onClick()
 	{
-		Application.LoadLevel("Level2(Disco)");
+		Application.LoadLevel("Brong2");
 	}
 }

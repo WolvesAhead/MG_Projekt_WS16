@@ -10,7 +10,8 @@ public class BlockPhys2 : MonoBehaviour {
     public static int brickZähler=112; // 104 = Level 1    86 = Level 2
 
     // Use this for initialization
-    void Start () {
+    void Start () 
+    {
     
 
     }
